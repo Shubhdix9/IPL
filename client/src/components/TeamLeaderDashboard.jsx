@@ -354,5 +354,6 @@ export default function TeamLeaderDashboard() {
       </div>
       <audio id="gavelSound" src="https://www.soundjay.com/misc/sounds/gavel-banging-1.mp3" preload="auto"></audio>
     </div>
+    </>
   );
 }

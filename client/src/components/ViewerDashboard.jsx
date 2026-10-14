@@ -8,7 +8,6 @@ export default function ViewerDashboard() {
   const [currentBids, setCurrentBids] = useState({});
   const [teams, setTeams] = useState([]);
   const [venueStats, setVenueStats] = useState({});
-  const [isCinematic, setIsCinematic] = useState(true);
   const [breakModes, setBreakModes] = useState({});
   const [selectedLocationId, setSelectedLocationId] = useState(null);
   const [showStatsDrawer, setShowStatsDrawer] = useState(false);
