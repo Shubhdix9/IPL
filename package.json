@@ -6,9 +6,25 @@
     "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm run server\" \"npm run client\"",
     "client": "npm --prefix client run dev",
     "server": "npm --prefix server start",
+    "seed:firebase": "node server/seed-firebase.js",
+    "test": "tsx scripts/test-auction-engine.ts",
+    "migrate": "tsx scripts/migrate-prisma-to-firestore.ts",
     "install:all": "npm --prefix server install && npm --prefix client install"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "concurrently": "^9.1.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "firebase": "^13.0.0",
+    "firebase-admin": "^14.5.0",
+    "next": "^16.4.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "xlsx": "^0.18.5"
   }
 }

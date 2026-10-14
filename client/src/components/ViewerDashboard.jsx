@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import socket from '../socket';
 import playerImageMap from '../playerImageMap.json';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
 export default function ViewerDashboard() {
   const [locations, setLocations] = useState([]);
   const [livePlayers, setLivePlayers] = useState({});
@@ -56,12 +58,12 @@ export default function ViewerDashboard() {
   };
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_API_URL + '/api/teams')
+    fetch(API_URL + '/api/teams')
       .then(res => res.json())
       .then(data => setTeams(data))
       .catch(console.error);
 
-    fetch(import.meta.env.VITE_API_URL + '/api/locations')
+    fetch(API_URL + '/api/locations')
       .then(res => res.json())
       .then(fetchedLocs => {
         setLocations(fetchedLocs);
@@ -70,7 +72,7 @@ export default function ViewerDashboard() {
           socket.emit('joinLocation', loc.id);
 
           // Fetch historical players for venue stats
-          fetch(`${import.meta.env.VITE_API_URL}/api/locations/${loc.id}/players`)
+          fetch(`${API_URL}/api/locations/${loc.id}/players`)
             .then(res => res.json())
             .then(data => {
               const soldPlayers = data.filter(p => p.status === 'SOLD');

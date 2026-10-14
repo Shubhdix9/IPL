@@ -2,9 +2,12 @@ import { useEffect, useState, useRef } from 'react';
 import * as XLSX from 'xlsx';
 import socket from '../socket';
 import playerImageMap from '../playerImageMap.json';
+import AuctioneerDashboard from './AuctioneerDashboard';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export default function ManagerDashboard() {
-  const [activeTab, setActiveTab] = useState('DASHBOARD');
+  const [activeTab, setActiveTab] = useState('LIVE_AUCTION');
   
   const [teams, setTeams] = useState([]);
   const [locations, setLocations] = useState([]);
@@ -54,9 +57,9 @@ export default function ManagerDashboard() {
   const fetchData = async () => {
     try {
       const [teamsRes, locsRes, usersRes] = await Promise.all([
-        fetch(import.meta.env.VITE_API_URL + '/api/teams'),
-        fetch(import.meta.env.VITE_API_URL + '/api/locations'),
-        fetch(import.meta.env.VITE_API_URL + '/api/users')
+        fetch(API_URL + '/api/teams'),
+        fetch(API_URL + '/api/locations'),
+        fetch(API_URL + '/api/users')
       ]);
       const teamsData = await teamsRes.json();
       setTeams(teamsData);
@@ -76,7 +79,7 @@ export default function ManagerDashboard() {
       }
       
       if (locationsData.length > 0) {
-        const playersRes = await fetch(`${import.meta.env.VITE_API_URL}/api/locations/${locationsData[0].id}/players`);
+        const playersRes = await fetch(`${API_URL}/api/locations/${locationsData[0].id}/players`);
         if (playersRes.ok) {
            const playersData = await playersRes.json();
            const uniquePlayers = Array.from(new Map(playersData.map(p => [p.name, p])).values());
@@ -115,7 +118,7 @@ export default function ManagerDashboard() {
     e.preventDefault();
     if (!newLocation) return;
     try {
-      const res = await fetch(import.meta.env.VITE_API_URL + '/api/locations', {
+      const res = await fetch(API_URL + '/api/locations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: newLocation })
@@ -132,7 +135,7 @@ export default function ManagerDashboard() {
   const handleDeleteLocation = async (id) => {
     if (!window.confirm('Are you sure you want to delete this venue? This will permanently delete all franchises, players, and data associated with it!')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/locations/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_URL}/api/locations/${id}`, { method: 'DELETE' });
       if (res.ok) {
         setSelectedLocation(null);
         fetchData();
@@ -145,7 +148,7 @@ export default function ManagerDashboard() {
   const handleResetPlayers = async () => {
     if (!window.confirm('DANGER! This will delete ALL PLAYERS globally, clear all bids, and reset all team budgets to 90Cr. Venues and Franchises will remain. Are you 100% sure?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/players`, { method: 'DELETE' });
+      const res = await fetch(`${API_URL}/api/players`, { method: 'DELETE' });
       if (res.ok) {
         alert("Player database has been wiped clean.");
         fetchData();
@@ -181,7 +184,7 @@ export default function ManagerDashboard() {
     if (!newUserUsername || !newUserPassword) return alert("Provide username and password.");
     if (newUserRole === 'TEAM_LEADER' && !newUserTeamId) return alert("Please select a team for this Team Leader.");
     try {
-      const res = await fetch(import.meta.env.VITE_API_URL + '/api/users', {
+      const res = await fetch(API_URL + '/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -206,7 +209,7 @@ export default function ManagerDashboard() {
   const handleDeleteUser = async (userId) => {
     if(!window.confirm('Are you sure you want to delete this user?')) return;
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, { method: 'DELETE' });
+      await fetch(`${API_URL}/api/users/${userId}`, { method: 'DELETE' });
       fetchData();
     } catch (error) {
       console.error(error);
@@ -219,7 +222,7 @@ export default function ManagerDashboard() {
   const handleUpdatePassword = async (userId) => {
     if (!newPasswordValue) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}/password`, {
+      const res = await fetch(`${API_URL}/api/users/${userId}/password`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: newPasswordValue })
@@ -240,7 +243,7 @@ export default function ManagerDashboard() {
     const action = currentStatus ? "un-disqualify (forgive)" : "disqualify";
     if (!window.confirm(`Are you sure you want to ${action} this franchise?`)) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/teams/${teamId}/disqualify`, {
+      const res = await fetch(`${API_URL}/api/teams/${teamId}/disqualify`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ isDisqualified: !currentStatus })
@@ -451,7 +454,7 @@ export default function ManagerDashboard() {
   const handleConfirmUpload = async () => {
     if (!previewPlayers || previewPlayers.length === 0) return;
     try {
-      const res = await fetch(import.meta.env.VITE_API_URL + '/api/players/bulk-global', {
+      const res = await fetch(API_URL + '/api/players/bulk-global', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ players: previewPlayers })
@@ -539,6 +542,13 @@ export default function ManagerDashboard() {
       <div className="dashboard-sidebar glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <h2 style={{ marginBottom: '1rem', textAlign: 'center', color: 'var(--primary)' }}>Manager Menu</h2>
         <button 
+          onClick={() => { setActiveTab('LIVE_AUCTION'); }}
+          className="btn"
+          style={{ background: activeTab === 'LIVE_AUCTION' ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: activeTab === 'LIVE_AUCTION' ? '#000' : 'white', textAlign: 'left', fontWeight: 'bold' }}
+        >
+          🔨 Live Auction Room
+        </button>
+        <button 
           onClick={() => { setActiveTab('DASHBOARD'); setSelectedLocation(null); }}
           className="btn"
           style={{ background: activeTab === 'DASHBOARD' ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: activeTab === 'DASHBOARD' ? '#000' : 'white', textAlign: 'left' }}
@@ -579,6 +589,13 @@ export default function ManagerDashboard() {
       {/* MAIN CONTENT AREA */}
       <div className="dashboard-main" style={{ overflowY: 'auto' }}>
         
+        {/* LIVE AUCTION TAB */}
+        {activeTab === 'LIVE_AUCTION' && (
+          <div style={{ width: '100%' }}>
+            <AuctioneerDashboard locationIdOverride={selectedLocation?.id} />
+          </div>
+        )}
+
         {/* DASHBOARD TAB */}
         {activeTab === 'DASHBOARD' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>

@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import socket from '../socket';
 import { useAuth } from '../AuthContext';
 
-export default function AuctioneerDashboard() {
+export default function AuctioneerDashboard({ locationIdOverride }) {
   const { user } = useAuth();
-  const selectedLocation = user?.locationId;
   const [locations, setLocations] = useState([]);
+  const [adminSelectedLocation, setAdminSelectedLocation] = useState(null);
+  const selectedLocation = locationIdOverride || adminSelectedLocation || user?.locationId || (locations[0]?.id || null);
+
   const [players, setPlayers] = useState([]);
   const [teams, setTeams] = useState([]);
   const [livePlayer, setLivePlayer] = useState(null);
@@ -25,11 +27,11 @@ export default function AuctioneerDashboard() {
   };
 
   const fetchTeams = () => {
-    fetch(import.meta.env.VITE_API_URL + '/api/teams')
+    fetch((import.meta.env.VITE_API_URL || 'http://localhost:3001') + '/api/teams')
       .then(res => res.json())
       .then(data => {
         if (selectedLocation) {
-          setTeams(data.filter(t => t.locationId === selectedLocation));
+          setTeams(data.filter(t => String(t.locationId) === String(selectedLocation)));
         } else {
           setTeams(data);
         }
@@ -38,17 +40,45 @@ export default function AuctioneerDashboard() {
   };
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_API_URL + '/api/locations')
+    fetch((import.meta.env.VITE_API_URL || 'http://localhost:3001') + '/api/locations')
       .then(res => res.json())
-      .then(data => setLocations(data))
+      .then(data => {
+        setLocations(data);
+        if (!adminSelectedLocation && data.length > 0) {
+          setAdminSelectedLocation(data[0].id);
+        }
+      })
       .catch(console.error);
     fetchTeams();
   }, []);
 
+  const advanceNextPlayer = async () => {
+    if (!selectedLocation) return;
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/auction/set-live`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ locationId: selectedLocation })
+      });
+      const data = await res.json();
+      if (data && data.id) {
+        setLivePlayer(data);
+        setCurrentBid(data.basePrice);
+        setBiddingTeam('');
+        setBidHistory([]);
+        setPlayers(prev => prev.filter(p => p.id !== data.id));
+      } else if (data.error) {
+        alert(data.error);
+      }
+    } catch (err) {
+      console.error('Failed to advance next player:', err);
+    }
+  };
+
   useEffect(() => {
     if (selectedLocation) {
       socket.emit('joinLocation', selectedLocation);
-      fetch(`${import.meta.env.VITE_API_URL}/api/locations/${selectedLocation}/players`)
+      fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/locations/${selectedLocation}/players`)
         .then(res => res.json())
         .then(data => setPlayers(data.filter(p => p.status === 'UPCOMING')))
         .catch(console.error);
@@ -224,11 +254,61 @@ export default function AuctioneerDashboard() {
   }
 
   return (
-    <div className="auctioneer-grid">
-      {/* LEFT COLUMN: UPCOMING PLAYERS */}
-      <div className="auctioneer-sidebar glass-panel">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2>Upcoming Players</h2>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      {/* Fast Control Header Bar */}
+      <div className="glass-panel" style={{ padding: '0.75rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <span style={{ fontWeight: 'bold', color: 'var(--primary)', fontSize: '1.1rem' }}>📍 Auction Room:</span>
+          {locations.length > 0 && (
+            <select
+              value={selectedLocation || ''}
+              onChange={(e) => setAdminSelectedLocation(e.target.value)}
+              style={{ padding: '0.5rem 1rem', background: 'var(--bg-dark)', color: 'white', border: '1px solid var(--primary)', borderRadius: '8px', fontWeight: 'bold' }}
+            >
+              {locations.map(l => (
+                <option key={l.id} value={l.id}>{l.name}</option>
+              ))}
+            </select>
+          )}
+        </div>
+
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <button
+            className="btn"
+            onClick={advanceNextPlayer}
+            style={{
+              background: 'linear-gradient(135deg, #10b981, #059669)',
+              color: 'white',
+              fontWeight: '800',
+              fontSize: '1.1rem',
+              padding: '0.6rem 1.5rem',
+              borderRadius: '8px',
+              boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)'
+            }}
+          >
+            ▶ NEXT PLAYER
+          </button>
+          <button
+            className="btn"
+            onClick={toggleBreak}
+            style={{
+              background: isBreakMode ? 'var(--warning)' : 'rgba(255,255,255,0.1)',
+              color: isBreakMode ? '#000' : 'white',
+              fontWeight: 'bold',
+              padding: '0.6rem 1.2rem',
+              borderRadius: '8px'
+            }}
+          >
+            {isBreakMode ? '☕ Resume Auction' : '☕ Pause (Break)'}
+          </button>
+        </div>
+      </div>
+
+      <div className="auctioneer-grid">
+        {/* LEFT COLUMN: UPCOMING PLAYERS */}
+        <div className="auctioneer-sidebar glass-panel">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h2>Upcoming Players</h2>
           <button 
             className="btn" 
             style={{ padding: '0.5rem', background: leaderboardActive ? 'var(--primary)' : 'rgba(255,255,255,0.1)', fontSize: '0.8rem' }}
@@ -380,10 +460,9 @@ export default function AuctioneerDashboard() {
             
             {(livePlayer.status === 'SOLD' || livePlayer.status === 'UNSOLD') && (
               <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-                <button className="btn" style={{ fontSize: '1.2rem', padding: '1rem 2rem' }} onClick={() => {
-                  setLivePlayer(null);
-                  setPlayers(players.filter(p => p.id !== livePlayer.id));
-                }}>Next Player</button>
+                <button className="btn" style={{ fontSize: '1.2rem', padding: '1rem 2rem', background: 'var(--primary)', color: '#000', fontWeight: 'bold' }} onClick={advanceNextPlayer}>
+                  ▶ Next Player
+                </button>
                 <button className="btn" style={{ fontSize: '1.2rem', padding: '1rem 2rem', background: 'var(--warning)', color: 'black', fontWeight: 'bold' }} onClick={reopenPlayer}>
                   Re-Open Player
                 </button>
@@ -391,7 +470,12 @@ export default function AuctioneerDashboard() {
             )}
           </div>
         ) : (
-          <p style={{ marginTop: '2rem', color: 'var(--text-muted)', fontSize: '1.2rem', textAlign: 'center' }}>Select an upcoming player from the left sidebar to begin bidding.</p>
+          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', textAlign: 'center' }}>No player currently on the auction block.</p>
+            <button className="btn" style={{ fontSize: '1.3rem', padding: '1rem 2.5rem', background: 'linear-gradient(135deg, #10b981, #059669)', color: 'white', fontWeight: 'bold', borderRadius: '10px', boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)' }} onClick={advanceNextPlayer}>
+              ▶ Bring Next Player to Lot
+            </button>
+          </div>
         )}
       </div>
 
@@ -459,7 +543,7 @@ export default function AuctioneerDashboard() {
           </div>
         </div>
       </div>
-
+    </div>
     </div>
   );
 }

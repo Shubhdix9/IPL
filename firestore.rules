@@ -1,0 +1,88 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'ADMIN' ||
+        getUserData().role == 'ADMIN'
+      );
+    }
+
+    function isAuctioneer(locationId) {
+      return isAuthenticated() && (
+        (request.auth.token.role == 'AUCTIONEER' || getUserData().role == 'AUCTIONEER') &&
+        (request.auth.token.locationId == locationId || getUserData().locationId == locationId || isAdmin())
+      );
+    }
+
+    function isTeamLeader(teamId) {
+      return isAuthenticated() && (
+        (request.auth.token.role == 'TEAM_LEADER' || getUserData().role == 'TEAM_LEADER') &&
+        (request.auth.token.teamId == teamId || getUserData().teamId == teamId || isAdmin())
+      );
+    }
+
+    // Default deny all write mutations from client SDKs.
+    // All authoritative auction mutations (bids, sales, budgets, penalties)
+    // MUST go through validated Next.js Route Handlers via Firebase Admin SDK.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Users Collection
+    // Users can read only their own profile document. Admins can read all users.
+    // Client SDK write is forbidden; user creation/updating is server-only.
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow write: if false;
+    }
+
+    // Locations Collection
+    // Public/Viewer can read locations to display venues & break/leaderboard statuses.
+    // Writes are strictly server-side (Admin SDK).
+    match /locations/{locationId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Teams Collection
+    // Public/Viewer can read team rosters and remaining purses.
+    // Writes are strictly server-side (Admin SDK) to prevent tampering with budget.
+    match /teams/{teamId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Players Collection
+    // Public/Viewer can read player lots, current live player, and sold status.
+    // Direct client mutation is forbidden.
+    match /players/{playerId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Bids Collection
+    // Authenticated users and spectators can read live bids.
+    // Direct client writes are forbidden: bids must be placed via /api/bids.
+    match /bids/{bidId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Auction Events & Audit Logs
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+  }
+}

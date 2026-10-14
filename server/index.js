@@ -1,462 +1,994 @@
 const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
 const cors = require('cors');
-const { PrismaClient } = require('@prisma/client');
+const { onRequest } = require('firebase-functions/v2/https');
+const { db, auth, admin } = require('./firestore-adapter');
 
-const prisma = new PrismaClient();
+const DEFAULT_PURSE = 900_000_000; // 90 Cr
+const DEFAULT_FRANCHISES = ['CSK', 'MI', 'RCB', 'DC', 'KKR', 'PBKS', 'RR', 'SRH', 'LSG', 'GT'];
+
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(cors({ origin: '*' }));
+app.use(express.json({ limit: '10mb' }));
 
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
+// -----------------------------------------------------------------------------
+// Real-time Event Broadcaster (SSE + Webhooks for multi-client synchrony)
+// -----------------------------------------------------------------------------
+const sseClients = new Map();
+
+function broadcastEvent(locationId, eventType, data) {
+  const locIdStr = String(locationId);
+  const clients = sseClients.get(locIdStr);
+  if (clients) {
+    const payload = `event: ${eventType}\ndata: ${JSON.stringify(data)}\n\n`;
+    clients.forEach((clientRes) => {
+      try {
+        clientRes.write(payload);
+      } catch (err) {}
+    });
   }
-});
 
-// REST API Routes
+  // Also broadcast to global viewers
+  const globalClients = sseClients.get('global');
+  if (globalClients) {
+    const payload = `event: ${eventType}\ndata: ${JSON.stringify({ ...data, locationId: locIdStr })}\n\n`;
+    globalClients.forEach((clientRes) => {
+      try {
+        clientRes.write(payload);
+      } catch (err) {}
+    });
+  }
+}
 
-// Login Endpoint
-app.post('/api/login', async (req, res) => {
-  const { username, password } = req.body;
-  
-  const user = await prisma.user.findUnique({
-    where: { username }
+// SSE stream endpoint
+app.get('/api/events', (req, res) => {
+  const locationId = String(req.query.locationId || 'global');
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
   });
+  res.write('\n');
 
-  if (!user || user.password !== password) {
-    return res.status(401).json({ error: 'Invalid credentials' });
+  if (!sseClients.has(locationId)) {
+    sseClients.set(locationId, new Set());
   }
+  sseClients.get(locationId).add(res);
 
-  // In a real app, do not send back the password, and use JWT
-  const { password: _, ...userWithoutPassword } = user;
-  res.json(userWithoutPassword);
+  req.on('close', () => {
+    const clients = sseClients.get(locationId);
+    if (clients) {
+      clients.delete(res);
+      if (clients.size === 0) sseClients.delete(locationId);
+    }
+  });
 });
 
-// Get all teams with their bought players
+// Helper function to log audit events
+async function logAuditEvent(eventType, details, locationId) {
+  try {
+    await db.collection('audit_logs').add({
+      eventType,
+      details,
+      locationId: locationId || null,
+      timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
+  } catch (err) {
+    console.warn('[AuditLog] Warning:', err.message);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 1. Authentication
+// -----------------------------------------------------------------------------
+app.post('/api/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Username and password are required' });
+    }
+
+    const cleanUsername = username.trim().toLowerCase();
+    const snap = await db.collection('users').where('username', '==', cleanUsername).limit(1).get();
+
+    if (snap.empty) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    const userDoc = snap.docs[0];
+    const userData = userDoc.data();
+
+    const expectedPassword = userData.passwordFallback || 'password';
+    if (password !== expectedPassword) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    let customToken = '';
+    try {
+      customToken = await auth.createCustomToken(userDoc.id, {
+        role: userData.role,
+        locationId: userData.locationId || null,
+        teamId: userData.teamId || null,
+      });
+    } catch (e) {
+      console.warn('[login] Token note:', e.message);
+    }
+
+    res.json({
+      id: userDoc.id,
+      uid: userDoc.id,
+      username: userData.username,
+      email: userData.email,
+      role: userData.role,
+      locationId: userData.locationId || null,
+      teamId: userData.teamId || null,
+      token: customToken,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// -----------------------------------------------------------------------------
+// 2. Teams
+// -----------------------------------------------------------------------------
 app.get('/api/teams', async (req, res) => {
   try {
-    const teams = await prisma.team.findMany({
-      include: { players: true }
-    });
-    res.json(teams);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Update team disqualification status
-app.put('/api/teams/:id/disqualify', async (req, res) => {
-  const { isDisqualified } = req.body;
-  try {
-    const team = await prisma.team.update({
-      where: { id: parseInt(req.params.id) },
-      data: { isDisqualified }
-    });
-    io.emit('penaltyIssued', { teamId: team.id, mistakes: team.mistakes, isDisqualified });
-    res.json(team);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Get all players for a specific location
-app.get('/api/locations/:locationId/players', async (req, res) => {
-  const players = await prisma.player.findMany({
-    where: { locationId: parseInt(req.params.locationId) },
-    include: { team: true }
-  });
-  res.json(players);
-});
-
-// Get all users
-app.get('/api/users', async (req, res) => {
-  const users = await prisma.user.findMany({
-    include: { team: true, location: true },
-    orderBy: { role: 'asc' }
-  });
-  // Note: For this application, we explicitly return the password so the League Manager can view/manage them
-  res.json(users);
-});
-
-// Create user
-app.post('/api/users', async (req, res) => {
-  const { username, password, role, teamId, locationId } = req.body;
-  try {
-    const user = await prisma.user.create({
-      data: {
-        username,
-        password,
-        role,
-        teamId: teamId ? parseInt(teamId) : null,
-        locationId: locationId ? parseInt(locationId) : null,
-      }
-    });
-    const { password: _, ...userWithoutPassword } = user;
-    res.json(userWithoutPassword);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Get all locations
-app.get('/api/locations', async (req, res) => {
-  const locations = await prisma.location.findMany({
-    include: { teams: true, users: true }
-  });
-  res.json(locations);
-});
-
-// Create location & auto-generate fixed franchises
-app.post('/api/locations', async (req, res) => {
-  const { name } = req.body;
-  try {
-    const location = await prisma.location.create({
-      data: { name }
-    });
-
-    const teamNames = ['CSK', 'MI', 'RCB', 'DC', 'KKR', 'PBKS', 'RR', 'SRH', 'LSG', 'GT'];
-    
-    // Auto-generate teams and users for this new location
-    for (const tName of teamNames) {
-      const team = await prisma.team.create({
-        data: { name: tName, budget: 900000000, locationId: location.id }
-      });
-
-      await prisma.user.create({
-        data: {
-          username: `owner_${tName.toLowerCase()}_${location.name.toLowerCase().replace(/\s+/g, '')}`,
-          password: 'password', // Default
-          role: 'TEAM_LEADER',
-          teamId: team.id
-        }
-      });
-    }
-
-    res.json(location);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Delete location
-app.delete('/api/locations/:id', async (req, res) => {
-  try {
-    await prisma.location.delete({
-      where: { id: parseInt(req.params.id) }
-    });
-    res.json({ success: true });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Bulk create players for a specific location (kept for backward compatibility if needed)
-app.post('/api/locations/:locationId/players/bulk', async (req, res) => {
-  const { players } = req.body;
-  const locationId = parseInt(req.params.locationId);
-  try {
-    const playersWithLocation = players.map(p => ({ ...p, locationId }));
-    await prisma.player.createMany({ data: playersWithLocation });
-    res.json({ success: true, count: players.length });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Bulk create players for ALL locations globally
-app.post('/api/players/bulk-global', async (req, res) => {
-  const { players } = req.body;
-  try {
-    const locations = await prisma.location.findMany();
-    if (locations.length === 0) {
-      return res.status(400).json({ error: "No venues found. Please create a venue first." });
-    }
-
-    const allPlayersToInsert = [];
-    
-    // For every location, duplicate the parsed players
-    locations.forEach(loc => {
-      players.forEach(p => {
-        allPlayersToInsert.push({ ...p, locationId: loc.id });
-      });
-    });
-
-    await prisma.player.createMany({
-      data: allPlayersToInsert
-    });
-    
-    res.json({ success: true, count: allPlayersToInsert.length, locationsCount: locations.length });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Danger Zone: Delete ALL players globally
-app.delete('/api/players', async (req, res) => {
-  try {
-    await prisma.bid.deleteMany({});
-    await prisma.player.deleteMany({});
-    await prisma.team.updateMany({
-      data: {
-        budget: 900000000,
-        mistakes: 0,
-        isDisqualified: false
-      }
-    });
-    res.json({ success: true, message: "All players deleted and team budgets reset." });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Update user password
-app.put('/api/users/:id/password', async (req, res) => {
-  const { password } = req.body;
-  try {
-    const user = await prisma.user.update({
-      where: { id: parseInt(req.params.id) },
-      data: { password }
-    });
-    res.json({ success: true });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Delete user (Auctioneer)
-app.delete('/api/users/:id', async (req, res) => {
-  try {
-    await prisma.user.delete({
-      where: { id: parseInt(req.params.id) }
-    });
-    res.json({ success: true });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Create team for a specific location (Kept just in case, though unused in UI now)
-app.post('/api/locations/:locationId/teams', async (req, res) => {
-  const { name, budget } = req.body;
-  const locationId = parseInt(req.params.locationId);
-  try {
-    const team = await prisma.team.create({
-      data: {
-        name,
-        budget: budget ? parseFloat(budget) : 900000000,
-        locationId
-      }
-    });
-
-    // Auto-generate credentials for the franchise owner
-    const location = await prisma.location.findUnique({ where: { id: locationId } });
-    const username = `owner_${name.toLowerCase().replace(/\s+/g, '')}_${location.name.toLowerCase().replace(/\s+/g, '')}`;
-    
-    await prisma.user.create({
-      data: {
-        username: username,
-        password: 'password', // Default password
-        role: 'TEAM_LEADER',
-        teamId: team.id
-      }
-    });
-
-    res.json(team);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-// Socket.io Real-time logic
-io.on('connection', (socket) => {
-  console.log('User connected:', socket.id);
-
-  socket.on('joinLocation', (locationId) => {
-    socket.join(`location_${locationId}`);
-    console.log(`User joined location ${locationId}`);
-  });
-
-  socket.on('setLivePlayer', async (data) => {
-    const { locationId, playerId } = data;
-    
-    // Update player status in DB
-    const player = await prisma.player.update({
-      where: { id: playerId },
-      data: { status: 'LIVE' },
-      include: { team: true }
-    });
-
-    // Broadcast to location
-    io.to(`location_${locationId}`).emit('livePlayerUpdated', player);
-  });
-
-  socket.on('placeBid', async (data) => {
-    const { locationId, playerId, teamId, amount } = data;
-    // Log bid
-    const bid = await prisma.bid.create({
-      data: {
-        playerId,
-        teamId,
-        amount
-      }
-    });
-
-    // Update current bid info across location
-    io.to(`location_${locationId}`).emit('newBid', { playerId, teamId, amount, locationId });
-  });
-
-  socket.on('reverseBid', async (data) => {
-    const { locationId, playerId, previousAmount, previousTeamId } = data;
-    
-    // Find and delete the latest bid for this player
-    const latestBid = await prisma.bid.findFirst({
-      where: { playerId },
-      orderBy: { timestamp: 'desc' }
-    });
-
-    if (latestBid) {
-      await prisma.bid.delete({
-        where: { id: latestBid.id }
-      });
-    }
-
-    // Broadcast the reverted state (acts like a new bid to clients)
-    io.to(`location_${locationId}`).emit('newBid', { 
-      playerId, 
-      teamId: previousTeamId ? parseInt(previousTeamId) : null, 
-      amount: previousAmount, 
-      locationId 
-    });
-  });
-
-  socket.on('issuePenalty', async (data) => {
-    const { teamId, locationId } = data;
-    const team = await prisma.team.findUnique({ where: { id: teamId } });
-    if (!team) return;
-
-    const newMistakes = team.mistakes + 1;
-    const isDisqualified = newMistakes >= 3;
-
-    await prisma.team.update({
-      where: { id: teamId },
-      data: {
-        mistakes: newMistakes,
-        isDisqualified
-      }
-    });
-
-    // Broadcast penalty to everyone so UI updates instantly
-    if (locationId) {
-      io.to(`location_${locationId}`).emit('penaltyIssued', { teamId, mistakes: newMistakes, isDisqualified });
-    } else {
-      io.emit('penaltyIssued', { teamId, mistakes: newMistakes, isDisqualified });
-    }
-  });
-
-  socket.on('reversePenalty', async (data) => {
-    const { teamId, locationId } = data;
-    const team = await prisma.team.findUnique({ where: { id: teamId } });
-    if (!team || team.mistakes <= 0) return;
-
-    const newMistakes = team.mistakes - 1;
-    const isDisqualified = newMistakes >= 3;
-
-    await prisma.team.update({
-      where: { id: teamId },
-      data: {
-        mistakes: newMistakes,
-        isDisqualified
-      }
-    });
-
-    // Broadcast updated penalty state
-    if (locationId) {
-      io.to(`location_${locationId}`).emit('penaltyIssued', { teamId, mistakes: newMistakes, isDisqualified });
-    } else {
-      io.emit('penaltyIssued', { teamId, mistakes: newMistakes, isDisqualified });
-    }
-  });
-
-  socket.on('toggleLeaderboard', (data) => {
-    const { locationId, show } = data;
-    io.to(`location_${locationId}`).emit('leaderboardToggled', show);
-  });
-
-
-
-  socket.on('sellPlayer', async (data) => {
-    const { locationId, playerId, teamId, amount } = data;
-    
-    // Prevent double-click vulnerabilities by ensuring player is LIVE
-    const player = await prisma.player.findUnique({ where: { id: playerId } });
-    if (!player || player.status !== 'LIVE') return;
-
-    // Deduct from team purse and update player
-    const transaction = await prisma.$transaction([
-      prisma.player.update({
-        where: { id: playerId },
-        data: { status: 'SOLD', soldPrice: amount, teamId }
-      }),
-      prisma.team.update({
-        where: { id: teamId },
-        data: {
-          budget: { decrement: amount }
-        }
-      })
+    const [teamsSnap, playersSnap] = await Promise.all([
+      db.collection('teams').get(),
+      db.collection('players').where('status', '==', 'SOLD').get(),
     ]);
 
-    io.to(`location_${locationId}`).emit('playerSold', transaction[0]);
-  });
-
-  socket.on('unsoldPlayer', async (data) => {
-    const { locationId, playerId } = data;
-    
-    const player = await prisma.player.update({
-      where: { id: playerId },
-      data: { status: 'UNSOLD' }
+    const soldByTeam = new Map();
+    playersSnap.forEach((pDoc) => {
+      const p = { id: pDoc.id, ...pDoc.data() };
+      if (p.teamId) {
+        const list = soldByTeam.get(String(p.teamId)) || [];
+        list.push(p);
+        soldByTeam.set(String(p.teamId), list);
+      }
     });
 
-    io.to(`location_${locationId}`).emit('playerUnsold', player);
-  });
+    const teams = teamsSnap.docs.map((tDoc) => ({
+      id: tDoc.id,
+      ...tDoc.data(),
+      players: soldByTeam.get(tDoc.id) || [],
+    }));
 
-  socket.on('toggleBreak', (data) => {
-    const { locationId, show } = data;
-    io.to(`location_${locationId}`).emit('auctionBreakToggled', { locationId, show });
-  });
+    res.json(teams);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
 
-  socket.on('reopenPlayer', async (data) => {
-    const { locationId, playerId } = data;
-    
-    const player = await prisma.player.findUnique({ where: { id: playerId } });
-    if (!player) return;
+app.put('/api/teams/:id/disqualify', async (req, res) => {
+  try {
+    const { isDisqualified } = req.body;
+    const teamRef = db.collection('teams').doc(req.params.id);
+    await teamRef.update({
+      isDisqualified: Boolean(isDisqualified),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
 
-    if (player.status === 'SOLD' && player.teamId && player.soldPrice) {
-      // Refund the team
-      await prisma.team.update({
-        where: { id: player.teamId },
-        data: { budget: { increment: player.soldPrice } }
+    const updated = await teamRef.get();
+    res.json({ id: updated.id, ...updated.data() });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// -----------------------------------------------------------------------------
+// 3. Locations
+// -----------------------------------------------------------------------------
+app.get('/api/locations', async (req, res) => {
+  try {
+    const [locationsSnap, teamsSnap, usersSnap] = await Promise.all([
+      db.collection('locations').orderBy('name', 'asc').get(),
+      db.collection('teams').get(),
+      db.collection('users').get(),
+    ]);
+
+    const teamsByLoc = new Map();
+    teamsSnap.forEach((t) => {
+      const data = { id: t.id, ...t.data() };
+      const list = teamsByLoc.get(data.locationId) || [];
+      list.push(data);
+      teamsByLoc.set(data.locationId, list);
+    });
+
+    const usersByLoc = new Map();
+    usersSnap.forEach((u) => {
+      const data = { id: u.id, ...u.data() };
+      const list = usersByLoc.get(data.locationId) || [];
+      list.push(data);
+      usersByLoc.set(data.locationId, list);
+    });
+
+    const locations = locationsSnap.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+      teams: teamsByLoc.get(doc.id) || [],
+      users: usersByLoc.get(doc.id) || [],
+    }));
+
+    res.json(locations);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post('/api/locations', async (req, res) => {
+  try {
+    const { name, city } = req.body;
+    if (!name || !name.trim()) return res.status(400).json({ error: 'Name is required' });
+
+    const normalizedName = name.trim();
+    const locationRef = db.collection('locations').doc();
+    const now = admin.firestore.FieldValue.serverTimestamp();
+
+    await locationRef.set({
+      name: normalizedName,
+      city: city || normalizedName,
+      isOnBreak: false,
+      leaderboardVisible: false,
+      activePlayerId: null,
+      auctionStatus: 'UPCOMING',
+      createdAt: now,
+      updatedAt: now,
+    });
+
+    // Auto-create 10 franchise teams
+    const batch = db.batch();
+    for (const teamName of DEFAULT_FRANCHISES) {
+      const teamRef = db.collection('teams').doc();
+      batch.set(teamRef, {
+        name: teamName,
+        shortName: teamName,
+        locationId: locationRef.id,
+        budget: DEFAULT_PURSE,
+        initialBudget: DEFAULT_PURSE,
+        mistakes: 0,
+        isDisqualified: false,
+        createdAt: now,
+        updatedAt: now,
+      });
+
+      const userRef = db.collection('users').doc();
+      const cleanVenue = normalizedName.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const cleanTeam = teamName.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const username = `owner_${cleanTeam}_${cleanVenue}`;
+
+      batch.set(userRef, {
+        uid: userRef.id,
+        username,
+        email: `${username}@iplauction.local`,
+        role: 'TEAM_LEADER',
+        teamId: teamRef.id,
+        locationId: locationRef.id,
+        isActive: true,
+        passwordFallback: 'password',
+        createdAt: now,
+        updatedAt: now,
       });
     }
 
-    // Reset player status
-    const updatedPlayer = await prisma.player.update({
-      where: { id: playerId },
-      data: { status: 'LIVE', soldPrice: null, teamId: null }
+    await batch.commit();
+    res.json({ id: locationRef.id, name: normalizedName });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.delete('/api/locations/:id', async (req, res) => {
+  try {
+    const locationId = req.params.id;
+    const batch = db.batch();
+
+    const teamsSnap = await db.collection('teams').where('locationId', '==', locationId).get();
+    teamsSnap.forEach((doc) => batch.delete(doc.ref));
+
+    const playersSnap = await db.collection('players').where('locationId', '==', locationId).get();
+    playersSnap.forEach((doc) => batch.delete(doc.ref));
+
+    const bidsSnap = await db.collection('bids').where('locationId', '==', locationId).get();
+    bidsSnap.forEach((doc) => batch.delete(doc.ref));
+
+    batch.delete(db.collection('locations').doc(locationId));
+    await batch.commit();
+
+    res.json({ success: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.get('/api/locations/:locationId/players', async (req, res) => {
+  try {
+    const locationId = req.params.locationId;
+    const [playersSnap, teamsSnap] = await Promise.all([
+      db.collection('players').where('locationId', '==', locationId).get(),
+      db.collection('teams').where('locationId', '==', locationId).get(),
+    ]);
+
+    const teamsMap = new Map();
+    teamsSnap.forEach((t) => teamsMap.set(t.id, { id: t.id, ...t.data() }));
+
+    const players = playersSnap.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        team: data.teamId ? teamsMap.get(String(data.teamId)) || null : null,
+      };
     });
 
-    io.to(`location_${locationId}`).emit('playerReopened', updatedPlayer);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
-  });
+    res.json(players);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
+// -----------------------------------------------------------------------------
+// 4. Players
+// -----------------------------------------------------------------------------
+app.post('/api/players/bulk-global', async (req, res) => {
+  try {
+    const { players } = req.body;
+    if (!Array.isArray(players) || !players.length) {
+      return res.status(400).json({ error: 'Players array required' });
+    }
+
+    const locationsSnap = await db.collection('locations').get();
+    if (locationsSnap.empty) {
+      return res.status(400).json({ error: 'No venues found. Please create a venue first.' });
+    }
+
+    const now = admin.firestore.FieldValue.serverTimestamp();
+    let count = 0;
+    let batch = db.batch();
+    let ops = 0;
+
+    for (const locDoc of locationsSnap.docs) {
+      for (const p of players) {
+        const playerRef = db.collection('players').doc();
+        batch.set(playerRef, {
+          name: p.name.trim(),
+          category: p.category || 'ALL_ROUNDER',
+          basePrice: Number(p.basePrice) || 20_000_000,
+          points: Number(p.points) || 0,
+          pool: p.pool || null,
+          country: p.country || 'IND',
+          imageUrl: p.imageUrl || null,
+          locationId: locDoc.id,
+          status: 'UPCOMING',
+          currentBid: null,
+          currentBidTeamId: null,
+          currentBidId: null,
+          soldPrice: null,
+          teamId: null,
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        count++;
+        ops++;
+        if (ops >= 450) {
+          await batch.commit();
+          batch = db.batch();
+          ops = 0;
+        }
+      }
+    }
+
+    if (ops > 0) {
+      await batch.commit();
+    }
+
+    res.json({ success: true, count, locationsCount: locationsSnap.size });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.delete('/api/players', async (req, res) => {
+  try {
+    const [playersSnap, bidsSnap, teamsSnap] = await Promise.all([
+      db.collection('players').get(),
+      db.collection('bids').get(),
+      db.collection('teams').get(),
+    ]);
+
+    let batch = db.batch();
+    let ops = 0;
+
+    for (const doc of playersSnap.docs) {
+      batch.delete(doc.ref);
+      ops++;
+      if (ops >= 450) {
+        await batch.commit();
+        batch = db.batch();
+        ops = 0;
+      }
+    }
+    for (const doc of bidsSnap.docs) {
+      batch.delete(doc.ref);
+      ops++;
+      if (ops >= 450) {
+        await batch.commit();
+        batch = db.batch();
+        ops = 0;
+      }
+    }
+    if (ops > 0) await batch.commit();
+
+    const teamBatch = db.batch();
+    teamsSnap.forEach((t) => {
+      teamBatch.update(t.ref, {
+        budget: DEFAULT_PURSE,
+        mistakes: 0,
+        isDisqualified: false,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    });
+    await teamBatch.commit();
+
+    res.json({ success: true, message: 'All players deleted and team budgets reset.' });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// -----------------------------------------------------------------------------
+// 5. Users
+// -----------------------------------------------------------------------------
+app.get('/api/users', async (req, res) => {
+  try {
+    const [usersSnap, teamsSnap, locationsSnap] = await Promise.all([
+      db.collection('users').get(),
+      db.collection('teams').get(),
+      db.collection('locations').get(),
+    ]);
+
+    const teamsMap = new Map();
+    teamsSnap.forEach((t) => teamsMap.set(t.id, { id: t.id, ...t.data() }));
+
+    const locationsMap = new Map();
+    locationsSnap.forEach((l) => locationsMap.set(l.id, { id: l.id, ...l.data() }));
+
+    const users = usersSnap.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        uid: doc.id,
+        username: data.username,
+        email: data.email,
+        role: data.role,
+        locationId: data.locationId || null,
+        teamId: data.teamId || null,
+        password: data.passwordFallback || 'password',
+        isActive: data.isActive !== false,
+        team: data.teamId ? teamsMap.get(String(data.teamId)) || null : null,
+        location: data.locationId ? locationsMap.get(String(data.locationId)) || null : null,
+      };
+    });
+
+    res.json(users);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post('/api/users', async (req, res) => {
+  try {
+    const { username, password, role, teamId, locationId } = req.body;
+    if (!username || !role) return res.status(400).json({ error: 'Username and role required' });
+
+    const cleanUsername = username.trim().toLowerCase();
+    const userRef = db.collection('users').doc();
+    const now = admin.firestore.FieldValue.serverTimestamp();
+
+    await userRef.set({
+      uid: userRef.id,
+      username: cleanUsername,
+      email: `${cleanUsername}@iplauction.local`,
+      role,
+      teamId: teamId || null,
+      locationId: locationId || null,
+      isActive: true,
+      passwordFallback: password || 'password',
+      createdAt: now,
+      updatedAt: now,
+    });
+
+    res.json({ id: userRef.id, username: cleanUsername, role });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.put('/api/users/:id/password', async (req, res) => {
+  try {
+    const { password } = req.body;
+    await db.collection('users').doc(req.params.id).update({
+      passwordFallback: password,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    res.json({ success: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.delete('/api/users/:id', async (req, res) => {
+  try {
+    await db.collection('users').doc(req.params.id).delete();
+    res.json({ success: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// -----------------------------------------------------------------------------
+// 6. Real-Time Auction Operations (Transaction-Safe)
+// -----------------------------------------------------------------------------
+
+// Bring next or selected player to the live block
+app.post('/api/auction/set-live', async (req, res) => {
+  try {
+    const { locationId, playerId } = req.body;
+    if (!locationId) return res.status(400).json({ error: 'locationId required' });
+
+    let targetPlayerId = playerId;
+
+    // If no playerId provided, select the next UPCOMING player
+    if (!targetPlayerId) {
+      const nextSnap = await db
+        .collection('players')
+        .where('locationId', '==', locationId)
+        .where('status', '==', 'UPCOMING')
+        .limit(1)
+        .get();
+
+      if (nextSnap.empty) {
+        return res.status(400).json({ error: 'No upcoming players in the queue' });
+      }
+      targetPlayerId = nextSnap.docs[0].id;
+    }
+
+    const playerRef = db.collection('players').doc(targetPlayerId);
+    const locationRef = db.collection('locations').doc(locationId);
+    const now = admin.firestore.FieldValue.serverTimestamp();
+
+    await db.runTransaction(async (t) => {
+      const pDoc = await t.get(playerRef);
+      if (!pDoc.exists) throw new Error('Player not found');
+
+      t.update(playerRef, {
+        status: 'LIVE',
+        currentBid: null,
+        currentBidTeamId: null,
+        currentBidId: null,
+        updatedAt: now,
+      });
+
+      t.update(locationRef, {
+        activePlayerId: targetPlayerId,
+        updatedAt: now,
+      });
+    });
+
+    const updated = await playerRef.get();
+    const livePlayerData = { id: updated.id, ...updated.data() };
+    await logAuditEvent('ADVANCE_PLAYER', { playerId: targetPlayerId }, locationId);
+    broadcastEvent(locationId, 'livePlayerUpdated', livePlayerData);
+    res.json(livePlayerData);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Place an authoritative bid
+app.post('/api/bids', async (req, res) => {
+  try {
+    const { locationId, playerId, teamId, amount } = req.body;
+    if (!locationId || !playerId || !teamId || !amount) {
+      return res.status(400).json({ error: 'locationId, playerId, teamId, and amount are required' });
+    }
+
+    const numAmount = Math.round(Number(amount));
+    const playerRef = db.collection('players').doc(playerId);
+    const teamRef = db.collection('teams').doc(teamId);
+
+    const result = await db.runTransaction(async (transaction) => {
+      const [playerDoc, teamDoc] = await Promise.all([
+        transaction.get(playerRef),
+        transaction.get(teamRef),
+      ]);
+
+      if (!playerDoc.exists) throw new Error('Player not found');
+      if (!teamDoc.exists) throw new Error('Team not found');
+
+      const playerData = playerDoc.data();
+      const teamData = teamDoc.data();
+
+      if (playerData.status !== 'LIVE') {
+        throw new Error(`Cannot bid: player status is ${playerData.status}, must be LIVE`);
+      }
+      if (teamData.isDisqualified) {
+        throw new Error(`Cannot bid: team ${teamData.name} is disqualified`);
+      }
+
+      const teamBudget = Number(teamData.budget || 0);
+      if (numAmount > teamBudget) {
+        throw new Error(`Insufficient budget: ₹${numAmount / 10_000_000} Cr exceeds remaining ₹${teamBudget / 10_000_000} Cr`);
+      }
+
+      const currentPrice = Number(playerData.currentBid || playerData.basePrice || 0);
+      if (numAmount <= currentPrice) {
+        throw new Error(`Bid must exceed current price ₹${currentPrice / 10_000_000} Cr`);
+      }
+
+      const bidRef = db.collection('bids').doc();
+      const now = admin.firestore.FieldValue.serverTimestamp();
+
+      transaction.set(bidRef, {
+        locationId,
+        playerId,
+        teamId,
+        amount: numAmount,
+        status: 'ACTIVE',
+        createdAt: now,
+      });
+
+      transaction.update(playerRef, {
+        currentBid: numAmount,
+        currentBidTeamId: teamId,
+        currentBidId: bidRef.id,
+        updatedAt: now,
+      });
+
+      return {
+        bidId: bidRef.id,
+        playerId,
+        teamId,
+        amount: numAmount,
+        locationId,
+      };
+    });
+
+    await logAuditEvent('NEW_BID', result, locationId);
+    broadcastEvent(locationId, 'newBid', result);
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Finalize sale (SOLD)
+app.post('/api/auction/sell', async (req, res) => {
+  try {
+    const { locationId, playerId, teamId, amount } = req.body;
+    if (!locationId || !playerId || !teamId || !amount) {
+      return res.status(400).json({ error: 'locationId, playerId, teamId, and amount are required' });
+    }
+
+    const saleAmount = Math.round(Number(amount));
+    const playerRef = db.collection('players').doc(playerId);
+    const teamRef = db.collection('teams').doc(teamId);
+    const locationRef = db.collection('locations').doc(locationId);
+
+    const result = await db.runTransaction(async (transaction) => {
+      const [pDoc, tDoc] = await Promise.all([
+        transaction.get(playerRef),
+        transaction.get(teamRef),
+      ]);
+
+      if (!pDoc.exists) throw new Error('Player not found');
+      if (!tDoc.exists) throw new Error('Team not found');
+
+      const pData = pDoc.data();
+      const tData = tDoc.data();
+
+      // Idempotency check
+      if (pData.status === 'SOLD' && String(pData.teamId) === String(teamId) && Number(pData.soldPrice) === saleAmount) {
+        return { success: true, player: { id: pDoc.id, ...pData } };
+      }
+
+      if (pData.status !== 'LIVE') {
+        throw new Error(`Player is not LIVE (status: ${pData.status})`);
+      }
+
+      const currentBudget = Number(tData.budget || 0);
+      if (currentBudget < saleAmount) {
+        throw new Error(`Team budget insufficient: ₹${currentBudget / 10_000_000} Cr < ₹${saleAmount / 10_000_000} Cr`);
+      }
+
+      const newBudget = currentBudget - saleAmount;
+      const now = admin.firestore.FieldValue.serverTimestamp();
+
+      transaction.update(playerRef, {
+        status: 'SOLD',
+        soldPrice: saleAmount,
+        teamId,
+        updatedAt: now,
+      });
+
+      transaction.update(teamRef, {
+        budget: newBudget,
+        updatedAt: now,
+      });
+
+      transaction.update(locationRef, {
+        activePlayerId: null,
+        updatedAt: now,
+      });
+
+      if (pData.currentBidId) {
+        transaction.update(db.collection('bids').doc(String(pData.currentBidId)), { status: 'WINNING' });
+      }
+
+      return {
+        success: true,
+        player: { id: pDoc.id, ...pData, status: 'SOLD', soldPrice: saleAmount, teamId },
+        team: { id: tDoc.id, ...tData, budget: newBudget },
+      };
+    });
+
+    await logAuditEvent('PLAYER_SOLD', { playerId, teamId, amount: saleAmount }, locationId);
+    broadcastEvent(locationId, 'playerSold', result.player);
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Mark UNSOLD
+app.post('/api/auction/unsold', async (req, res) => {
+  try {
+    const { locationId, playerId } = req.body;
+    const playerRef = db.collection('players').doc(playerId);
+    const locationRef = db.collection('locations').doc(locationId);
+    const now = admin.firestore.FieldValue.serverTimestamp();
+
+    await db.runTransaction(async (transaction) => {
+      transaction.update(playerRef, {
+        status: 'UNSOLD',
+        currentBid: null,
+        currentBidTeamId: null,
+        updatedAt: now,
+      });
+
+      transaction.update(locationRef, {
+        activePlayerId: null,
+        updatedAt: now,
+      });
+    });
+
+    const updated = await playerRef.get();
+    const unsoldPlayer = { id: updated.id, ...updated.data() };
+    await logAuditEvent('PLAYER_UNSOLD', { playerId }, locationId);
+    broadcastEvent(locationId, 'playerUnsold', unsoldPlayer);
+    res.json(unsoldPlayer);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Reopen last sale and refund purse
+app.post('/api/auction/reopen', async (req, res) => {
+  try {
+    const { locationId, playerId } = req.body;
+    const playerRef = db.collection('players').doc(playerId);
+    const locationRef = db.collection('locations').doc(locationId);
+
+    const result = await db.runTransaction(async (transaction) => {
+      const pDoc = await transaction.get(playerRef);
+      if (!pDoc.exists) throw new Error('Player not found');
+
+      const pData = pDoc.data();
+      const now = admin.firestore.FieldValue.serverTimestamp();
+
+      // If player was sold, refund the team
+      if (pData.status === 'SOLD' && pData.teamId && pData.soldPrice) {
+        const teamRef = db.collection('teams').doc(String(pData.teamId));
+        const tDoc = await transaction.get(teamRef);
+        if (tDoc.exists) {
+          const tBudget = Number(tDoc.data().budget || 0);
+          transaction.update(teamRef, {
+            budget: tBudget + Number(pData.soldPrice),
+            updatedAt: now,
+          });
+        }
+      }
+
+      transaction.update(playerRef, {
+        status: 'LIVE',
+        soldPrice: null,
+        teamId: null,
+        updatedAt: now,
+      });
+
+      transaction.update(locationRef, {
+        activePlayerId: playerId,
+        updatedAt: now,
+      });
+
+      return {
+        success: true,
+        player: { id: pDoc.id, ...pData, status: 'LIVE', soldPrice: null, teamId: null },
+      };
+    });
+
+    await logAuditEvent('PLAYER_REOPENED', { playerId }, locationId);
+    broadcastEvent(locationId, 'playerReopened', result.player);
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Reverse latest bid
+app.post('/api/auction/reverse-bid', async (req, res) => {
+  try {
+    const { locationId, playerId } = req.body;
+    const playerRef = db.collection('players').doc(playerId);
+
+    const result = await db.runTransaction(async (transaction) => {
+      const pDoc = await transaction.get(playerRef);
+      if (!pDoc.exists) throw new Error('Player not found');
+
+      const pData = pDoc.data();
+      const bidsSnap = await transaction.get(
+        db.collection('bids')
+          .where('playerId', '==', playerId)
+          .where('status', '==', 'ACTIVE')
+          .orderBy('createdAt', 'desc')
+          .limit(2)
+      );
+
+      if (bidsSnap.empty) throw new Error('No active bids to reverse');
+
+      const latestDoc = bidsSnap.docs[0];
+      transaction.update(latestDoc.ref, {
+        status: 'REVERSED',
+        reversedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      let prevAmount = null;
+      let prevTeamId = null;
+      let prevBidId = null;
+
+      if (bidsSnap.docs.length > 1) {
+        const prior = bidsSnap.docs[1].data();
+        prevAmount = prior.amount;
+        prevTeamId = prior.teamId;
+        prevBidId = bidsSnap.docs[1].id;
+      }
+
+      const now = admin.firestore.FieldValue.serverTimestamp();
+      transaction.update(playerRef, {
+        currentBid: prevAmount,
+        currentBidTeamId: prevTeamId,
+        currentBidId: prevBidId,
+        updatedAt: now,
+      });
+
+      return {
+        success: true,
+        playerId,
+        previousAmount: prevAmount,
+        previousTeamId: prevTeamId,
+        locationId,
+      };
+    });
+
+    await logAuditEvent('REVERSE_BID', result, locationId);
+    broadcastEvent(locationId, 'bidReversed', result);
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Breaks & Leaderboard
+app.post('/api/auction/break', async (req, res) => {
+  try {
+    const { locationId, show } = req.body;
+    await db.collection('locations').doc(locationId).update({
+      isOnBreak: Boolean(show),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    broadcastEvent(locationId, 'auctionBreakToggled', { locationId, show: Boolean(show) });
+    res.json({ success: true, locationId, isOnBreak: Boolean(show) });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post('/api/auction/leaderboard', async (req, res) => {
+  try {
+    const { locationId, show } = req.body;
+    await db.collection('locations').doc(locationId).update({
+      leaderboardVisible: Boolean(show),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    broadcastEvent(locationId, 'leaderboardToggled', Boolean(show));
+    res.json({ success: true, locationId, leaderboardVisible: Boolean(show) });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Penalties
+app.post('/api/penalties', async (req, res) => {
+  try {
+    const { teamId } = req.body;
+    const teamRef = db.collection('teams').doc(teamId);
+
+    const result = await db.runTransaction(async (transaction) => {
+      const tDoc = await transaction.get(teamRef);
+      if (!tDoc.exists) throw new Error('Team not found');
+
+      const mistakes = (tDoc.data().mistakes || 0) + 1;
+      const isDisqualified = mistakes >= 3;
+
+      transaction.update(teamRef, {
+        mistakes,
+        isDisqualified,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      return { teamId, mistakes, isDisqualified, locationId: tDoc.data().locationId };
+    });
+
+    if (result.locationId) {
+      broadcastEvent(result.locationId, 'penaltyIssued', result);
+    }
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.delete('/api/penalties', async (req, res) => {
+  try {
+    const teamId = req.query.teamId;
+    const teamRef = db.collection('teams').doc(teamId);
+
+    const result = await db.runTransaction(async (transaction) => {
+      const tDoc = await transaction.get(teamRef);
+      if (!tDoc.exists) throw new Error('Team not found');
+
+      const current = tDoc.data().mistakes || 0;
+      const mistakes = Math.max(0, current - 1);
+      const isDisqualified = mistakes >= 3;
+
+      transaction.update(teamRef, {
+        mistakes,
+        isDisqualified,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      return { teamId, mistakes, isDisqualified, locationId: tDoc.data().locationId };
+    });
+
+    if (result.locationId) {
+      broadcastEvent(result.locationId, 'penaltyIssued', result);
+    }
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Export 2nd Generation Cloud Function
+exports.api = onRequest({ cors: true, memory: '512MiB', timeoutSeconds: 60 }, app);
+
+// Run local server when called directly
 const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`[IPL Auction Backend] Firebase Express server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;

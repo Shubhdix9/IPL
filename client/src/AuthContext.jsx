@@ -14,7 +14,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL + '/api/login', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -26,6 +27,18 @@ export const AuthProvider = ({ children }) => {
       }
 
       const userData = await response.json();
+
+      // Sign into Firebase Client Auth if custom token returned
+      if (userData.token) {
+        try {
+          const { getAuth, signInWithCustomToken } = await import('firebase/auth');
+          const auth = getAuth();
+          await signInWithCustomToken(auth, userData.token);
+        } catch (authErr) {
+          console.warn('[AuthContext] Firebase client sign-in note:', authErr);
+        }
+      }
+
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData));
       return userData;

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import socket from '../socket';
 import { useAuth } from '../AuthContext';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
 export default function TeamLeaderDashboard() {
   const { user } = useAuth();
   const selectedTeam = user?.teamId;
@@ -15,7 +17,7 @@ export default function TeamLeaderDashboard() {
   const [livePlayer, setLivePlayer] = useState(null);
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_API_URL + '/api/teams')
+    fetch(API_URL + '/api/teams')
       .then(res => res.json())
       .then(data => setTeams(data))
       .catch(console.error);
@@ -24,7 +26,7 @@ export default function TeamLeaderDashboard() {
   useEffect(() => {
     if (selectedTeam) {
       const fetchTeamData = () => {
-        fetch(import.meta.env.VITE_API_URL + '/api/teams')
+        fetch(API_URL + '/api/teams')
           .then(res => res.json())
           .then(data => {
             const myTeam = data.find(t => t.id === parseInt(selectedTeam));
@@ -32,7 +34,7 @@ export default function TeamLeaderDashboard() {
             setTeams(data);
             if (myTeam && myTeam.locationId) {
               socket.emit('joinLocation', myTeam.locationId);
-              fetch(`${import.meta.env.VITE_API_URL}/api/players?locationId=${myTeam.locationId}`)
+              fetch(`${API_URL}/api/players?locationId=${myTeam.locationId}`)
                 .then(r => r.json())
                 .then(players => {
                   const currentLive = players.find(p => p.status === 'LIVE');
@@ -63,6 +65,7 @@ export default function TeamLeaderDashboard() {
       });
 
       socket.on('newBid', (data) => {
+        setLivePlayer(prev => prev && prev.id === data.playerId ? { ...prev, currentBid: data.amount, currentBidTeamId: data.teamId } : prev);
         setFeedLog(prev => [{ id: Date.now(), msg: `New bid placed: ₹${data.amount / 10000000} Cr`, type: 'bid' }, ...prev].slice(0, 50));
       });
 
@@ -277,18 +280,123 @@ export default function TeamLeaderDashboard() {
                         <span className={`badge badge-${livePlayer.category.toLowerCase()}`} style={{ fontSize: '1rem', padding: '0.5rem 1rem' }}>{livePlayer.category.replace('_', ' ')}</span>
                         <span style={{ background: 'rgba(255,255,255,0.1)', padding: '0.5rem 1rem', borderRadius: '20px', fontSize: '1rem', fontWeight: 'bold', color: 'var(--text-light)' }}>{livePlayer.country}</span>
                       </div>
-                      <div style={{ display: 'flex', gap: '2rem' }}>
+                      <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
                         <div>
                           <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem' }}>Base Price</div>
                           <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-light)' }}>₹{livePlayer.basePrice / 10000000} Cr</div>
                         </div>
+                        <div>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem' }}>Current Highest Bid</div>
+                          <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: 'var(--accent)' }}>
+                            ₹{(livePlayer.currentBid || livePlayer.basePrice) / 10000000} Cr
+                          </div>
+                        </div>
                         {livePlayer.soldPrice && (
                           <div>
                             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem' }}>Sold For</div>
-                            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--success)' }}>₹{livePlayer.soldPrice / 10000000} Cr</div>
+                            <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: 'var(--success)' }}>₹{livePlayer.soldPrice / 10000000} Cr</div>
                           </div>
                         )}
                       </div>
+
+                      {/* Interactive Bidding Section for Team Leader */}
+                      {livePlayer.status === 'LIVE' && !teamData.isDisqualified && (
+                        <div style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'rgba(0,0,0,0.4)', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                          {/* Leader Indicator */}
+                          {String(livePlayer.currentBidTeamId) === String(teamData.id) ? (
+                            <div style={{ background: 'rgba(16, 185, 129, 0.2)', border: '1px solid #10b981', color: '#34d399', padding: '0.75rem 1rem', borderRadius: '10px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', fontSize: '1.1rem' }}>
+                              <span>🏆</span> YOU ARE CURRENTLY LEADING THIS BID!
+                            </div>
+                          ) : livePlayer.currentBidTeamId ? (
+                            <div style={{ background: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.3)', color: '#fca5a5', padding: '0.75rem 1rem', borderRadius: '10px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+                              <span>⚠️</span> OUTBID — Another franchise currently holds the winning bid!
+                            </div>
+                          ) : (
+                            <div style={{ color: 'var(--text-muted)', marginBottom: '1rem', fontSize: '0.95rem' }}>
+                              No bids placed yet. You can open bidding at base price or higher!
+                            </div>
+                          )}
+
+                          {/* Bid Actions */}
+                          {(() => {
+                            const currentVal = Number(livePlayer.currentBid || livePlayer.basePrice || 0);
+                            const nextInc = currentVal < 5000000 ? 500000 : (currentVal < 10000000 ? 1000000 : (currentVal < 50000000 ? 5000000 : (currentVal < 100000000 ? 10000000 : 20000000)));
+                            const nextAutoBid = currentVal + nextInc;
+                            const isLeading = String(livePlayer.currentBidTeamId) === String(teamData.id);
+                            const canAfford = teamData.budget >= nextAutoBid;
+
+                            return (
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <button
+                                  className="btn"
+                                  disabled={isLeading || !canAfford || isBreakMode}
+                                  onClick={() => {
+                                    socket.emit('placeBid', {
+                                      locationId: teamData.locationId,
+                                      playerId: livePlayer.id,
+                                      teamId: teamData.id,
+                                      amount: nextAutoBid
+                                    });
+                                  }}
+                                  style={{
+                                    width: '100%',
+                                    padding: '1.1rem',
+                                    fontSize: '1.3rem',
+                                    fontWeight: '800',
+                                    letterSpacing: '1px',
+                                    borderRadius: '12px',
+                                    background: isLeading 
+                                      ? 'linear-gradient(135deg, #10b981, #059669)'
+                                      : (!canAfford ? 'rgba(255,255,255,0.1)' : 'linear-gradient(135deg, #f59e0b, #ea580c)'),
+                                    color: 'white',
+                                    border: 'none',
+                                    boxShadow: isLeading ? '0 0 20px rgba(16,185,129,0.4)' : (canAfford ? '0 0 20px rgba(245,158,11,0.4)' : 'none'),
+                                    cursor: isLeading || !canAfford || isBreakMode ? 'not-allowed' : 'pointer'
+                                  }}
+                                >
+                                  {isLeading 
+                                    ? '✅ YOUR FRANCHISE HOLDS HIGHEST BID' 
+                                    : (!canAfford ? '❌ INSUFFICIENT PURSE' : `⚡ RAISE BID TO ₹${nextAutoBid / 10000000} Cr`)}
+                                </button>
+
+                                {/* Quick Increments */}
+                                {!isLeading && canAfford && (
+                                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                                    {[5000000, 10000000, 20000000].map(inc => {
+                                      const jumpBid = currentVal + inc;
+                                      if (jumpBid > teamData.budget) return null;
+                                      return (
+                                        <button
+                                          key={inc}
+                                          className="btn"
+                                          onClick={() => {
+                                            socket.emit('placeBid', {
+                                              locationId: teamData.locationId,
+                                              playerId: livePlayer.id,
+                                              teamId: teamData.id,
+                                              amount: jumpBid
+                                            });
+                                          }}
+                                          style={{
+                                            flex: 1,
+                                            padding: '0.5rem',
+                                            fontSize: '0.85rem',
+                                            background: 'rgba(255,255,255,0.06)',
+                                            border: '1px solid rgba(255,255,255,0.15)',
+                                            borderRadius: '8px'
+                                          }}
+                                        >
+                                          +₹{inc / 10000000} Cr (₹{jumpBid / 10000000} Cr)
+                                        </button>
+                                      );
+                                    })}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })()}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
