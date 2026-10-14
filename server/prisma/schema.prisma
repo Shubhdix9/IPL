@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  role      String   // 'ADMIN', 'AUCTIONEER', 'TEAM_LEADER'
+  teamId    Int?     // If role is TEAM_LEADER
+  locationId Int?    // If role is AUCTIONEER
+  team      Team?    @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  location  Location? @relation(fields: [locationId], references: [id], onDelete: Cascade)
+}
+
+model Team {
+  id          Int      @id @default(autoincrement())
+  name        String   
+  budget      Float    @default(900000000) // 90 Cr in Rupees
+  locationId  Int
+  location    Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  mistakes    Int      @default(0)
+  isDisqualified Boolean @default(false)
+  players     Player[]
+  users       User[]
+  bids        Bid[]
+
+  @@unique([name, locationId])
+}
+
+model Location {
+  id       Int      @id @default(autoincrement())
+  name     String   @unique
+  teams    Team[]
+  players  Player[]
+  users    User[]
+}
+
+model Player {
+  id          Int      @id @default(autoincrement())
+  name        String
+  category    String   // 'BATSMAN', 'BOWLER', 'ALL_ROUNDER', 'WICKET_KEEPER'
+  basePrice   Float
+  soldPrice   Float?
+  status      String   @default("UPCOMING") // 'UPCOMING', 'LIVE', 'SOLD', 'UNSOLD'
+  points      Int      @default(0) // Points gained by buying this player
+  country     String?
+  pool        String?  // Pool name from Excel e.g. "POOL-1 Marquee Batsman"
+  debutYear   Int?
+  imageUrl    String?
+  teamId      Int?
+  locationId  Int
+  team        Team?    @relation(fields: [teamId], references: [id], onDelete: SetNull)
+  location    Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  bids        Bid[]
+}
+
+model Bid {
+  id        Int      @id @default(autoincrement())
+  amount    Float
+  timestamp DateTime @default(now())
+  playerId  Int
+  teamId    Int
+  player    Player   @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+}
