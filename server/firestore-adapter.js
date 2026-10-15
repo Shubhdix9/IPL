@@ -39,7 +39,7 @@ if (hasLiveCredentials) {
     dbInstance.settings({ ignoreUndefinedProperties: true });
   } catch (e) {}
 } else {
-  // In-process resilient Firestore implementation for zero-dependency local runtime
+  // In-process resilient, zero-latency Firestore engine with in-memory caching
   const dataDir = path.join(__dirname, 'data');
   if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
@@ -55,23 +55,34 @@ if (hasLiveCredentials) {
     audit_logs: {},
   };
 
+  let isLoaded = false;
+  let saveTimeout = null;
+
   const loadStore = () => {
+    if (isLoaded) return;
     try {
       if (fs.existsSync(storeFilePath)) {
         const raw = fs.readFileSync(storeFilePath, 'utf8');
         store = JSON.parse(raw);
       }
+      isLoaded = true;
     } catch (e) {
       console.warn('[FirestoreAdapter] Notice loading local store:', e.message);
     }
   };
 
+  // Debounced non-blocking async disk sync for sub-millisecond write performance
   const saveStore = () => {
-    try {
-      fs.writeFileSync(storeFilePath, JSON.stringify(store, null, 2), 'utf8');
-    } catch (e) {
-      console.warn('[FirestoreAdapter] Notice saving local store:', e.message);
-    }
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      try {
+        fs.writeFile(storeFilePath, JSON.stringify(store, null, 2), 'utf8', (err) => {
+          if (err) console.warn('[FirestoreAdapter] Notice saving local store:', err.message);
+        });
+      } catch (e) {
+        console.warn('[FirestoreAdapter] Notice saving local store:', e.message);
+      }
+    }, 50);
   };
 
   loadStore();

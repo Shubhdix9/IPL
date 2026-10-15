@@ -3,3 +3,4 @@ dist/
 .env
 dev.db
 .DS_Store
+server/config/serviceAccountKey.json
