@@ -64,10 +64,17 @@ if (hasLiveCredentials) {
       if (fs.existsSync(storeFilePath)) {
         const raw = fs.readFileSync(storeFilePath, 'utf8');
         store = JSON.parse(raw);
+      } else {
+        store = require('./data/firestore-store.json');
       }
       isLoaded = true;
     } catch (e) {
-      console.warn('[FirestoreAdapter] Notice loading local store:', e.message);
+      try {
+        store = require('./data/firestore-store.json');
+        isLoaded = true;
+      } catch (err) {
+        console.warn('[FirestoreAdapter] Notice loading local store:', e.message);
+      }
     }
   };
 

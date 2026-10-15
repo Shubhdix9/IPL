@@ -6,12 +6,12 @@
       "city": "BCCI National Command Arena",
       "isOnBreak": false,
       "leaderboardVisible": false,
-      "activePlayerId": null,
+      "activePlayerId": "p_main_10",
       "auctionStatus": "LIVE",
-      "timerDeadlineMs": 1792032399407,
+      "timerDeadlineMs": 1792071079516,
       "timerDurationSeconds": 30,
       "timerPaused": false,
-      "timerRemainingMs": 39854,
+      "timerRemainingMs": 30000,
       "createdAt": "2026-10-15T02:40:51.229Z",
       "updatedAt": {}
     }
@@ -26,7 +26,7 @@
       "secondaryColor": "#12315b",
       "city": "Chennai",
       "locationId": "main_arena",
-      "budget": 875000000,
+      "budget": 900000000,
       "initialBudget": 900000000,
       "mistakes": 0,
       "isDisqualified": false,
@@ -47,7 +47,7 @@
       "mistakes": 0,
       "isDisqualified": false,
       "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
+      "updatedAt": {}
     },
     "team_gt_main": {
       "id": "team_gt_main",
@@ -63,7 +63,7 @@
       "mistakes": 0,
       "isDisqualified": false,
       "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
+      "updatedAt": {}
     },
     "team_kkr_main": {
       "id": "team_kkr_main",
@@ -79,7 +79,7 @@
       "mistakes": 0,
       "isDisqualified": false,
       "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
+      "updatedAt": {}
     },
     "team_lsg_main": {
       "id": "team_lsg_main",
@@ -95,7 +95,7 @@
       "mistakes": 0,
       "isDisqualified": false,
       "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "updatedAt": {}
     },
     "team_mi_main": {
       "id": "team_mi_main",
@@ -111,7 +111,7 @@
       "mistakes": 0,
       "isDisqualified": false,
       "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "updatedAt": {}
     },
     "team_pbks_main": {
       "id": "team_pbks_main",
@@ -127,7 +127,7 @@
       "mistakes": 0,
       "isDisqualified": false,
       "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "updatedAt": {}
     },
     "team_rr_main": {
       "id": "team_rr_main",
@@ -143,7 +143,7 @@
       "mistakes": 0,
       "isDisqualified": false,
       "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "updatedAt": {}
     },
     "team_rcb_main": {
       "id": "team_rcb_main",
@@ -159,7 +159,7 @@
       "mistakes": 0,
       "isDisqualified": false,
       "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "updatedAt": {}
     },
     "team_srh_main": {
       "id": "team_srh_main",
@@ -175,7 +175,7 @@
       "mistakes": 0,
       "isDisqualified": false,
       "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "updatedAt": {}
     }
   },
   "players": {
@@ -189,12 +189,12 @@
       "country": "IND",
       "imageUrl": "/players/abdul_samad.png.png",
       "locationId": "main_arena",
-      "status": "SOLD",
-      "currentBid": 25000000,
-      "currentBidTeamId": "team_csk_main",
-      "currentBidId": "id_1792032359521_pl87rc",
-      "soldPrice": 25000000,
-      "teamId": "team_csk_main",
+      "status": "UPCOMING",
+      "currentBid": null,
+      "currentBidTeamId": null,
+      "currentBidId": null,
+      "soldPrice": null,
+      "teamId": null,
       "order": 1,
       "createdAt": "2026-10-15T02:40:51.231Z",
       "updatedAt": {},
@@ -218,7 +218,7 @@
       "teamId": null,
       "order": 2,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_3": {
       "id": "p_main_3",
@@ -238,7 +238,7 @@
       "teamId": null,
       "order": 3,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_4": {
       "id": "p_main_4",
@@ -258,7 +258,7 @@
       "teamId": null,
       "order": 4,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_5": {
       "id": "p_main_5",
@@ -278,7 +278,7 @@
       "teamId": null,
       "order": 5,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_6": {
       "id": "p_main_6",
@@ -290,7 +290,7 @@
       "country": "IND",
       "imageUrl": "/players/ajinkya_rahane.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -298,7 +298,7 @@
       "teamId": null,
       "order": 6,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_7": {
       "id": "p_main_7",
@@ -318,7 +318,7 @@
       "teamId": null,
       "order": 7,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_8": {
       "id": "p_main_8",
@@ -338,7 +338,7 @@
       "teamId": null,
       "order": 8,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_9": {
       "id": "p_main_9",
@@ -358,7 +358,7 @@
       "teamId": null,
       "order": 9,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_10": {
       "id": "p_main_10",
@@ -370,7 +370,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/alex_hales.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -378,7 +378,7 @@
       "teamId": null,
       "order": 10,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_11": {
       "id": "p_main_11",
@@ -398,7 +398,7 @@
       "teamId": null,
       "order": 11,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_12": {
       "id": "p_main_12",
@@ -418,7 +418,7 @@
       "teamId": null,
       "order": 12,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_13": {
       "id": "p_main_13",
@@ -438,7 +438,7 @@
       "teamId": null,
       "order": 13,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_14": {
       "id": "p_main_14",
@@ -458,7 +458,7 @@
       "teamId": null,
       "order": 14,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_15": {
       "id": "p_main_15",
@@ -478,7 +478,7 @@
       "teamId": null,
       "order": 15,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_16": {
       "id": "p_main_16",
@@ -498,7 +498,7 @@
       "teamId": null,
       "order": 16,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_17": {
       "id": "p_main_17",
@@ -518,7 +518,7 @@
       "teamId": null,
       "order": 17,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_18": {
       "id": "p_main_18",
@@ -538,7 +538,7 @@
       "teamId": null,
       "order": 18,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_19": {
       "id": "p_main_19",
@@ -558,7 +558,7 @@
       "teamId": null,
       "order": 19,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_20": {
       "id": "p_main_20",
@@ -578,7 +578,7 @@
       "teamId": null,
       "order": 20,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_21": {
       "id": "p_main_21",
@@ -598,7 +598,7 @@
       "teamId": null,
       "order": 21,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_22": {
       "id": "p_main_22",
@@ -618,7 +618,7 @@
       "teamId": null,
       "order": 22,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_23": {
       "id": "p_main_23",
@@ -638,7 +638,7 @@
       "teamId": null,
       "order": 23,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_24": {
       "id": "p_main_24",
@@ -658,7 +658,7 @@
       "teamId": null,
       "order": 24,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_25": {
       "id": "p_main_25",
@@ -678,7 +678,7 @@
       "teamId": null,
       "order": 25,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_26": {
       "id": "p_main_26",
@@ -698,7 +698,7 @@
       "teamId": null,
       "order": 26,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_27": {
       "id": "p_main_27",
@@ -718,7 +718,7 @@
       "teamId": null,
       "order": 27,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_28": {
       "id": "p_main_28",
@@ -738,7 +738,7 @@
       "teamId": null,
       "order": 28,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_29": {
       "id": "p_main_29",
@@ -758,7 +758,7 @@
       "teamId": null,
       "order": 29,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_30": {
       "id": "p_main_30",
@@ -778,7 +778,7 @@
       "teamId": null,
       "order": 30,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_31": {
       "id": "p_main_31",
@@ -798,7 +798,7 @@
       "teamId": null,
       "order": 31,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_32": {
       "id": "p_main_32",
@@ -818,7 +818,7 @@
       "teamId": null,
       "order": 32,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_33": {
       "id": "p_main_33",
@@ -838,7 +838,7 @@
       "teamId": null,
       "order": 33,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_34": {
       "id": "p_main_34",
@@ -858,7 +858,7 @@
       "teamId": null,
       "order": 34,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_35": {
       "id": "p_main_35",
@@ -878,7 +878,7 @@
       "teamId": null,
       "order": 35,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_36": {
       "id": "p_main_36",
@@ -898,7 +898,7 @@
       "teamId": null,
       "order": 36,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_37": {
       "id": "p_main_37",
@@ -918,7 +918,7 @@
       "teamId": null,
       "order": 37,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_38": {
       "id": "p_main_38",
@@ -938,7 +938,7 @@
       "teamId": null,
       "order": 38,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_39": {
       "id": "p_main_39",
@@ -958,7 +958,7 @@
       "teamId": null,
       "order": 39,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_40": {
       "id": "p_main_40",
@@ -978,7 +978,7 @@
       "teamId": null,
       "order": 40,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_41": {
       "id": "p_main_41",
@@ -998,7 +998,7 @@
       "teamId": null,
       "order": 41,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_42": {
       "id": "p_main_42",
@@ -1018,7 +1018,7 @@
       "teamId": null,
       "order": 42,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_43": {
       "id": "p_main_43",
@@ -1038,7 +1038,7 @@
       "teamId": null,
       "order": 43,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_44": {
       "id": "p_main_44",
@@ -1058,7 +1058,7 @@
       "teamId": null,
       "order": 44,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_45": {
       "id": "p_main_45",
@@ -1078,7 +1078,7 @@
       "teamId": null,
       "order": 45,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_46": {
       "id": "p_main_46",
@@ -1098,7 +1098,7 @@
       "teamId": null,
       "order": 46,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_47": {
       "id": "p_main_47",
@@ -1118,7 +1118,7 @@
       "teamId": null,
       "order": 47,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_48": {
       "id": "p_main_48",
@@ -1138,7 +1138,7 @@
       "teamId": null,
       "order": 48,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_49": {
       "id": "p_main_49",
@@ -1158,7 +1158,7 @@
       "teamId": null,
       "order": 49,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_50": {
       "id": "p_main_50",
@@ -1178,7 +1178,7 @@
       "teamId": null,
       "order": 50,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_51": {
       "id": "p_main_51",
@@ -1198,7 +1198,7 @@
       "teamId": null,
       "order": 51,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_52": {
       "id": "p_main_52",
@@ -1218,7 +1218,7 @@
       "teamId": null,
       "order": 52,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_53": {
       "id": "p_main_53",
@@ -1238,7 +1238,7 @@
       "teamId": null,
       "order": 53,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_54": {
       "id": "p_main_54",
@@ -1258,7 +1258,7 @@
       "teamId": null,
       "order": 54,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_55": {
       "id": "p_main_55",
@@ -1278,7 +1278,7 @@
       "teamId": null,
       "order": 55,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_56": {
       "id": "p_main_56",
@@ -1298,7 +1298,7 @@
       "teamId": null,
       "order": 56,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_57": {
       "id": "p_main_57",
@@ -1318,7 +1318,7 @@
       "teamId": null,
       "order": 57,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_58": {
       "id": "p_main_58",
@@ -1338,7 +1338,7 @@
       "teamId": null,
       "order": 58,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_59": {
       "id": "p_main_59",
@@ -1358,7 +1358,7 @@
       "teamId": null,
       "order": 59,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_60": {
       "id": "p_main_60",
@@ -1378,7 +1378,7 @@
       "teamId": null,
       "order": 60,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_61": {
       "id": "p_main_61",
@@ -1398,7 +1398,7 @@
       "teamId": null,
       "order": 61,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_62": {
       "id": "p_main_62",
@@ -1418,7 +1418,7 @@
       "teamId": null,
       "order": 62,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_63": {
       "id": "p_main_63",
@@ -1438,7 +1438,7 @@
       "teamId": null,
       "order": 63,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_64": {
       "id": "p_main_64",
@@ -1458,7 +1458,7 @@
       "teamId": null,
       "order": 64,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_65": {
       "id": "p_main_65",
@@ -1478,7 +1478,7 @@
       "teamId": null,
       "order": 65,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_66": {
       "id": "p_main_66",
@@ -1498,7 +1498,7 @@
       "teamId": null,
       "order": 66,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_67": {
       "id": "p_main_67",
@@ -1518,7 +1518,7 @@
       "teamId": null,
       "order": 67,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_68": {
       "id": "p_main_68",
@@ -1538,7 +1538,7 @@
       "teamId": null,
       "order": 68,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_69": {
       "id": "p_main_69",
@@ -1558,7 +1558,7 @@
       "teamId": null,
       "order": 69,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_70": {
       "id": "p_main_70",
@@ -1578,7 +1578,7 @@
       "teamId": null,
       "order": 70,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_71": {
       "id": "p_main_71",
@@ -1598,7 +1598,7 @@
       "teamId": null,
       "order": 71,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_72": {
       "id": "p_main_72",
@@ -1618,7 +1618,7 @@
       "teamId": null,
       "order": 72,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_73": {
       "id": "p_main_73",
@@ -1638,7 +1638,7 @@
       "teamId": null,
       "order": 73,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_74": {
       "id": "p_main_74",
@@ -1658,7 +1658,7 @@
       "teamId": null,
       "order": 74,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_75": {
       "id": "p_main_75",
@@ -1678,7 +1678,7 @@
       "teamId": null,
       "order": 75,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_76": {
       "id": "p_main_76",
@@ -1698,7 +1698,7 @@
       "teamId": null,
       "order": 76,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_77": {
       "id": "p_main_77",
@@ -1718,7 +1718,7 @@
       "teamId": null,
       "order": 77,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_78": {
       "id": "p_main_78",
@@ -1738,7 +1738,7 @@
       "teamId": null,
       "order": 78,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_79": {
       "id": "p_main_79",
@@ -1758,7 +1758,7 @@
       "teamId": null,
       "order": 79,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_80": {
       "id": "p_main_80",
@@ -1778,7 +1778,7 @@
       "teamId": null,
       "order": 80,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_81": {
       "id": "p_main_81",
@@ -1798,7 +1798,7 @@
       "teamId": null,
       "order": 81,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_82": {
       "id": "p_main_82",
@@ -1818,7 +1818,7 @@
       "teamId": null,
       "order": 82,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_83": {
       "id": "p_main_83",
@@ -1838,7 +1838,7 @@
       "teamId": null,
       "order": 83,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_84": {
       "id": "p_main_84",
@@ -1858,7 +1858,7 @@
       "teamId": null,
       "order": 84,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_85": {
       "id": "p_main_85",
@@ -1878,7 +1878,7 @@
       "teamId": null,
       "order": 85,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_86": {
       "id": "p_main_86",
@@ -1898,7 +1898,7 @@
       "teamId": null,
       "order": 86,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_87": {
       "id": "p_main_87",
@@ -1918,7 +1918,7 @@
       "teamId": null,
       "order": 87,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_88": {
       "id": "p_main_88",
@@ -1938,7 +1938,7 @@
       "teamId": null,
       "order": 88,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_89": {
       "id": "p_main_89",
@@ -1958,7 +1958,7 @@
       "teamId": null,
       "order": 89,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_90": {
       "id": "p_main_90",
@@ -1978,7 +1978,7 @@
       "teamId": null,
       "order": 90,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_91": {
       "id": "p_main_91",
@@ -1998,7 +1998,7 @@
       "teamId": null,
       "order": 91,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_92": {
       "id": "p_main_92",
@@ -2018,7 +2018,7 @@
       "teamId": null,
       "order": 92,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_93": {
       "id": "p_main_93",
@@ -2038,7 +2038,7 @@
       "teamId": null,
       "order": 93,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_94": {
       "id": "p_main_94",
@@ -2058,7 +2058,7 @@
       "teamId": null,
       "order": 94,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_95": {
       "id": "p_main_95",
@@ -2078,7 +2078,7 @@
       "teamId": null,
       "order": 95,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_96": {
       "id": "p_main_96",
@@ -2098,7 +2098,7 @@
       "teamId": null,
       "order": 96,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_97": {
       "id": "p_main_97",
@@ -2118,7 +2118,7 @@
       "teamId": null,
       "order": 97,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_98": {
       "id": "p_main_98",
@@ -2138,7 +2138,7 @@
       "teamId": null,
       "order": 98,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_99": {
       "id": "p_main_99",
@@ -2158,7 +2158,7 @@
       "teamId": null,
       "order": 99,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_100": {
       "id": "p_main_100",
@@ -2178,7 +2178,7 @@
       "teamId": null,
       "order": 100,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_101": {
       "id": "p_main_101",
@@ -2198,7 +2198,7 @@
       "teamId": null,
       "order": 101,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_102": {
       "id": "p_main_102",
@@ -2218,7 +2218,7 @@
       "teamId": null,
       "order": 102,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_103": {
       "id": "p_main_103",
@@ -2238,7 +2238,7 @@
       "teamId": null,
       "order": 103,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_104": {
       "id": "p_main_104",
@@ -2258,7 +2258,7 @@
       "teamId": null,
       "order": 104,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_105": {
       "id": "p_main_105",
@@ -2278,7 +2278,7 @@
       "teamId": null,
       "order": 105,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_106": {
       "id": "p_main_106",
@@ -2298,7 +2298,7 @@
       "teamId": null,
       "order": 106,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_107": {
       "id": "p_main_107",
@@ -2318,7 +2318,7 @@
       "teamId": null,
       "order": 107,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_108": {
       "id": "p_main_108",
@@ -2338,7 +2338,7 @@
       "teamId": null,
       "order": 108,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_109": {
       "id": "p_main_109",
@@ -2358,7 +2358,7 @@
       "teamId": null,
       "order": 109,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_110": {
       "id": "p_main_110",
@@ -2378,7 +2378,7 @@
       "teamId": null,
       "order": 110,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_111": {
       "id": "p_main_111",
@@ -2398,7 +2398,7 @@
       "teamId": null,
       "order": 111,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_112": {
       "id": "p_main_112",
@@ -2418,7 +2418,7 @@
       "teamId": null,
       "order": 112,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_113": {
       "id": "p_main_113",
@@ -2438,7 +2438,7 @@
       "teamId": null,
       "order": 113,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_114": {
       "id": "p_main_114",
@@ -2458,7 +2458,7 @@
       "teamId": null,
       "order": 114,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_115": {
       "id": "p_main_115",
@@ -2478,7 +2478,7 @@
       "teamId": null,
       "order": 115,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_116": {
       "id": "p_main_116",
@@ -2498,7 +2498,7 @@
       "teamId": null,
       "order": 116,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_117": {
       "id": "p_main_117",
@@ -2518,7 +2518,7 @@
       "teamId": null,
       "order": 117,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_118": {
       "id": "p_main_118",
@@ -2538,7 +2538,7 @@
       "teamId": null,
       "order": 118,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_119": {
       "id": "p_main_119",
@@ -2558,7 +2558,7 @@
       "teamId": null,
       "order": 119,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_120": {
       "id": "p_main_120",
@@ -2578,7 +2578,7 @@
       "teamId": null,
       "order": 120,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_121": {
       "id": "p_main_121",
@@ -2598,7 +2598,7 @@
       "teamId": null,
       "order": 121,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_122": {
       "id": "p_main_122",
@@ -2618,7 +2618,7 @@
       "teamId": null,
       "order": 122,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_123": {
       "id": "p_main_123",
@@ -2638,7 +2638,7 @@
       "teamId": null,
       "order": 123,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_124": {
       "id": "p_main_124",
@@ -2658,7 +2658,7 @@
       "teamId": null,
       "order": 124,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_125": {
       "id": "p_main_125",
@@ -2678,7 +2678,7 @@
       "teamId": null,
       "order": 125,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_126": {
       "id": "p_main_126",
@@ -2698,7 +2698,7 @@
       "teamId": null,
       "order": 126,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_127": {
       "id": "p_main_127",
@@ -2718,7 +2718,7 @@
       "teamId": null,
       "order": 127,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_128": {
       "id": "p_main_128",
@@ -2738,7 +2738,7 @@
       "teamId": null,
       "order": 128,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_129": {
       "id": "p_main_129",
@@ -2758,7 +2758,7 @@
       "teamId": null,
       "order": 129,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_130": {
       "id": "p_main_130",
@@ -2778,7 +2778,7 @@
       "teamId": null,
       "order": 130,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_131": {
       "id": "p_main_131",
@@ -2798,7 +2798,7 @@
       "teamId": null,
       "order": 131,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_132": {
       "id": "p_main_132",
@@ -2818,7 +2818,7 @@
       "teamId": null,
       "order": 132,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_133": {
       "id": "p_main_133",
@@ -2838,7 +2838,7 @@
       "teamId": null,
       "order": 133,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_134": {
       "id": "p_main_134",
@@ -2858,7 +2858,7 @@
       "teamId": null,
       "order": 134,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_135": {
       "id": "p_main_135",
@@ -2878,7 +2878,7 @@
       "teamId": null,
       "order": 135,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_136": {
       "id": "p_main_136",
@@ -2898,7 +2898,7 @@
       "teamId": null,
       "order": 136,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_137": {
       "id": "p_main_137",
@@ -2918,7 +2918,7 @@
       "teamId": null,
       "order": 137,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_138": {
       "id": "p_main_138",
@@ -2938,7 +2938,7 @@
       "teamId": null,
       "order": 138,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_139": {
       "id": "p_main_139",
@@ -2958,7 +2958,7 @@
       "teamId": null,
       "order": 139,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_140": {
       "id": "p_main_140",
@@ -2978,7 +2978,7 @@
       "teamId": null,
       "order": 140,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_141": {
       "id": "p_main_141",
@@ -2998,7 +2998,7 @@
       "teamId": null,
       "order": 141,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_142": {
       "id": "p_main_142",
@@ -3018,7 +3018,7 @@
       "teamId": null,
       "order": 142,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_143": {
       "id": "p_main_143",
@@ -3038,7 +3038,7 @@
       "teamId": null,
       "order": 143,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_144": {
       "id": "p_main_144",
@@ -3058,7 +3058,7 @@
       "teamId": null,
       "order": 144,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_145": {
       "id": "p_main_145",
@@ -3078,7 +3078,7 @@
       "teamId": null,
       "order": 145,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_146": {
       "id": "p_main_146",
@@ -3098,7 +3098,7 @@
       "teamId": null,
       "order": 146,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_147": {
       "id": "p_main_147",
@@ -3118,7 +3118,7 @@
       "teamId": null,
       "order": 147,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_148": {
       "id": "p_main_148",
@@ -3138,7 +3138,7 @@
       "teamId": null,
       "order": 148,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_149": {
       "id": "p_main_149",
@@ -3158,7 +3158,7 @@
       "teamId": null,
       "order": 149,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_150": {
       "id": "p_main_150",
@@ -3178,7 +3178,7 @@
       "teamId": null,
       "order": 150,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_151": {
       "id": "p_main_151",
@@ -3198,7 +3198,7 @@
       "teamId": null,
       "order": 151,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_152": {
       "id": "p_main_152",
@@ -3218,7 +3218,7 @@
       "teamId": null,
       "order": 152,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_153": {
       "id": "p_main_153",
@@ -3238,7 +3238,7 @@
       "teamId": null,
       "order": 153,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_154": {
       "id": "p_main_154",
@@ -3258,7 +3258,7 @@
       "teamId": null,
       "order": 154,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_155": {
       "id": "p_main_155",
@@ -3278,7 +3278,7 @@
       "teamId": null,
       "order": 155,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_156": {
       "id": "p_main_156",
@@ -3298,7 +3298,7 @@
       "teamId": null,
       "order": 156,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_157": {
       "id": "p_main_157",
@@ -3318,7 +3318,7 @@
       "teamId": null,
       "order": 157,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_158": {
       "id": "p_main_158",
@@ -3338,7 +3338,7 @@
       "teamId": null,
       "order": 158,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_159": {
       "id": "p_main_159",
@@ -3358,7 +3358,7 @@
       "teamId": null,
       "order": 159,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_160": {
       "id": "p_main_160",
@@ -3378,7 +3378,7 @@
       "teamId": null,
       "order": 160,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_161": {
       "id": "p_main_161",
@@ -3398,7 +3398,7 @@
       "teamId": null,
       "order": 161,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_162": {
       "id": "p_main_162",
@@ -3418,7 +3418,7 @@
       "teamId": null,
       "order": 162,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_163": {
       "id": "p_main_163",
@@ -3438,7 +3438,7 @@
       "teamId": null,
       "order": 163,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_164": {
       "id": "p_main_164",
@@ -3458,7 +3458,7 @@
       "teamId": null,
       "order": 164,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_165": {
       "id": "p_main_165",
@@ -3478,7 +3478,7 @@
       "teamId": null,
       "order": 165,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_166": {
       "id": "p_main_166",
@@ -3498,7 +3498,7 @@
       "teamId": null,
       "order": 166,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_167": {
       "id": "p_main_167",
@@ -3518,7 +3518,7 @@
       "teamId": null,
       "order": 167,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_168": {
       "id": "p_main_168",
@@ -3538,7 +3538,7 @@
       "teamId": null,
       "order": 168,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_169": {
       "id": "p_main_169",
@@ -3558,7 +3558,7 @@
       "teamId": null,
       "order": 169,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_170": {
       "id": "p_main_170",
@@ -3578,7 +3578,7 @@
       "teamId": null,
       "order": 170,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_171": {
       "id": "p_main_171",
@@ -3598,7 +3598,7 @@
       "teamId": null,
       "order": 171,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_172": {
       "id": "p_main_172",
@@ -3618,7 +3618,7 @@
       "teamId": null,
       "order": 172,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_173": {
       "id": "p_main_173",
@@ -3638,7 +3638,7 @@
       "teamId": null,
       "order": 173,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_174": {
       "id": "p_main_174",
@@ -3658,7 +3658,7 @@
       "teamId": null,
       "order": 174,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_175": {
       "id": "p_main_175",
@@ -3678,7 +3678,7 @@
       "teamId": null,
       "order": 175,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_176": {
       "id": "p_main_176",
@@ -3698,7 +3698,7 @@
       "teamId": null,
       "order": 176,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_177": {
       "id": "p_main_177",
@@ -3718,7 +3718,7 @@
       "teamId": null,
       "order": 177,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_178": {
       "id": "p_main_178",
@@ -3738,7 +3738,7 @@
       "teamId": null,
       "order": 178,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_179": {
       "id": "p_main_179",
@@ -3758,7 +3758,7 @@
       "teamId": null,
       "order": 179,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_180": {
       "id": "p_main_180",
@@ -3778,7 +3778,7 @@
       "teamId": null,
       "order": 180,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_181": {
       "id": "p_main_181",
@@ -3798,7 +3798,7 @@
       "teamId": null,
       "order": 181,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_182": {
       "id": "p_main_182",
@@ -3818,7 +3818,7 @@
       "teamId": null,
       "order": 182,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_183": {
       "id": "p_main_183",
@@ -3838,7 +3838,7 @@
       "teamId": null,
       "order": 183,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_184": {
       "id": "p_main_184",
@@ -3858,7 +3858,7 @@
       "teamId": null,
       "order": 184,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_185": {
       "id": "p_main_185",
@@ -3878,7 +3878,7 @@
       "teamId": null,
       "order": 185,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_186": {
       "id": "p_main_186",
@@ -3898,7 +3898,7 @@
       "teamId": null,
       "order": 186,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_187": {
       "id": "p_main_187",
@@ -3918,7 +3918,7 @@
       "teamId": null,
       "order": 187,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_188": {
       "id": "p_main_188",
@@ -3938,7 +3938,7 @@
       "teamId": null,
       "order": 188,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_189": {
       "id": "p_main_189",
@@ -3958,7 +3958,7 @@
       "teamId": null,
       "order": 189,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_190": {
       "id": "p_main_190",
@@ -3978,7 +3978,7 @@
       "teamId": null,
       "order": 190,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_191": {
       "id": "p_main_191",
@@ -3998,7 +3998,7 @@
       "teamId": null,
       "order": 191,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_192": {
       "id": "p_main_192",
@@ -4018,7 +4018,7 @@
       "teamId": null,
       "order": 192,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_193": {
       "id": "p_main_193",
@@ -4038,7 +4038,7 @@
       "teamId": null,
       "order": 193,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_194": {
       "id": "p_main_194",
@@ -4058,7 +4058,7 @@
       "teamId": null,
       "order": 194,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_195": {
       "id": "p_main_195",
@@ -4078,7 +4078,7 @@
       "teamId": null,
       "order": 195,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_196": {
       "id": "p_main_196",
@@ -4098,7 +4098,7 @@
       "teamId": null,
       "order": 196,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_197": {
       "id": "p_main_197",
@@ -4118,7 +4118,7 @@
       "teamId": null,
       "order": 197,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_198": {
       "id": "p_main_198",
@@ -4138,7 +4138,7 @@
       "teamId": null,
       "order": 198,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_199": {
       "id": "p_main_199",
@@ -4158,7 +4158,7 @@
       "teamId": null,
       "order": 199,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_200": {
       "id": "p_main_200",
@@ -4178,7 +4178,7 @@
       "teamId": null,
       "order": 200,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_201": {
       "id": "p_main_201",
@@ -4198,7 +4198,7 @@
       "teamId": null,
       "order": 201,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_202": {
       "id": "p_main_202",
@@ -4218,7 +4218,7 @@
       "teamId": null,
       "order": 202,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_203": {
       "id": "p_main_203",
@@ -4238,7 +4238,7 @@
       "teamId": null,
       "order": 203,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_204": {
       "id": "p_main_204",
@@ -4258,7 +4258,7 @@
       "teamId": null,
       "order": 204,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_205": {
       "id": "p_main_205",
@@ -4278,7 +4278,7 @@
       "teamId": null,
       "order": 205,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_206": {
       "id": "p_main_206",
@@ -4298,7 +4298,7 @@
       "teamId": null,
       "order": 206,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_207": {
       "id": "p_main_207",
@@ -4318,7 +4318,7 @@
       "teamId": null,
       "order": 207,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_208": {
       "id": "p_main_208",
@@ -4338,7 +4338,7 @@
       "teamId": null,
       "order": 208,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_209": {
       "id": "p_main_209",
@@ -4358,7 +4358,7 @@
       "teamId": null,
       "order": 209,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_210": {
       "id": "p_main_210",
@@ -4378,7 +4378,7 @@
       "teamId": null,
       "order": 210,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     },
     "p_main_211": {
       "id": "p_main_211",
@@ -4398,7 +4398,7 @@
       "teamId": null,
       "order": 211,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": "2026-10-15T02:40:51.232Z"
+      "updatedAt": {}
     }
   },
   "bids": {
@@ -4893,6 +4893,393 @@
         "playerId": "p_main_1",
         "teamId": "team_csk_main",
         "amount": 25000000
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792068702929_0ib2j3": {
+      "eventType": "AUCTION_RESET",
+      "details": {
+        "locationId": "main_arena"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069137337_gl52b7": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_1",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069148196_k2y45a": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_1"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069182392_cbuw4u": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_2",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069184030_tr4twy": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_3",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069185051_al5rbb": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_4",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069186337_ihexod": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_5",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069197236_8d34wb": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 19101,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069224739_j4v0kd": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "extend",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 29101,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069225673_zeg8cv": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "extend",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 39101,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069226511_nct1zy": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 39101,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069227732_xbwcv4": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_6",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069234212_40lb80": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_7",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069264651_7ege1e": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_8",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069265203_kve09u": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_9",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069265839_6v8lwq": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_10",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069266393_o4a707": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_11",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069266711_witriz": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_12",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069266943_lci7bf": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_13",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069267243_zq83mf": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_14",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069267443_oizng4": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_15",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069267643_11hq2k": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_16",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069267826_uobhwk": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_17",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069268043_czwi1p": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_18",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069268193_wuc9jq": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_19",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792069278270_vibexi": {
+      "eventType": "AUCTION_RESET",
+      "details": {
+        "locationId": "main_arena"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070075676_bo1hno": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": false,
+        "remainingMs": null,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070076759_qlv2ci": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": false,
+        "remainingMs": null,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070183387_1wjgd4": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_1",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070199958_axawhz": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_2",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070211432_xj4e7y": {
+      "eventType": "AUCTION_RESET",
+      "details": {
+        "locationId": "main_arena"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070215108_884arl": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_1",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070232642_l0hmfl": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_2",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070247239_0yygfi": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_3",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070263266_kz8hjy": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_4",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070970651_m8t3dh": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_5",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070984304_nbu7r4": {
+      "eventType": "AUCTION_RESET",
+      "details": {
+        "locationId": "main_arena"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792070992205_jsadij": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_1",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071008429_5c0m34": {
+      "eventType": "AUCTION_RESET",
+      "details": {
+        "locationId": "main_arena"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071012000_nsc1xg": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_6",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071049516_6dkfah": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_10",
+        "durationSeconds": 30
       },
       "locationId": "main_arena",
       "timestamp": {}

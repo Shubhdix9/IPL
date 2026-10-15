@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import socket from '../socket';
 import { useAuth } from '../AuthContext';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 export default function TeamLeaderDashboard() {
   const { user } = useAuth();

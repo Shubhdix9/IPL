@@ -4,7 +4,7 @@ import socket from '../socket';
 import playerImageMap from '../playerImageMap.json';
 import AuctioneerDashboard from './AuctioneerDashboard';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 export default function ManagerDashboard() {
   const [activeTab, setActiveTab] = useState('LIVE_AUCTION');

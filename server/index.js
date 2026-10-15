@@ -1,6 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-const { onRequest } = require('firebase-functions/v2/https');
+let onRequest;
+try {
+  onRequest = require('firebase-functions/v2/https').onRequest;
+} catch (e) {
+  onRequest = null;
+}
 const { db, auth, admin } = require('./firestore-adapter');
 
 const DEFAULT_PURSE = 900_000_000; // 90 Cr
@@ -9,6 +14,14 @@ const DEFAULT_FRANCHISES = ['CSK', 'MI', 'RCB', 'DC', 'KKR', 'PBKS', 'RR', 'SRH'
 const app = express();
 app.use(cors({ origin: '*' }));
 app.use(express.json({ limit: '10mb' }));
+
+// Ensure seamless routing whether invoked directly as Cloud Function (/login) or via proxy (/api/login)
+app.use((req, res, next) => {
+  if (!req.url.startsWith('/api') && req.url !== '/' && !req.url.startsWith('/?')) {
+    req.url = '/api' + req.url;
+  }
+  next();
+});
 
 // -----------------------------------------------------------------------------
 // Real-time Event Broadcaster (SSE + Webhooks for multi-client synchrony)
@@ -1179,8 +1192,10 @@ app.delete('/api/penalties', async (req, res) => {
   }
 });
 
-// Export 2nd Generation Cloud Function
-exports.api = onRequest({ cors: true, memory: '512MiB', timeoutSeconds: 60 }, app);
+// Export 2nd Generation Cloud Function (if deployed to Firebase)
+if (onRequest) {
+  exports.api = onRequest({ cors: true, memory: '512MiB', timeoutSeconds: 60 }, app);
+}
 
 // Run local server when called directly
 const PORT = process.env.PORT || 3001;

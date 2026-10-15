@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import socket from '../socket';
 import { useAuth } from '../AuthContext';
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 export default function AuctioneerDashboard({ locationIdOverride }) {
   const { user } = useAuth();
   const [locations, setLocations] = useState([]);
@@ -47,7 +49,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   const controlTimer = async (action, extra = {}) => {
     if (!selectedLocation) return;
     try {
-      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/auction/timer`, {
+      await fetch(`${API_URL}/api/auction/timer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -68,7 +70,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
       return;
     }
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/auction/reset`, {
+      const res = await fetch(`${API_URL}/api/auction/reset`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ locationId: selectedLocation, confirmText: 'RESET' })
@@ -99,7 +101,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   };
 
   const fetchTeams = () => {
-    fetch((import.meta.env.VITE_API_URL || 'http://localhost:3001') + '/api/teams')
+    fetch(API_URL + '/api/teams')
       .then(res => res.json())
       .then(data => {
         if (selectedLocation) {
@@ -112,7 +114,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   };
 
   useEffect(() => {
-    fetch((import.meta.env.VITE_API_URL || 'http://localhost:3001') + '/api/locations')
+    fetch(API_URL + '/api/locations')
       .then(res => res.json())
       .then(data => {
         setLocations(data);
@@ -127,7 +129,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   const advanceNextPlayer = async () => {
     if (!selectedLocation) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/auction/set-live`, {
+      const res = await fetch(`${API_URL}/api/auction/set-live`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -158,7 +160,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   useEffect(() => {
     if (selectedLocation) {
       socket.emit('joinLocation', selectedLocation);
-      fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/locations/${selectedLocation}/players`)
+      fetch(`${API_URL}/api/locations/${selectedLocation}/players`)
         .then(res => res.json())
         .then(data => setPlayers(data.filter(p => p.status === 'UPCOMING')))
         .catch(console.error);
