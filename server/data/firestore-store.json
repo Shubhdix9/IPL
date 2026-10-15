@@ -6,12 +6,12 @@
       "city": "BCCI National Command Arena",
       "isOnBreak": false,
       "leaderboardVisible": false,
-      "activePlayerId": "p_main_10",
+      "activePlayerId": "p_main_3",
       "auctionStatus": "LIVE",
-      "timerDeadlineMs": 1792071079516,
+      "timerDeadlineMs": null,
       "timerDurationSeconds": 30,
-      "timerPaused": false,
-      "timerRemainingMs": 30000,
+      "timerPaused": true,
+      "timerRemainingMs": 15656,
       "createdAt": "2026-10-15T02:40:51.229Z",
       "updatedAt": {}
     }
@@ -189,7 +189,7 @@
       "country": "IND",
       "imageUrl": "/players/abdul_samad.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -210,7 +210,7 @@
       "country": "IND",
       "imageUrl": "/players/abhishek_sharma.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -230,7 +230,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/adam_milne.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -5279,6 +5279,54 @@
       "eventType": "ADVANCE_PLAYER",
       "details": {
         "playerId": "p_main_10",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071177790_eg3vfl": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_1",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071216916_fxsozb": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_2",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071225328_opy9et": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_2"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071227021_5v67o4": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_3",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071241365_kj4xu0": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 15656,
         "durationSeconds": 30
       },
       "locationId": "main_arena",

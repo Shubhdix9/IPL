@@ -1,6 +1,17 @@
 const fs = require('fs');
 const path = require('path');
-const admin = require('firebase-admin');
+let admin;
+try {
+  admin = require('firebase-admin');
+} catch (e) {
+  admin = {
+    firestore: {
+      FieldValue: {
+        serverTimestamp: () => new Date().toISOString()
+      }
+    }
+  };
+}
 
 // Check if live Firebase or Emulator credentials are provided
 const hasLiveCredentials = Boolean(
