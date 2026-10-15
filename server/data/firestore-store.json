@@ -6,15 +6,15 @@
       "city": "BCCI National Command Arena",
       "isOnBreak": false,
       "leaderboardVisible": false,
-      "activePlayerId": null,
-      "auctionStatus": "STARTING",
-      "timerDeadlineMs": null,
+      "activePlayerId": "p_main_21",
+      "auctionStatus": "LIVE",
+      "timerDeadlineMs": 1792074432580,
       "timerDurationSeconds": 30,
       "timerPaused": false,
-      "timerRemainingMs": null,
+      "timerRemainingMs": 0,
       "createdAt": "2026-10-15T02:40:51.229Z",
       "updatedAt": {},
-      "startingCountdownDeadlineMs": 1792072848751
+      "startingCountdownDeadlineMs": 1792072985997
     }
   },
   "teams": {
@@ -190,7 +190,7 @@
       "country": "IND",
       "imageUrl": "/players/abdul_samad.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -211,7 +211,7 @@
       "country": "IND",
       "imageUrl": "/players/abhishek_sharma.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -220,7 +220,9 @@
       "order": 2,
       "createdAt": "2026-10-15T02:40:51.232Z",
       "updatedAt": {},
-      "currentBidTeamName": "Lucknow Super Giants"
+      "currentBidTeamName": "Lucknow Super Giants",
+      "timerDeadlineMs": 1792074432580,
+      "timerPaused": false
     },
     "p_main_3": {
       "id": "p_main_3",
@@ -232,7 +234,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/adam_milne.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -252,7 +254,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/adam_zampa.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -273,7 +275,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/adil_rashid.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -293,7 +295,7 @@
       "country": "IND",
       "imageUrl": "/players/ajinkya_rahane.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -313,7 +315,7 @@
       "country": "IND",
       "imageUrl": "/players/AKASH DEEP.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -333,7 +335,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/akeal_hosein.png.jpeg",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -353,7 +355,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/alex_carey.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -373,7 +375,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/alex_hales.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -393,7 +395,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/andile_phehlukwayo.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -413,7 +415,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/andrew_tye.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -433,7 +435,7 @@
       "country": "IND",
       "imageUrl": "/players/angkrish_raghuvanshi.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -453,7 +455,7 @@
       "country": "IND",
       "imageUrl": "/players/ankit_rajput.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -473,7 +475,7 @@
       "country": "IND",
       "imageUrl": "/players/anmolpreet_singh.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -493,7 +495,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/anrich_nortje.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -513,7 +515,7 @@
       "country": "IND",
       "imageUrl": "/players/arjun_tendulkar.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -533,7 +535,7 @@
       "country": "IND",
       "imageUrl": "/players/arshdeep_singh.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -553,7 +555,7 @@
       "country": "IND",
       "imageUrl": "/players/ashutosh_sharma.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -574,7 +576,7 @@
       "country": "IND",
       "imageUrl": "/players/avesh_khan.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -594,7 +596,7 @@
       "country": "IND",
       "imageUrl": "/players/axar_patel.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -614,7 +616,7 @@
       "country": "IND",
       "imageUrl": "/players/ayush_badoni.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -674,7 +676,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/ben_duckett.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -734,7 +736,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/brendon_king.png.jpeg",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "UNSOLD",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -834,7 +836,7 @@
       "country": "IND",
       "imageUrl": "/players/cheteswar_pujara.png.jpeg",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -6492,6 +6494,551 @@
       "eventType": "AUCTION_RESET",
       "details": {
         "locationId": "main_arena"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072943460_jf2vw4": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_1",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072973507_wtgyo6": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_1"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072977178_7d6uax": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_2",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072987159_t6sksf": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_3",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072987863_ts82qc": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_3",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072996566_46m35n": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_3"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072999607_yvpncp": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_6",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073004974_h1betp": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_6"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073006144_ze11s3": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_10",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073008028_jln3gp": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_10"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073008950_rwskof": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_13",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073010292_i1w7qa": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_13"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073011187_tpdan6": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_19",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073017908_ff4x3w": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_3"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073021554_a5cifj": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_4",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073039480_3p7drc": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 12075,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073042063_to4q7v": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_19"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073048422_yg1tgp": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_22",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073051680_14zd52": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_4"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073055319_bjq0er": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_5",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073083817_e02wo9": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_22"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073085450_lm42bk": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_5"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073087427_qd845s": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_25",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073089093_n2kq6i": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_6",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073119225_rq0asd": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_6"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073122871_ost50a": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_7",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073131269_1f3ddu": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_25"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073135576_bwmd44": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_28",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073152997_02irrc": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_7"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073156743_7jf57w": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_8",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073186931_bs5s35": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_8"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073190506_nqd0t0": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_9",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073204932_chhe5e": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_28"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073208826_m1thfk": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_33",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073220608_jkcdtk": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_9"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073224184_0fhugt": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_10",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073254284_y4ki4p": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_10"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073257970_vmm65s": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_11",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073288139_ydm88n": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_11"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073291721_8zrca5": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_12",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073691203_u3oahb": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 0,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073702022_2hsmrp": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "resume",
+        "locationId": "main_arena",
+        "deadlineMs": 1792073732021,
+        "paused": false,
+        "remainingMs": 0,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073872381_ftykgx": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_13",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073902496_1mq4iv": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_13"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073906077_9obbzo": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_14",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073936177_2lj66w": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_14"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073939748_x70c4h": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_15",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073969842_53vqcs": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_15"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792073973277_hysmzd": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_16",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074003387_c7o83c": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_16"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074006970_cbvn4n": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_17",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074037071_hs1a99": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_17"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074040666_0x509z": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_18",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074070761_7ids34": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_18"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074074342_zyezg0": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_19",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074104445_yq4ylx": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_19"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074108016_6jn19t": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_20",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074138117_f5miao": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_20"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074141710_v93fi6": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_21",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074224500_m5x93n": {
+      "eventType": "BREAK_TOGGLED",
+      "details": {
+        "show": true,
+        "locationId": "main_arena",
+        "isOnBreak": true,
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 0,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074402581_7db9ut": {
+      "eventType": "BREAK_TOGGLED",
+      "details": {
+        "show": false,
+        "locationId": "main_arena",
+        "isOnBreak": false,
+        "deadlineMs": 1792074432580,
+        "paused": false,
+        "remainingMs": 0,
+        "durationSeconds": 30
       },
       "locationId": "main_arena",
       "timestamp": {}

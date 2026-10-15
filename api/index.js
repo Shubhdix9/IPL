@@ -675,13 +675,13 @@ app.post('/api/auction/timer', async (req, res) => {
         newDeadlineMs = nowMs + newDuration * 1000;
         newRemainingMs = newDuration * 1000;
       } else if (action === 'pause') {
-        if (!newPaused && newDeadlineMs) {
-          newRemainingMs = Math.max(0, newDeadlineMs - nowMs);
+        if (!newPaused) {
+          newRemainingMs = newDeadlineMs ? Math.max(0, newDeadlineMs - nowMs) : (Number(newRemainingMs) || (newDuration * 1000));
           newPaused = true;
           newDeadlineMs = null;
         }
       } else if (action === 'resume') {
-        if (newPaused) {
+        if (newPaused || !newDeadlineMs) {
           const rem = Number(newRemainingMs) || (newDuration * 1000);
           newDeadlineMs = nowMs + rem;
           newPaused = false;
@@ -714,6 +714,22 @@ app.post('/api/auction/timer', async (req, res) => {
       t.update(locationRef, updatePayload);
       return { locationId, deadlineMs: newDeadlineMs, paused: newPaused, remainingMs: newRemainingMs, durationSeconds: newDuration };
     });
+
+    // Also update any current live player in this arena
+    try {
+      const livePlayersSnap = await db.collection('players')
+        .where('locationId', '==', String(locationId))
+        .where('status', '==', 'LIVE')
+        .limit(1)
+        .get();
+      if (!livePlayersSnap.empty) {
+        await livePlayersSnap.docs[0].ref.update({
+          timerDeadlineMs: result.deadlineMs,
+          timerPaused: result.paused,
+          updatedAt: admin.firestore.FieldValue.serverTimestamp()
+        });
+      }
+    } catch (e) {}
 
     broadcastEvent(locationId, 'timerUpdated', result);
     await logAuditEvent('TIMER_CONTROL', { action, ...result }, locationId);
@@ -1135,12 +1151,83 @@ app.post('/api/auction/reverse-bid', async (req, res) => {
 app.post('/api/auction/break', async (req, res) => {
   try {
     const { locationId, show } = req.body;
-    await db.collection('locations').doc(locationId).update({
-      isOnBreak: Boolean(show),
-      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    const locId = String(locationId || 'main_arena');
+    const isBreak = Boolean(show);
+    const locRef = db.collection('locations').doc(locId);
+    const nowMs = Date.now();
+
+    const result = await db.runTransaction(async (t) => {
+      const locDoc = await t.get(locRef);
+      if (!locDoc.exists) throw new Error('Location not found');
+      const locData = locDoc.data();
+
+      let newDeadlineMs = locData.timerDeadlineMs;
+      let newPaused = Boolean(locData.timerPaused);
+      let newRemainingMs = locData.timerRemainingMs;
+      const duration = Number(locData.timerDurationSeconds) || 30;
+
+      if (isBreak) {
+        // Stop/freeze the timer and entire auction during official recess
+        if (!newPaused && newDeadlineMs) {
+          newRemainingMs = Math.max(0, newDeadlineMs - nowMs);
+        } else if (!newRemainingMs) {
+          newRemainingMs = duration * 1000;
+        }
+        newPaused = true;
+        newDeadlineMs = null;
+      } else {
+        // Resume session: unpause and restart countdown from remaining time
+        newPaused = false;
+        const rem = Number(newRemainingMs) || (duration * 1000);
+        newDeadlineMs = nowMs + rem;
+      }
+
+      const updatePayload = {
+        isOnBreak: isBreak,
+        timerPaused: newPaused,
+        timerDeadlineMs: newDeadlineMs,
+        timerRemainingMs: newRemainingMs,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      };
+
+      t.update(locRef, updatePayload);
+      return {
+        locationId: locId,
+        isOnBreak: isBreak,
+        deadlineMs: newDeadlineMs,
+        paused: newPaused,
+        remainingMs: newRemainingMs,
+        durationSeconds: duration
+      };
     });
-    broadcastEvent(locationId, 'auctionBreakToggled', { locationId, show: Boolean(show) });
-    res.json({ success: true, locationId, isOnBreak: Boolean(show) });
+
+    // Also sync current live player's timer state
+    try {
+      const livePlayersSnap = await db.collection('players')
+        .where('locationId', '==', locId)
+        .where('status', '==', 'LIVE')
+        .limit(1)
+        .get();
+      if (!livePlayersSnap.empty) {
+        await livePlayersSnap.docs[0].ref.update({
+          timerDeadlineMs: result.deadlineMs,
+          timerPaused: result.paused,
+          updatedAt: admin.firestore.FieldValue.serverTimestamp()
+        });
+      }
+    } catch (e) {}
+
+    broadcastEvent(locId, 'auctionBreakToggled', { locationId: locId, show: isBreak });
+    broadcastEvent(locId, 'timerUpdated', {
+      locationId: locId,
+      deadlineMs: result.deadlineMs,
+      paused: result.paused,
+      remainingMs: result.remainingMs,
+      durationSeconds: result.durationSeconds
+    });
+
+    await logAuditEvent('BREAK_TOGGLED', { show: isBreak, ...result }, locId);
+    res.json({ success: true, ...result });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

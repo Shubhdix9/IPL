@@ -86,8 +86,50 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
 
   const controlTimer = async (action, extra = {}) => {
     if (!selectedLocation) return;
+
+    // Immediate optimistic local state update so the pause/resume happens with 0 latency
+    if (action === 'pause') {
+      setTimerPaused(true);
+      const remainingSec = timerSecondsLeft !== null ? timerSecondsLeft : 30;
+      setTimerSecondsLeft(remainingSec);
+      setTimerDeadline(null);
+      socket.emitLocal('timerUpdated', {
+        locationId: selectedLocation,
+        deadlineMs: null,
+        paused: true,
+        remainingMs: remainingSec * 1000
+      });
+    } else if (action === 'resume') {
+      setTimerPaused(false);
+      const remainingSec = timerSecondsLeft !== null ? timerSecondsLeft : 30;
+      const newDeadline = Date.now() + remainingSec * 1000;
+      setTimerDeadline(newDeadline);
+      setTimerSecondsLeft(remainingSec);
+      socket.emitLocal('timerUpdated', {
+        locationId: selectedLocation,
+        deadlineMs: newDeadline,
+        paused: false,
+        remainingMs: remainingSec * 1000
+      });
+    } else if (action === 'extend') {
+      const extraSec = extra.addSeconds || 10;
+      const remainingSec = (timerSecondsLeft !== null ? timerSecondsLeft : 0) + extraSec;
+      setTimerSecondsLeft(remainingSec);
+      if (!timerPaused) {
+        const currentEnd = timerDeadline ? Math.max(Date.now(), timerDeadline) : Date.now();
+        const newDeadline = currentEnd + extraSec * 1000;
+        setTimerDeadline(newDeadline);
+        socket.emitLocal('timerUpdated', {
+          locationId: selectedLocation,
+          deadlineMs: newDeadline,
+          paused: false,
+          remainingMs: remainingSec * 1000
+        });
+      }
+    }
+
     try {
-      await fetch(`${API_URL}/api/auction/timer`, {
+      const res = await fetch(`${API_URL}/api/auction/timer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -97,6 +139,10 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
           addSeconds: extra.addSeconds || 10
         })
       });
+      const data = await res.json();
+      if (data && data.locationId) {
+        socket.emitLocal('timerUpdated', data);
+      }
     } catch (err) {
       console.error('Failed to control timer:', err);
     }
@@ -358,6 +404,8 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
         if (data.deadlineMs) {
           setTimerDeadline(data.deadlineMs);
           setTimerSecondsLeft(Math.max(0, Math.ceil((data.deadlineMs - Date.now()) / 1000)));
+        } else if (data.paused) {
+          setTimerDeadline(null);
         }
         setTimerPaused(Boolean(data.paused));
         if (data.paused && data.remainingMs !== undefined) {
@@ -372,12 +420,24 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
         setAuctionStartingCountdown(remaining);
       });
 
+      socket.on('auctionBreakToggled', (data) => {
+        const breakActive = Boolean(data.show);
+        setIsBreakMode(breakActive);
+        if (breakActive) {
+          setTimerPaused(true);
+          setTimerDeadline(null);
+        } else {
+          setTimerPaused(false);
+        }
+      });
+
       return () => {
         socket.off('playerSold');
         socket.off('penaltyIssued');
         socket.off('playerReopened');
         socket.off('timerUpdated');
         socket.off('auctionStarting');
+        socket.off('auctionBreakToggled');
       };
     }
   }, [selectedLocation]);
@@ -476,6 +536,12 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   const toggleBreak = () => {
     const newBreakMode = !isBreakMode;
     setIsBreakMode(newBreakMode);
+    if (newBreakMode) {
+      setTimerPaused(true);
+      setTimerDeadline(null);
+    } else {
+      setTimerPaused(false);
+    }
     socket.emit('toggleBreak', { locationId: selectedLocation, show: newBreakMode });
   };
 
@@ -525,6 +591,37 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      {isBreakMode && (
+        <div style={{
+          background: 'linear-gradient(90deg, rgba(245, 158, 11, 0.25), rgba(245, 158, 11, 0.4), rgba(245, 158, 11, 0.25))',
+          border: '1px solid var(--amber-border)',
+          borderRadius: '8px',
+          color: 'var(--amber-warning)',
+          textAlign: 'center',
+          padding: '0.75rem 1.25rem',
+          fontWeight: '800',
+          fontSize: '0.88rem',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          fontFamily: 'JetBrains Mono, monospace',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          boxShadow: '0 0 20px rgba(245, 158, 11, 0.25)'
+        }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <span style={{ fontSize: '1.2rem' }}>⏸️</span>
+            <span>OFFICIAL AUCTION RECESS IN EFFECT — BIDDING & TIMERS FROZEN</span>
+          </span>
+          <button
+            onClick={toggleBreak}
+            className="btn btn-amber"
+            style={{ padding: '0.4rem 1.1rem', fontSize: '0.78rem', fontWeight: '800' }}
+          >
+            ▶ RESUME SESSION
+          </button>
+        </div>
+      )}
       
       {/* Gavel Master Command Bar */}
       <div style={{ 
@@ -596,11 +693,16 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
 
           {/* Timer Action Buttons */}
           <button
-            className="btn btn-secondary"
+            className={`btn ${timerPaused ? 'btn-amber' : 'btn-secondary'}`}
             onClick={() => controlTimer(timerPaused ? 'resume' : 'pause')}
-            style={{ padding: '0.45rem 0.8rem', fontSize: '0.75rem' }}
+            style={{ 
+              padding: '0.45rem 0.85rem', 
+              fontSize: '0.75rem',
+              fontWeight: '700',
+              border: timerPaused ? '1px solid var(--amber-border)' : '1px solid rgba(255, 255, 255, 0.12)'
+            }}
           >
-            {timerPaused ? 'RESUME TIMER' : 'PAUSE TIMER'}
+            {timerPaused ? '▶ RESUME TIMER' : '⏸ PAUSE TIMER'}
           </button>
 
           <button
@@ -677,9 +779,15 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
           <button
             className={`btn ${isBreakMode ? 'btn-amber' : 'btn-secondary'}`}
             onClick={toggleBreak}
-            style={{ padding: '0.55rem 1.25rem', fontSize: '0.8rem' }}
+            style={{ 
+              padding: '0.55rem 1.25rem', 
+              fontSize: '0.8rem',
+              fontWeight: '800',
+              border: isBreakMode ? '1px solid var(--amber-border)' : '1px solid rgba(255, 255, 255, 0.1)',
+              boxShadow: isBreakMode ? '0 0 15px rgba(245, 158, 11, 0.4)' : 'none'
+            }}
           >
-            {isBreakMode ? 'RESUME SESSION' : 'OFFICIAL RECESS'}
+            {isBreakMode ? '▶ RESUME SESSION' : '⏸ OFFICIAL RECESS'}
           </button>
           
           <button 
@@ -938,7 +1046,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                         <div key={t.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                           <button 
                             className="btn"
-                            disabled={t.isDisqualified}
+                            disabled={t.isDisqualified || isBreakMode}
                             style={{ 
                               background: isBidding 
                                 ? 'linear-gradient(135deg, var(--gold-bright), var(--gold-primary))' 
@@ -949,14 +1057,15 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                                 : eligibility.eligible 
                                   ? '1px solid rgba(255, 255, 255, 0.1)' 
                                   : '1px solid var(--crimson-border)',
-                              opacity: t.isDisqualified ? 0.35 : 1,
+                              opacity: t.isDisqualified || isBreakMode ? 0.35 : 1,
+                              cursor: t.isDisqualified || isBreakMode ? 'not-allowed' : 'pointer',
                               padding: '0.65rem 0.4rem',
                               fontSize: '0.78rem',
                               fontWeight: '700',
                               flexDirection: 'column',
                               gap: '0.15rem'
                             }}
-                            onClick={() => incrementBid(t.id)}
+                            onClick={() => !isBreakMode && incrementBid(t.id)}
                           >
                             <span>{t.name}</span>
                             <span style={{ fontSize: '0.65rem', opacity: 0.8, fontFamily: 'JetBrains Mono, monospace' }}>
@@ -978,7 +1087,14 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                     <button 
                       className="btn btn-success" 
                       onClick={sellPlayer} 
-                      style={{ fontSize: '1rem', padding: '0.85rem 2.5rem', fontWeight: '800' }}
+                      disabled={isBreakMode}
+                      style={{ 
+                        fontSize: '1rem', 
+                        padding: '0.85rem 2.5rem', 
+                        fontWeight: '800',
+                        opacity: isBreakMode ? 0.4 : 1,
+                        cursor: isBreakMode ? 'not-allowed' : 'pointer'
+                      }}
                     >
                       CONFIRM SALE
                     </button>
@@ -986,7 +1102,14 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                       <button 
                         className="btn btn-danger" 
                         onClick={markUnsold} 
-                        style={{ fontSize: '1rem', padding: '0.85rem 2.5rem', fontWeight: '800' }}
+                        disabled={isBreakMode}
+                        style={{ 
+                          fontSize: '1rem', 
+                          padding: '0.85rem 2.5rem', 
+                          fontWeight: '800',
+                          opacity: isBreakMode ? 0.4 : 1,
+                          cursor: isBreakMode ? 'not-allowed' : 'pointer'
+                        }}
                       >
                         PASS UNSOLD
                       </button>

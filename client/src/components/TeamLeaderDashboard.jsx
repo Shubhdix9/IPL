@@ -146,6 +146,8 @@ export default function TeamLeaderDashboard() {
         if (data.deadlineMs) {
           setTimerDeadline(data.deadlineMs);
           setTimerSecondsLeft(Math.max(0, Math.ceil((data.deadlineMs - Date.now()) / 1000)));
+        } else if (data.paused) {
+          setTimerDeadline(null);
         }
         setTimerPaused(Boolean(data.paused));
         if (data.paused && data.remainingMs !== undefined) {
@@ -160,7 +162,23 @@ export default function TeamLeaderDashboard() {
       });
 
       socket.on('auctionBreakToggled', (data) => {
-        setIsBreakMode(data.show);
+        setIsBreakMode(Boolean(data.show));
+        if (data.show) {
+          setTimerPaused(true);
+          setTimerDeadline(null);
+          setFeedLog(prev => [{
+            id: Date.now(),
+            msg: `⏸️ OFFICIAL AUCTION RECESS IN EFFECT — BID MUTATIONS LOCKED`,
+            type: 'alert'
+          }, ...prev].slice(0, 50));
+        } else {
+          setTimerPaused(false);
+          setFeedLog(prev => [{
+            id: Date.now(),
+            msg: `▶ AUCTION SESSION RESUMED — BIDDING PADDLES UNLOCKED`,
+            type: 'alert'
+          }, ...prev].slice(0, 50));
+        }
       });
 
       socket.on('leaderboardToggled', (show) => {

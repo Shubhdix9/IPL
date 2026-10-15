@@ -109,11 +109,19 @@ class FirestoreAuctionRealtimeBridge {
           body: JSON.stringify(data),
         });
       } else if (event === 'toggleBreak') {
-        await fetch(`${API_BASE}/api/auction/break`, {
+        this.emitLocal('auctionBreakToggled', {
+          locationId: data.locationId,
+          show: Boolean(data.show),
+        });
+        const res = await fetch(`${API_BASE}/api/auction/break`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         });
+        const resData = await res.json();
+        if (resData && resData.paused !== undefined) {
+          this.emitLocal('timerUpdated', resData);
+        }
       } else if (event === 'toggleLeaderboard') {
         await fetch(`${API_BASE}/api/auction/leaderboard`, {
           method: 'POST',
@@ -173,6 +181,19 @@ class FirestoreAuctionRealtimeBridge {
           }
           if (locData.leaderboardVisible !== this.previousLocationState.leaderboardVisible) {
             this.emitLocal('leaderboardToggled', locData.leaderboardVisible);
+          }
+          if (
+            locData.timerPaused !== this.previousLocationState.timerPaused ||
+            locData.timerDeadlineMs !== this.previousLocationState.timerDeadlineMs ||
+            locData.timerRemainingMs !== this.previousLocationState.timerRemainingMs
+          ) {
+            this.emitLocal('timerUpdated', {
+              locationId: locIdStr,
+              deadlineMs: locData.timerDeadlineMs,
+              paused: Boolean(locData.timerPaused),
+              remainingMs: locData.timerRemainingMs,
+              durationSeconds: locData.timerDurationSeconds,
+            });
           }
         }
         this.previousLocationState = locData;
@@ -285,6 +306,7 @@ class FirestoreAuctionRealtimeBridge {
           'leaderboardToggled',
           'penaltyIssued',
           'auctionStarting',
+          'timerUpdated',
         ];
 
         eventNames.forEach((evName) => {
