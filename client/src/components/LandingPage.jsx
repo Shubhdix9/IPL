@@ -64,7 +64,7 @@ export default function LandingPage() {
             marginBottom: '1.25rem',
             color: '#ffffff'
           }}>
-            PREMIER LEAGUE AUCTION
+            BBW
           </h1>
 
           <p style={{ 

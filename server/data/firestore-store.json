@@ -6,15 +6,15 @@
       "city": "BCCI National Command Arena",
       "isOnBreak": false,
       "leaderboardVisible": false,
-      "activePlayerId": "p_main_21",
+      "activePlayerId": "p_main_37",
       "auctionStatus": "LIVE",
-      "timerDeadlineMs": 1792074432580,
+      "timerDeadlineMs": 1792074601986,
       "timerDurationSeconds": 30,
       "timerPaused": false,
-      "timerRemainingMs": 0,
+      "timerRemainingMs": 30000,
       "createdAt": "2026-10-15T02:40:51.229Z",
       "updatedAt": {},
-      "startingCountdownDeadlineMs": 1792072985997
+      "startingCountdownDeadlineMs": 1792074556562
     }
   },
   "teams": {
@@ -59,7 +59,7 @@
       "secondaryColor": "#d4af37",
       "city": "Ahmedabad",
       "locationId": "main_arena",
-      "budget": 900000000,
+      "budget": 880000000,
       "initialBudget": 900000000,
       "mistakes": 0,
       "isDisqualified": false,
@@ -636,15 +636,16 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/azhmatullah_omarzai.png.jpeg",
       "locationId": "main_arena",
-      "status": "UPCOMING",
-      "currentBid": null,
-      "currentBidTeamId": null,
-      "currentBidId": null,
-      "soldPrice": null,
-      "teamId": null,
+      "status": "SOLD",
+      "currentBid": 20000000,
+      "currentBidTeamId": "team_gt_main",
+      "currentBidId": "id_1792074567495_hvb17l",
+      "soldPrice": 20000000,
+      "teamId": "team_gt_main",
       "order": 23,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": {}
+      "updatedAt": {},
+      "currentBidTeamName": "Gujarat Titans"
     },
     "p_main_24": {
       "id": "p_main_24",
@@ -916,7 +917,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/david_malan.png.png",
       "locationId": "main_arena",
-      "status": "UPCOMING",
+      "status": "LIVE",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -4713,6 +4714,15 @@
       "amount": 70000000,
       "status": "WINNING",
       "createdAt": {}
+    },
+    "id_1792074567495_hvb17l": {
+      "locationId": "main_arena",
+      "playerId": "p_main_23",
+      "teamId": "team_gt_main",
+      "teamName": "Gujarat Titans",
+      "amount": 20000000,
+      "status": "WINNING",
+      "createdAt": {}
     }
   },
   "users": {
@@ -7038,6 +7048,48 @@
         "deadlineMs": 1792074432580,
         "paused": false,
         "remainingMs": 0,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074558194_39yarh": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_23",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074567495_jh9s1n": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792074567495_hvb17l",
+        "playerId": "p_main_23",
+        "teamId": "team_gt_main",
+        "teamName": "Gujarat Titans",
+        "amount": 20000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792074588194
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074568753_zt7zat": {
+      "eventType": "PLAYER_SOLD",
+      "details": {
+        "playerId": "p_main_23",
+        "teamId": "team_gt_main",
+        "amount": 20000000
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792074571986_ta2jw6": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_37",
         "durationSeconds": 30
       },
       "locationId": "main_arena",
