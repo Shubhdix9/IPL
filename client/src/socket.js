@@ -130,6 +130,17 @@ class FirestoreAuctionRealtimeBridge {
         await fetch(`${API_BASE}/api/penalties?teamId=${data.teamId}`, {
           method: 'DELETE',
         });
+      } else if (event === 'startAuctionCountdown') {
+        this.emitLocal('auctionStarting', {
+          locationId: data.locationId,
+          seconds: data.seconds || 5,
+          deadlineMs: Date.now() + (data.seconds || 5) * 1000,
+        });
+        await fetch(`${API_BASE}/api/auction/start-countdown`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
       }
     } catch (error) {
       console.error(`[FirestoreRealtime] Failed to dispatch ${event}:`, error);
@@ -273,6 +284,7 @@ class FirestoreAuctionRealtimeBridge {
           'auctionBreakToggled',
           'leaderboardToggled',
           'penaltyIssued',
+          'auctionStarting',
         ];
 
         eventNames.forEach((evName) => {

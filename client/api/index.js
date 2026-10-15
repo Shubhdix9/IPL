@@ -621,6 +621,36 @@ app.post('/api/auction/set-live', async (req, res) => {
   }
 });
 
+// Start Global Auction Countdown (e.g. 5 seconds synced across all dashboards)
+app.post('/api/auction/start-countdown', async (req, res) => {
+  try {
+    const { locationId, seconds = 5 } = req.body;
+    const locId = locationId || 'main_arena';
+    const duration = Math.max(1, Number(seconds) || 5);
+    const deadlineMs = Date.now() + duration * 1000;
+
+    const locRef = db.collection('locations').doc(locId);
+    try {
+      await locRef.update({
+        startingCountdownDeadlineMs: deadlineMs,
+        auctionStatus: 'STARTING',
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      });
+    } catch (e) {}
+
+    const payload = {
+      locationId: locId,
+      deadlineMs,
+      seconds: duration
+    };
+
+    broadcastEvent(locId, 'auctionStarting', payload);
+    res.json({ success: true, ...payload });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 // Authoritative Timer Control: Start, Pause, Resume, Extend
 app.post('/api/auction/timer', async (req, res) => {
   try {

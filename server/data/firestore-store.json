@@ -7,13 +7,14 @@
       "isOnBreak": false,
       "leaderboardVisible": false,
       "activePlayerId": null,
-      "auctionStatus": "UPCOMING",
+      "auctionStatus": "STARTING",
       "timerDeadlineMs": null,
       "timerDurationSeconds": 30,
       "timerPaused": false,
       "timerRemainingMs": null,
       "createdAt": "2026-10-15T02:40:51.229Z",
-      "updatedAt": {}
+      "updatedAt": {},
+      "startingCountdownDeadlineMs": 1792072848751
     }
   },
   "teams": {
@@ -198,7 +199,7 @@
       "order": 1,
       "createdAt": "2026-10-15T02:40:51.231Z",
       "updatedAt": {},
-      "currentBidTeamName": "Chennai Super Kings"
+      "currentBidTeamName": "Mumbai Indians"
     },
     "p_main_2": {
       "id": "p_main_2",
@@ -218,7 +219,8 @@
       "teamId": null,
       "order": 2,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": {}
+      "updatedAt": {},
+      "currentBidTeamName": "Lucknow Super Giants"
     },
     "p_main_3": {
       "id": "p_main_3",
@@ -4493,6 +4495,222 @@
       "amount": 20000000,
       "status": "WINNING",
       "createdAt": {}
+    },
+    "id_1792072263807_ph0nm7": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_dc_main",
+      "teamName": "Delhi Capitals",
+      "amount": 15000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072267114_xjxysm": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_gt_main",
+      "teamName": "Gujarat Titans",
+      "amount": 20000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072267952_s1q7jk": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_kkr_main",
+      "teamName": "Kolkata Knight Riders",
+      "amount": 25000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072268639_e8rn3f": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_rr_main",
+      "teamName": "Rajasthan Royals",
+      "amount": 30000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072269449_gbpstb": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_rcb_main",
+      "teamName": "Royal Challengers Bengaluru",
+      "amount": 35000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072270292_c1o952": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_lsg_main",
+      "teamName": "Lucknow Super Giants",
+      "amount": 40000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072271012_okhseb": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_srh_main",
+      "teamName": "Sunrisers Hyderabad",
+      "amount": 45000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072272216_ki00hh": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_kkr_main",
+      "teamName": "Kolkata Knight Riders",
+      "amount": 50000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072273152_fccavi": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_gt_main",
+      "teamName": "Gujarat Titans",
+      "amount": 60000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072274058_5raoud": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_dc_main",
+      "teamName": "Delhi Capitals",
+      "amount": 70000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072277287_o23pxp": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_rr_main",
+      "teamName": "Rajasthan Royals",
+      "amount": 80000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072278972_ccden9": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_kkr_main",
+      "teamName": "Kolkata Knight Riders",
+      "amount": 90000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072282792_zwh0am": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_csk_main",
+      "teamName": "Chennai Super Kings",
+      "amount": 160000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072284654_4exrht": {
+      "locationId": "main_arena",
+      "playerId": "p_main_1",
+      "teamId": "team_mi_main",
+      "teamName": "Mumbai Indians",
+      "amount": 180000000,
+      "status": "WINNING",
+      "createdAt": {}
+    },
+    "id_1792072296501_r9nbcx": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_rcb_main",
+      "teamName": "Royal Challengers Bengaluru",
+      "amount": 15000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072298115_9t8sp9": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_lsg_main",
+      "teamName": "Lucknow Super Giants",
+      "amount": 20000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072299467_wo3am7": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_kkr_main",
+      "teamName": "Kolkata Knight Riders",
+      "amount": 25000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072300689_nsv1m4": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_rr_main",
+      "teamName": "Rajasthan Royals",
+      "amount": 30000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072301778_s748qm": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_dc_main",
+      "teamName": "Delhi Capitals",
+      "amount": 35000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072302811_9vwqqw": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_csk_main",
+      "teamName": "Chennai Super Kings",
+      "amount": 40000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072304026_zuzdz0": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_pbks_main",
+      "teamName": "Punjab Kings",
+      "amount": 45000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072305080_ha9fah": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_rcb_main",
+      "teamName": "Royal Challengers Bengaluru",
+      "amount": 50000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072306184_87z4yz": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_srh_main",
+      "teamName": "Sunrisers Hyderabad",
+      "amount": 60000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792072308057_o3vnnh": {
+      "locationId": "main_arena",
+      "playerId": "p_main_2",
+      "teamId": "team_lsg_main",
+      "teamName": "Lucknow Super Giants",
+      "amount": 70000000,
+      "status": "WINNING",
+      "createdAt": {}
     }
   },
   "users": {
@@ -5812,6 +6030,465 @@
       "timestamp": {}
     },
     "id_1792071919376_rnpyqf": {
+      "eventType": "AUCTION_RESET",
+      "details": {
+        "locationId": "main_arena"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072259216_lxxqle": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_1",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072263807_ubvzud": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072263807_ph0nm7",
+        "playerId": "p_main_1",
+        "teamId": "team_dc_main",
+        "teamName": "Delhi Capitals",
+        "amount": 15000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072267114_tqi7z0": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072267114_xjxysm",
+        "playerId": "p_main_1",
+        "teamId": "team_gt_main",
+        "teamName": "Gujarat Titans",
+        "amount": 20000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072267952_ghk4wc": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072267952_s1q7jk",
+        "playerId": "p_main_1",
+        "teamId": "team_kkr_main",
+        "teamName": "Kolkata Knight Riders",
+        "amount": 25000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072268639_pxtobu": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072268639_e8rn3f",
+        "playerId": "p_main_1",
+        "teamId": "team_rr_main",
+        "teamName": "Rajasthan Royals",
+        "amount": 30000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072269449_0d9v5x": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072269449_gbpstb",
+        "playerId": "p_main_1",
+        "teamId": "team_rcb_main",
+        "teamName": "Royal Challengers Bengaluru",
+        "amount": 35000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072270292_g376nt": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072270292_c1o952",
+        "playerId": "p_main_1",
+        "teamId": "team_lsg_main",
+        "teamName": "Lucknow Super Giants",
+        "amount": 40000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072271012_lqg1s0": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072271012_okhseb",
+        "playerId": "p_main_1",
+        "teamId": "team_srh_main",
+        "teamName": "Sunrisers Hyderabad",
+        "amount": 45000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072272216_hsaqfl": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072272216_ki00hh",
+        "playerId": "p_main_1",
+        "teamId": "team_kkr_main",
+        "teamName": "Kolkata Knight Riders",
+        "amount": 50000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072273152_fbjjpe": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072273152_fccavi",
+        "playerId": "p_main_1",
+        "teamId": "team_gt_main",
+        "teamName": "Gujarat Titans",
+        "amount": 60000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072274058_5lp6ph": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072274058_5raoud",
+        "playerId": "p_main_1",
+        "teamId": "team_dc_main",
+        "teamName": "Delhi Capitals",
+        "amount": 70000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072277287_ilka4j": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072277287_o23pxp",
+        "playerId": "p_main_1",
+        "teamId": "team_rr_main",
+        "teamName": "Rajasthan Royals",
+        "amount": 80000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072278973_wtqef3": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072278972_ccden9",
+        "playerId": "p_main_1",
+        "teamId": "team_kkr_main",
+        "teamName": "Kolkata Knight Riders",
+        "amount": 90000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072289216
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072282792_8b7hso": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072282792_zwh0am",
+        "playerId": "p_main_1",
+        "teamId": "team_csk_main",
+        "teamName": "Chennai Super Kings",
+        "amount": 160000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072292791
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072284654_daz2mj": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072284654_4exrht",
+        "playerId": "p_main_1",
+        "teamId": "team_mi_main",
+        "teamName": "Mumbai Indians",
+        "amount": 180000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072294654
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072289244_7cepdv": {
+      "eventType": "PLAYER_SOLD",
+      "details": {
+        "playerId": "p_main_1",
+        "teamId": "team_mi_main",
+        "amount": 180000000
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072292434_qlsym9": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_2",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072296501_9av0bp": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072296501_r9nbcx",
+        "playerId": "p_main_2",
+        "teamId": "team_rcb_main",
+        "teamName": "Royal Challengers Bengaluru",
+        "amount": 15000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072298115_va3kf5": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072298115_9t8sp9",
+        "playerId": "p_main_2",
+        "teamId": "team_lsg_main",
+        "teamName": "Lucknow Super Giants",
+        "amount": 20000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072299467_74bih1": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072299467_wo3am7",
+        "playerId": "p_main_2",
+        "teamId": "team_kkr_main",
+        "teamName": "Kolkata Knight Riders",
+        "amount": 25000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072300689_xwp77a": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072300689_nsv1m4",
+        "playerId": "p_main_2",
+        "teamId": "team_rr_main",
+        "teamName": "Rajasthan Royals",
+        "amount": 30000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072301778_1l3wx0": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072301778_s748qm",
+        "playerId": "p_main_2",
+        "teamId": "team_dc_main",
+        "teamName": "Delhi Capitals",
+        "amount": 35000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072302811_6w8mk0": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072302811_9vwqqw",
+        "playerId": "p_main_2",
+        "teamId": "team_csk_main",
+        "teamName": "Chennai Super Kings",
+        "amount": 40000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072304026_2ykt5q": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072304026_zuzdz0",
+        "playerId": "p_main_2",
+        "teamId": "team_pbks_main",
+        "teamName": "Punjab Kings",
+        "amount": 45000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072305080_xekoqm": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072305080_ha9fah",
+        "playerId": "p_main_2",
+        "teamId": "team_rcb_main",
+        "teamName": "Royal Challengers Bengaluru",
+        "amount": 50000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072306184_onuwav": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072306184_87z4yz",
+        "playerId": "p_main_2",
+        "teamId": "team_srh_main",
+        "teamName": "Sunrisers Hyderabad",
+        "amount": 60000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072308057_89hkw9": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792072308057_o3vnnh",
+        "playerId": "p_main_2",
+        "teamId": "team_lsg_main",
+        "teamName": "Lucknow Super Giants",
+        "amount": 70000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792072322434
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072322515_s927jc": {
+      "eventType": "PLAYER_SOLD",
+      "details": {
+        "playerId": "p_main_2",
+        "teamId": "team_lsg_main",
+        "amount": 70000000
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072325578_648i3f": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_6",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072355605_qekura": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_6"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072358662_6ndtv3": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_10",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072392567_bz3fam": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_10"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072396575_hmvt8d": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_13",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072426835_evaaak": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_13"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072433992_szu8zc": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_19",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072491324_hfc6rq": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_19"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072494373_1uy4ej": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_22",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792072519448_55wvth": {
       "eventType": "AUCTION_RESET",
       "details": {
         "locationId": "main_arena"

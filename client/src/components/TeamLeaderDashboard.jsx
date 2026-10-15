@@ -6,8 +6,9 @@ const API_URL = import.meta.env.VITE_API_URL || '';
 
 export default function TeamLeaderDashboard() {
   const { user } = useAuth();
-  const selectedTeam = user?.teamId;
+  const [selectedTeamOverride, setSelectedTeamOverride] = useState(null);
   const [teams, setTeams] = useState([]);
+  const selectedTeam = user?.teamId || selectedTeamOverride || (teams[0]?.id || null);
   const [teamData, setTeamData] = useState(null);
   
   const [isBreakMode, setIsBreakMode] = useState(false);
@@ -20,6 +21,25 @@ export default function TeamLeaderDashboard() {
   const [timerDeadline, setTimerDeadline] = useState(null);
   const [timerSecondsLeft, setTimerSecondsLeft] = useState(null);
   const [timerPaused, setTimerPaused] = useState(false);
+
+  // 5-Second Global Auction Starting Countdown State
+  const [auctionStartingCountdown, setAuctionStartingCountdown] = useState(null);
+
+  // Countdown effect for the 5-second countdown
+  useEffect(() => {
+    if (auctionStartingCountdown === null) return;
+    if (auctionStartingCountdown > 0) {
+      const timer = setTimeout(() => {
+        setAuctionStartingCountdown(prev => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (auctionStartingCountdown === 0) {
+      const timer = setTimeout(() => {
+        setAuctionStartingCountdown(null);
+      }, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [auctionStartingCountdown]);
 
   // Local ticker derived from server deadline
   useEffect(() => {
@@ -40,9 +60,14 @@ export default function TeamLeaderDashboard() {
   useEffect(() => {
     fetch(API_URL + '/api/teams')
       .then(res => res.json())
-      .then(data => setTeams(data))
+      .then(data => {
+        setTeams(data);
+        if (!user?.teamId && data.length > 0 && !selectedTeamOverride) {
+          setSelectedTeamOverride(data[0].id);
+        }
+      })
       .catch(console.error);
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (selectedTeam) {
@@ -142,6 +167,16 @@ export default function TeamLeaderDashboard() {
         setShowLeaderboard(show);
       });
 
+      socket.on('auctionStarting', (data) => {
+        const remaining = data.seconds || 5;
+        setAuctionStartingCountdown(remaining);
+        setFeedLog(prev => [{ 
+          id: Date.now(), 
+          msg: `⚡ AUCTION STARTING in ${remaining}s — Gavel master initialized session!`, 
+          type: 'alert' 
+        }, ...prev].slice(0, 50));
+      });
+
       return () => {
         socket.off('playerSold');
         socket.off('penaltyIssued');
@@ -151,6 +186,7 @@ export default function TeamLeaderDashboard() {
         socket.off('livePlayerUpdated');
         socket.off('timerUpdated');
         socket.off('playerUnsold');
+        socket.off('auctionStarting');
       };
     }
   }, [selectedTeam]);
@@ -275,11 +311,33 @@ export default function TeamLeaderDashboard() {
           
           <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.08)', paddingBottom: '1rem', marginBottom: '1.25rem' }}>
             <span style={{ fontSize: '0.7rem', color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-              FRANCHISE DESK
+              FRANCHISE DESK {user?.role !== 'TEAM_LEADER' && '(WAR ROOM MONITOR)'}
             </span>
-            <h2 style={{ fontSize: '1.4rem', color: '#ffffff', fontWeight: '800', margin: '0.2rem 0 0 0' }}>
-              {teamData.name}
-            </h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', marginTop: '0.2rem' }}>
+              <h2 style={{ fontSize: '1.4rem', color: '#ffffff', fontWeight: '800', margin: 0 }}>
+                {teamData.name}
+              </h2>
+              {user?.role !== 'TEAM_LEADER' && teams.length > 1 && (
+                <select
+                  value={selectedTeam}
+                  onChange={(e) => setSelectedTeamOverride(e.target.value)}
+                  style={{
+                    background: '#0d1117',
+                    color: 'var(--gold-bright)',
+                    border: '1px solid var(--gold-border)',
+                    borderRadius: '4px',
+                    padding: '0.25rem 0.5rem',
+                    fontSize: '0.75rem',
+                    fontFamily: 'JetBrains Mono, monospace'
+                  }}
+                  title="Switch franchise war room view"
+                >
+                  {teams.map(t => (
+                    <option key={t.id} value={t.id}>{t.name}</option>
+                  ))}
+                </select>
+              )}
+            </div>
           </div>
           
           {teamData.isDisqualified ? (
@@ -660,6 +718,111 @@ export default function TeamLeaderDashboard() {
         </div>
 
       </div>
+      {/* 5-Second Global Auction Commencing Overlay */}
+      {auctionStartingCountdown !== null && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at center, rgba(16, 21, 29, 0.98), rgba(6, 9, 13, 0.99))',
+          zIndex: 99999,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backdropFilter: 'blur(16px)',
+          padding: '2rem'
+        }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.6rem',
+            padding: '0.45rem 1.4rem',
+            background: 'rgba(212, 175, 55, 0.15)',
+            border: '1px solid var(--gold-border)',
+            borderRadius: '50px',
+            color: 'var(--gold-bright)',
+            fontSize: '0.85rem',
+            fontFamily: 'JetBrains Mono, monospace',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            marginBottom: '1.75rem',
+            boxShadow: '0 0 25px rgba(212, 175, 55, 0.25)'
+          }}>
+            ⚡ GAVEL MASTER COMMAND RECEIVED ⚡
+          </div>
+
+          <h1 style={{
+            fontSize: '2.8rem',
+            fontWeight: '900',
+            color: '#ffffff',
+            letterSpacing: '-0.02em',
+            textAlign: 'center',
+            marginBottom: '0.75rem',
+            textTransform: 'uppercase'
+          }}>
+            {auctionStartingCountdown > 0 ? 'AUCTION COMMENCING' : '🔥 AUCTION IS LIVE! 🔥'}
+          </h1>
+
+          <p style={{
+            color: 'var(--text-secondary)',
+            fontSize: '1.15rem',
+            fontFamily: 'JetBrains Mono, monospace',
+            marginBottom: '2.5rem',
+            textAlign: 'center'
+          }}>
+            {auctionStartingCountdown > 0 
+              ? 'All Franchise War Rooms: Stand by for the First Lot' 
+              : 'First lot entering the arena now — Bidding paddles unlocked!'}
+          </p>
+
+          {auctionStartingCountdown > 0 ? (
+            <div style={{
+              width: '180px',
+              height: '180px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(212, 175, 55, 0.25), rgba(12, 16, 22, 0.95))',
+              border: '4px solid var(--gold-border)',
+              boxShadow: '0 0 60px rgba(212, 175, 55, 0.5), inset 0 0 40px rgba(212, 175, 55, 0.3)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '6rem',
+              fontWeight: '900',
+              color: 'var(--gold-bright)',
+              fontFamily: 'JetBrains Mono, monospace'
+            }}>
+              {auctionStartingCountdown}
+            </div>
+          ) : (
+            <div style={{
+              padding: '1.1rem 3.5rem',
+              borderRadius: '8px',
+              background: 'linear-gradient(135deg, var(--emerald-live), #059669)',
+              color: '#000000',
+              fontSize: '2rem',
+              fontWeight: '900',
+              fontFamily: 'JetBrains Mono, monospace',
+              letterSpacing: '0.1em',
+              boxShadow: '0 0 50px rgba(16, 185, 129, 0.6)'
+            }}>
+              LET THE BIDDING BEGIN
+            </div>
+          )}
+
+          <div style={{
+            marginTop: '3rem',
+            fontSize: '0.9rem',
+            color: 'var(--text-dim)',
+            fontFamily: 'JetBrains Mono, monospace'
+          }}>
+            FRANCHISE DESK: <strong style={{ color: '#ffffff' }}>{teamData?.name || 'INITIALIZING'}</strong> &bull; PURSE: ₹{((teamData?.budget || 900000000) / 10000000).toFixed(2)} CR
+          </div>
+        </div>
+      )}
+
       <audio id="gavelSound" src="https://www.soundjay.com/misc/sounds/gavel-banging-1.mp3" preload="auto"></audio>
     </>
   );

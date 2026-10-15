@@ -35,7 +35,33 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   const [autoAdvanceCountdown, setAutoAdvanceCountdown] = useState(null);
   const [slotCompletedNotice, setSlotCompletedNotice] = useState(false);
   const [playerHistory, setPlayerHistory] = useState([]);
+  const [auctionStartingCountdown, setAuctionStartingCountdown] = useState(null);
   const isResolvingRef = useRef(false);
+
+  // Synchronized 5-Second Global Countdown effect
+  useEffect(() => {
+    if (auctionStartingCountdown === null) return;
+    if (auctionStartingCountdown > 0) {
+      const timer = setTimeout(() => {
+        setAuctionStartingCountdown(prev => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (auctionStartingCountdown === 0) {
+      const timer = setTimeout(() => {
+        setAuctionStartingCountdown(null);
+        // Commence auction with the first player lot
+        advanceNextPlayer();
+      }, 700);
+      return () => clearTimeout(timer);
+    }
+  }, [auctionStartingCountdown]);
+
+  const triggerAuctionStart = () => {
+    socket.emit('startAuctionCountdown', {
+      locationId: selectedLocation || 'main_arena',
+      seconds: 5
+    });
+  };
 
   // Local ticker derived from server deadline with automated resolution at zero
   useEffect(() => {
@@ -339,11 +365,19 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
         }
       });
 
+      socket.on('auctionStarting', (data) => {
+        const remaining = data.deadlineMs 
+          ? Math.max(1, Math.ceil((data.deadlineMs - Date.now()) / 1000))
+          : (data.seconds || 5);
+        setAuctionStartingCountdown(remaining);
+      });
+
       return () => {
         socket.off('playerSold');
         socket.off('penaltyIssued');
         socket.off('playerReopened');
         socket.off('timerUpdated');
+        socket.off('auctionStarting');
       };
     }
   }, [selectedLocation]);
@@ -608,6 +642,28 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
             title={playerHistory.length > 0 ? `Return to previous player: ${playerHistory[playerHistory.length - 1].name}` : 'No previous player in session history'}
           >
             ◀ PREVIOUS PLAYER
+          </button>
+
+          <button
+            className="btn btn-gold"
+            onClick={triggerAuctionStart}
+            disabled={auctionStartingCountdown !== null}
+            style={{ 
+              padding: '0.55rem 1.35rem', 
+              fontSize: '0.8rem', 
+              fontWeight: '900',
+              background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+              color: '#0b0f17',
+              border: 'none',
+              boxShadow: '0 0 16px rgba(255, 215, 0, 0.45)',
+              cursor: auctionStartingCountdown !== null ? 'not-allowed' : 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem'
+            }}
+            title="Broadcast 5-second countdown to team leaders and franchise war rooms, then start the auction"
+          >
+            {auctionStartingCountdown !== null ? `⏳ STARTING (${auctionStartingCountdown}s)` : '🚀 START AUCTION'}
           </button>
 
           <button
@@ -1057,29 +1113,75 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                 </div>
               ) : (
                 <>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '1rem', fontFamily: 'JetBrains Mono, monospace' }}>
-                    NO ACTIVE LOT CURRENTLY ON GAVEL STAGE
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.4rem 1.2rem',
+                    background: 'rgba(212, 175, 55, 0.1)',
+                    border: '1px solid var(--gold-border)',
+                    borderRadius: '50px',
+                    color: 'var(--gold-bright)',
+                    fontSize: '0.8rem',
+                    fontFamily: 'JetBrains Mono, monospace',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase'
+                  }}>
+                    ⚡ ARENA STATUS: READY TO COMMENCE
+                  </div>
+
+                  <h2 style={{ fontSize: '1.6rem', fontWeight: '800', color: '#ffffff', margin: 0 }}>
+                    Gavel Stage Awaiting Session Start
+                  </h2>
+
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', maxWidth: '500px', textAlign: 'center', margin: 0, lineHeight: '1.5' }}>
+                    Click <strong style={{ color: 'var(--gold-bright)' }}>START THE AUCTION</strong> to broadcast a synchronized 5-second countdown to the Team Leader war rooms and spectators before the first lot enters the stage.
                   </p>
-                  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+
+                  <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginTop: '0.5rem' }}>
+                    <button 
+                      className="btn btn-gold" 
+                      onClick={triggerAuctionStart}
+                      disabled={auctionStartingCountdown !== null}
+                      style={{ 
+                        padding: '1rem 2.5rem', 
+                        fontSize: '1.05rem', 
+                        fontWeight: '900', 
+                        letterSpacing: '0.04em',
+                        background: 'linear-gradient(135deg, #FFD700 0%, #FF8C00 100%)',
+                        color: '#0a0d14',
+                        border: 'none',
+                        boxShadow: '0 0 25px rgba(255, 215, 0, 0.45)',
+                        cursor: auctionStartingCountdown !== null ? 'not-allowed' : 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}
+                    >
+                      {auctionStartingCountdown !== null ? `⏳ STARTING IN ${auctionStartingCountdown}s...` : '🚀 START THE AUCTION (5s COUNTDOWN)'}
+                    </button>
+
+                    <button 
+                      className="btn btn-secondary" 
+                      onClick={() => advanceNextPlayer()} 
+                      style={{ padding: '0.95rem 1.6rem', fontSize: '0.9rem', fontWeight: '700' }}
+                    >
+                      NEXT PLAYER ▶ (INSTANT)
+                    </button>
+
                     {playerHistory.length > 0 && (
                       <button 
                         className="btn btn-secondary" 
                         onClick={goToPreviousPlayer} 
-                        style={{ padding: '0.85rem 1.5rem', fontSize: '0.9rem', fontWeight: '700' }}
+                        style={{ padding: '0.95rem 1.4rem', fontSize: '0.85rem', fontWeight: '700' }}
                       >
                         ◀ PREVIOUS PLAYER ({playerHistory[playerHistory.length - 1].name})
                       </button>
                     )}
-                    <button 
-                      className="btn btn-gold" 
-                      onClick={() => advanceNextPlayer()} 
-                      style={{ padding: '0.95rem 2.25rem', fontSize: '1.05rem', fontWeight: '800', letterSpacing: '0.05em' }}
-                    >
-                      NEXT PLAYER ▶
-                    </button>
                   </div>
-                  <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
-                    Active Slot: <strong style={{ color: 'var(--gold-bright)' }}>{poolFilter}</strong> ({players.filter(p => poolFilter === 'ALL' || p.pool === poolFilter).length} upcoming lots)
+
+                  <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginTop: '0.5rem' }}>
+                    Active Slot: <strong style={{ color: 'var(--gold-bright)' }}>{poolFilter}</strong> ({players.filter(p => poolFilter === 'ALL' || p.pool === poolFilter).length} upcoming lots available)
                   </div>
                 </>
               )}
@@ -1159,6 +1261,101 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
         </div>
 
       </div>
+
+      {/* 5-Second Global Auction Commencing Overlay */}
+      {auctionStartingCountdown !== null && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at center, rgba(16, 21, 29, 0.98), rgba(6, 9, 13, 0.99))',
+          zIndex: 99999,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backdropFilter: 'blur(16px)',
+          padding: '2rem'
+        }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.6rem',
+            padding: '0.45rem 1.4rem',
+            background: 'rgba(212, 175, 55, 0.15)',
+            border: '1px solid var(--gold-border)',
+            borderRadius: '50px',
+            color: 'var(--gold-bright)',
+            fontSize: '0.85rem',
+            fontFamily: 'JetBrains Mono, monospace',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            marginBottom: '1.75rem',
+            boxShadow: '0 0 25px rgba(212, 175, 55, 0.25)'
+          }}>
+            ⚡ BROADCASTING SYNCHRONIZED COUNTDOWN ⚡
+          </div>
+
+          <h1 style={{
+            fontSize: '2.8rem',
+            fontWeight: '900',
+            color: '#ffffff',
+            letterSpacing: '-0.02em',
+            textAlign: 'center',
+            marginBottom: '0.75rem',
+            textTransform: 'uppercase'
+          }}>
+            {auctionStartingCountdown > 0 ? 'AUCTION COMMENCING' : '🔥 AUCTION IS LIVE! 🔥'}
+          </h1>
+
+          <p style={{
+            color: 'var(--text-secondary)',
+            fontSize: '1.15rem',
+            fontFamily: 'JetBrains Mono, monospace',
+            marginBottom: '2.5rem',
+            textAlign: 'center'
+          }}>
+            {auctionStartingCountdown > 0 
+              ? 'Broadcasting to Team Leader War Rooms — First Lot Loading...' 
+              : 'Gavel stage live — Lot #1 entering now!'}
+          </p>
+
+          {auctionStartingCountdown > 0 ? (
+            <div style={{
+              width: '180px',
+              height: '180px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(212, 175, 55, 0.25), rgba(12, 16, 22, 0.95))',
+              border: '4px solid var(--gold-border)',
+              boxShadow: '0 0 60px rgba(212, 175, 55, 0.5), inset 0 0 40px rgba(212, 175, 55, 0.3)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '6rem',
+              fontWeight: '900',
+              color: 'var(--gold-bright)',
+              fontFamily: 'JetBrains Mono, monospace'
+            }}>
+              {auctionStartingCountdown}
+            </div>
+          ) : (
+            <div style={{
+              padding: '1.1rem 3.5rem',
+              borderRadius: '8px',
+              background: 'linear-gradient(135deg, var(--emerald-live), #059669)',
+              color: '#ffffff',
+              fontSize: '1.5rem',
+              fontWeight: '900',
+              letterSpacing: '0.1em',
+              boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)'
+            }}>
+              LOT 1 LIVE ON STAGE
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

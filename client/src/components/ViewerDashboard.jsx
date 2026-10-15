@@ -16,8 +16,25 @@ export default function ViewerDashboard() {
   const [poolAnimation, setPoolAnimation] = useState(null);
   const [activityFeed, setActivityFeed] = useState([]);
   const [timers, setTimers] = useState({}); // { [locationId]: { deadlineMs, remainingSec, paused } }
+  const [auctionStartingCountdown, setAuctionStartingCountdown] = useState(null);
   const currentPoolsRef = useRef({});
   const lastAudioPlayRef = useRef(0);
+
+  // 5-Second Global Auction Starting Countdown ticker
+  useEffect(() => {
+    if (auctionStartingCountdown === null) return;
+    if (auctionStartingCountdown > 0) {
+      const timer = setTimeout(() => {
+        setAuctionStartingCountdown(prev => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (auctionStartingCountdown === 0) {
+      const timer = setTimeout(() => {
+        setAuctionStartingCountdown(null);
+      }, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [auctionStartingCountdown]);
 
   // Interval ticker for real-time second updates derived from server deadline
   useEffect(() => {
@@ -215,12 +232,18 @@ export default function ViewerDashboard() {
       setBreakModes(prev => ({ ...prev, [data.locationId]: data.show }));
     });
 
+    socket.on('auctionStarting', (data) => {
+      const remaining = data.seconds || 5;
+      setAuctionStartingCountdown(remaining);
+    });
+
     return () => {
       socket.off('livePlayerUpdated');
       socket.off('newBid');
       socket.off('playerSold');
       socket.off('playerUnsold');
       socket.off('auctionBreakToggled');
+      socket.off('auctionStarting');
     };
   }, []);
 
@@ -918,6 +941,101 @@ export default function ViewerDashboard() {
             {poolAnimation}
           </h1>
           <div style={{ width: '120px', height: '3px', background: 'var(--gold-primary)', marginTop: '1.5rem' }}></div>
+        </div>
+      )}
+
+      {/* 5-Second Global Auction Commencing Overlay */}
+      {auctionStartingCountdown !== null && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at center, rgba(16, 21, 29, 0.98), rgba(6, 9, 13, 0.99))',
+          zIndex: 99999,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backdropFilter: 'blur(16px)',
+          padding: '2rem'
+        }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.6rem',
+            padding: '0.45rem 1.4rem',
+            background: 'rgba(212, 175, 55, 0.15)',
+            border: '1px solid var(--gold-border)',
+            borderRadius: '50px',
+            color: 'var(--gold-bright)',
+            fontSize: '0.85rem',
+            fontFamily: 'JetBrains Mono, monospace',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            marginBottom: '1.75rem',
+            boxShadow: '0 0 25px rgba(212, 175, 55, 0.25)'
+          }}>
+            ⚡ OFFICIAL BROADCAST FEED ⚡
+          </div>
+
+          <h1 style={{
+            fontSize: '3rem',
+            fontWeight: '900',
+            color: '#ffffff',
+            letterSpacing: '-0.02em',
+            textAlign: 'center',
+            marginBottom: '0.75rem',
+            textTransform: 'uppercase'
+          }}>
+            {auctionStartingCountdown > 0 ? 'AUCTION COMMENCING' : '🔥 AUCTION IS LIVE! 🔥'}
+          </h1>
+
+          <p style={{
+            color: 'var(--text-secondary)',
+            fontSize: '1.2rem',
+            fontFamily: 'JetBrains Mono, monospace',
+            marginBottom: '2.5rem',
+            textAlign: 'center'
+          }}>
+            {auctionStartingCountdown > 0 
+              ? 'Stand by for the opening lot of the IPL Mega Auction' 
+              : 'Gavel stage live — Bidding paddles unlocked!'}
+          </p>
+
+          {auctionStartingCountdown > 0 ? (
+            <div style={{
+              width: '180px',
+              height: '180px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(212, 175, 55, 0.25), rgba(12, 16, 22, 0.95))',
+              border: '4px solid var(--gold-border)',
+              boxShadow: '0 0 60px rgba(212, 175, 55, 0.5), inset 0 0 40px rgba(212, 175, 55, 0.3)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '6rem',
+              fontWeight: '900',
+              color: 'var(--gold-bright)',
+              fontFamily: 'JetBrains Mono, monospace'
+            }}>
+              {auctionStartingCountdown}
+            </div>
+          ) : (
+            <div style={{
+              padding: '1.1rem 3.5rem',
+              borderRadius: '8px',
+              background: 'linear-gradient(135deg, var(--emerald-live), #059669)',
+              color: '#ffffff',
+              fontSize: '1.5rem',
+              fontWeight: '900',
+              letterSpacing: '0.1em',
+              boxShadow: '0 0 40px rgba(16, 185, 129, 0.6)'
+            }}>
+              AUCTION SESSION ACTIVE
+            </div>
+          )}
         </div>
       )}
     </div>
