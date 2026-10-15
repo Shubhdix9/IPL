@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import socket from '../socket';
 import { useAuth } from '../AuthContext';
 
@@ -30,7 +30,13 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   const [showResetModal, setShowResetModal] = useState(false);
   const [resetConfirmInput, setResetConfirmInput] = useState('');
 
-  // Local ticker derived from server deadline
+  // Auto-Pilot & Slot Progression State
+  const [autoPilotEnabled, setAutoPilotEnabled] = useState(true);
+  const [autoAdvanceCountdown, setAutoAdvanceCountdown] = useState(null);
+  const [slotCompletedNotice, setSlotCompletedNotice] = useState(false);
+  const isResolvingRef = useRef(false);
+
+  // Local ticker derived from server deadline with automated resolution at zero
   useEffect(() => {
     if (!timerDeadline || timerPaused) return;
 
@@ -40,11 +46,16 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
       setTimerSecondsLeft(sec);
       if (remainingMs <= 0) {
         clearInterval(interval);
+        // Automatically resolve current lot if active and not already resolving
+        if (!isResolvingRef.current && livePlayer && livePlayer.status === 'LIVE') {
+          isResolvingRef.current = true;
+          autoResolveLot();
+        }
       }
     }, 200);
 
     return () => clearInterval(interval);
-  }, [timerDeadline, timerPaused]);
+  }, [timerDeadline, timerPaused, livePlayer, biddingTeam, currentBid, autoPilotEnabled, selectedLocation]);
 
   const controlTimer = async (action, extra = {}) => {
     if (!selectedLocation) return;
@@ -126,19 +137,89 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
     fetchTeams();
   }, []);
 
-  const advanceNextPlayer = async () => {
+  // Handle automated expiration: sells if bid exists, passes unsold if no bids
+  const autoResolveLot = () => {
+    if (!livePlayer || livePlayer.status !== 'LIVE') return;
+    
+    if (biddingTeam) {
+      const amount = parseFloat(currentBid);
+      socket.emit('sellPlayer', {
+        locationId: selectedLocation,
+        playerId: livePlayer.id,
+        teamId: String(biddingTeam),
+        amount
+      });
+      setLivePlayer(prev => prev ? { ...prev, status: 'SOLD', soldPrice: amount } : null);
+    } else {
+      socket.emit('unsoldPlayer', {
+        locationId: selectedLocation,
+        playerId: livePlayer.id
+      });
+      setLivePlayer(prev => prev ? { ...prev, status: 'UNSOLD' } : null);
+    }
+
+    if (autoPilotEnabled) {
+      setAutoAdvanceCountdown(3);
+    }
+  };
+
+  // Automated progression countdown to the next lot in the current category/slot
+  useEffect(() => {
+    if (autoAdvanceCountdown === null) return;
+    if (autoAdvanceCountdown > 0) {
+      const timerId = setTimeout(() => {
+        setAutoAdvanceCountdown(prev => (prev !== null && prev > 0 ? prev - 1 : 0));
+      }, 1000);
+      return () => clearTimeout(timerId);
+    } else if (autoAdvanceCountdown === 0) {
+      setAutoAdvanceCountdown(null);
+      isResolvingRef.current = false;
+      
+      // Look for next pending player in the filtered slot
+      const remainingInSlot = players.filter(p => 
+        (poolFilter === 'ALL' || p.pool === poolFilter) &&
+        p.id !== livePlayer?.id &&
+        p.status === 'UPCOMING'
+      );
+
+      if (remainingInSlot.length > 0) {
+        advanceNextPlayer(remainingInSlot[0].id);
+      } else {
+        setSlotCompletedNotice(true);
+      }
+    }
+  }, [autoAdvanceCountdown, players, poolFilter, livePlayer]);
+
+  const advanceNextPlayer = async (targetId) => {
     if (!selectedLocation) return;
     try {
+      const upcomingPool = players.filter(p => 
+        (poolFilter === 'ALL' || p.pool === poolFilter) && 
+        p.status === 'UPCOMING' &&
+        p.id !== livePlayer?.id
+      );
+
+      const nextCandidate = targetId || upcomingPool[0]?.id || players.find(p => p.status === 'UPCOMING')?.id;
+
+      if (!nextCandidate) {
+        setSlotCompletedNotice(true);
+        return;
+      }
+
       const res = await fetch(`${API_URL}/api/auction/set-live`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           locationId: selectedLocation,
+          playerId: nextCandidate,
           durationSeconds: timerConfigDuration
         })
       });
       const data = await res.json();
       if (data && data.id) {
+        isResolvingRef.current = false;
+        setAutoAdvanceCountdown(null);
+        setSlotCompletedNotice(false);
         setLivePlayer(data);
         setCurrentBid(data.basePrice);
         setBiddingTeam('');
@@ -226,7 +307,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
     
     setBidHistory(prev => [...prev, { amount: currentBid, teamId: biddingTeam }]);
     setCurrentBid(bidAmount);
-    setBiddingTeam(teamId);
+    setBiddingTeam(String(teamId));
     
     setAnimateBid(true);
     setTimeout(() => setAnimateBid(false), 400);
@@ -234,7 +315,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
     socket.emit('placeBid', {
       locationId: selectedLocation,
       playerId: livePlayer.id,
-      teamId: parseInt(teamId),
+      teamId: String(teamId),
       amount: bidAmount
     });
   };
@@ -261,10 +342,13 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
     socket.emit('sellPlayer', {
       locationId: selectedLocation,
       playerId: livePlayer.id,
-      teamId: parseInt(biddingTeam),
+      teamId: String(biddingTeam),
       amount
     });
     setLivePlayer({ ...livePlayer, status: 'SOLD', soldPrice: amount });
+    if (autoPilotEnabled) {
+      setAutoAdvanceCountdown(3);
+    }
   };
 
   const markUnsold = () => {
@@ -273,6 +357,9 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
       playerId: livePlayer.id
     });
     setLivePlayer({ ...livePlayer, status: 'UNSOLD' });
+    if (autoPilotEnabled) {
+      setAutoAdvanceCountdown(3);
+    }
   };
 
   const issuePenalty = (teamId) => {
@@ -431,8 +518,25 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
           </button>
 
           <button
+            className={`btn ${autoPilotEnabled ? 'btn-gold' : 'btn-secondary'}`}
+            onClick={() => {
+              setAutoPilotEnabled(prev => !prev);
+              if (autoPilotEnabled) setAutoAdvanceCountdown(null);
+            }}
+            style={{ 
+              padding: '0.55rem 1rem', 
+              fontSize: '0.8rem', 
+              fontWeight: '800',
+              boxShadow: autoPilotEnabled ? '0 0 12px rgba(212, 175, 55, 0.4)' : 'none'
+            }}
+            title="When active: automatically resolves sold/unsold when timer hits 0 and advances to next player in slot"
+          >
+            {autoPilotEnabled ? '⚡ AUTO-PILOT: ON' : '⏸️ AUTO-PILOT: OFF'}
+          </button>
+
+          <button
             className="btn btn-gold"
-            onClick={advanceNextPlayer}
+            onClick={() => advanceNextPlayer()}
             style={{ padding: '0.55rem 1.25rem', fontSize: '0.8rem' }}
           >
             NEXT LOT
@@ -678,7 +782,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                   </h2>
                   
                   <div style={{ marginTop: '0.5rem', marginBottom: '1.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>
-                    LEADING FRANCHISE: <strong style={{ color: 'var(--gold-bright)' }}>{teams.find(t => t.id === parseInt(biddingTeam))?.name || 'AWAITING OPENING BID'}</strong>
+                    LEADING FRANCHISE: <strong style={{ color: 'var(--gold-bright)' }}>{teams.find(t => String(t.id) === String(biddingTeam))?.name || 'AWAITING OPENING BID'}</strong>
                   </div>
 
                   {bidHistory.length > 0 && (
@@ -696,7 +800,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                     {teams.map(t => {
                       const nextBidAmount = biddingTeam ? getNextBidAmount(parseFloat(currentBid)) : parseFloat(currentBid);
                       const eligibility = getTeamEligibility(t, nextBidAmount, livePlayer);
-                      const isBidding = parseInt(biddingTeam) === t.id;
+                      const isBidding = String(biddingTeam) === String(t.id);
                       
                       return (
                         <div key={t.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
@@ -769,12 +873,69 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                   </div>
                   {livePlayer.status === 'SOLD' && biddingTeam && (
                     <div style={{ color: 'var(--text-secondary)', marginTop: '0.5rem', fontSize: '1.1rem' }}>
-                      ACQUIRED BY: <strong style={{ color: '#ffffff' }}>{teams.find(t => t.id === parseInt(biddingTeam))?.name}</strong>
+                      ACQUIRED BY: <strong style={{ color: '#ffffff' }}>{teams.find(t => String(t.id) === String(biddingTeam))?.name}</strong>
+                    </div>
+                  )}
+
+                  {autoAdvanceCountdown !== null && (
+                    <div style={{
+                      marginTop: '1.25rem',
+                      padding: '0.85rem 1.5rem',
+                      background: 'rgba(212, 175, 55, 0.12)',
+                      border: '1px solid var(--gold-border)',
+                      borderRadius: '6px',
+                      color: 'var(--gold-bright)',
+                      fontSize: '0.95rem',
+                      fontWeight: '800',
+                      fontFamily: 'JetBrains Mono, monospace',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.75rem',
+                      flexWrap: 'wrap'
+                    }}>
+                      <span>⏱️ AUTO-ADVANCING TO NEXT LOT IN {autoAdvanceCountdown}s</span>
+                      <button 
+                        onClick={() => setAutoAdvanceCountdown(null)} 
+                        className="btn btn-secondary" 
+                        style={{ padding: '0.25rem 0.65rem', fontSize: '0.72rem' }}
+                      >
+                        PAUSE
+                      </button>
+                      <button 
+                        onClick={() => {
+                          setAutoAdvanceCountdown(null);
+                          advanceNextPlayer();
+                        }} 
+                        className="btn btn-gold" 
+                        style={{ padding: '0.25rem 0.65rem', fontSize: '0.72rem' }}
+                      >
+                        LOAD NEXT NOW &rarr;
+                      </button>
+                    </div>
+                  )}
+
+                  {slotCompletedNotice && (
+                    <div style={{
+                      marginTop: '1.25rem',
+                      padding: '1.25rem',
+                      background: 'rgba(212, 175, 55, 0.15)',
+                      border: '1px solid var(--gold-border)',
+                      borderRadius: '6px',
+                      color: '#ffffff'
+                    }}>
+                      <div style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>🎉</div>
+                      <div style={{ color: 'var(--gold-bright)', fontWeight: '800', fontSize: '1.1rem' }}>
+                        {poolFilter === 'ALL' ? 'ALL LOTS COMPLETED' : `${poolFilter} SLOT COMPLETED`}
+                      </div>
+                      <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
+                        All upcoming players in this category have been auctioned.
+                      </div>
                     </div>
                   )}
 
                   <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginTop: '1.5rem' }}>
-                    <button className="btn btn-gold" onClick={advanceNextPlayer}>
+                    <button className="btn btn-gold" onClick={() => advanceNextPlayer()}>
                       NEXT LOT &rarr;
                     </button>
                     <button className="btn btn-secondary" onClick={reopenPlayer}>
@@ -786,12 +947,42 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
             </div>
           ) : (
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.25rem' }}>
-              <p style={{ color: 'var(--text-muted)', fontSize: '1rem', fontFamily: 'JetBrains Mono, monospace' }}>
-                NO ACTIVE LOT CURRENTLY ON GAVEL STAGE
-              </p>
-              <button className="btn btn-gold" onClick={advanceNextPlayer} style={{ padding: '0.85rem 2rem' }}>
-                CALL FIRST PLAYER TO LOT
-              </button>
+              {slotCompletedNotice ? (
+                <div style={{ textAlign: 'center', maxWidth: '420px', padding: '2rem', background: 'rgba(16, 21, 29, 0.95)', border: '1px solid var(--gold-border)', borderRadius: '8px' }}>
+                  <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>🎉</div>
+                  <h2 style={{ color: 'var(--gold-bright)', fontSize: '1.5rem', fontWeight: '800', marginBottom: '0.5rem' }}>
+                    {poolFilter === 'ALL' ? 'ALL AUCTION LOTS COMPLETED!' : `${poolFilter} SLOT COMPLETED!`}
+                  </h2>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '1.25rem' }}>
+                    All upcoming players in this slot have been auctioned. Choose another category or initiate recess.
+                  </p>
+                  <button 
+                    className="btn btn-gold" 
+                    onClick={() => {
+                      setSlotCompletedNotice(false);
+                      setPoolFilter('ALL');
+                    }}
+                  >
+                    VIEW ALL REMAINING LOTS
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '1rem', fontFamily: 'JetBrains Mono, monospace' }}>
+                    NO ACTIVE LOT CURRENTLY ON GAVEL STAGE
+                  </p>
+                  <button 
+                    className="btn btn-gold" 
+                    onClick={() => advanceNextPlayer()} 
+                    style={{ padding: '0.95rem 2.5rem', fontSize: '1.05rem', fontWeight: '800', letterSpacing: '0.05em' }}
+                  >
+                    ⚡ START AUCTION ({autoPilotEnabled ? 'AUTO-PILOT ACTIVE' : 'MANUAL'})
+                  </button>
+                  <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
+                    Active Slot: <strong style={{ color: 'var(--gold-bright)' }}>{poolFilter}</strong> ({players.filter(p => poolFilter === 'ALL' || p.pool === poolFilter).length} upcoming lots)
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
