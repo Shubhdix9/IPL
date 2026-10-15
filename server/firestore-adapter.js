@@ -1,15 +1,90 @@
 const fs = require('fs');
 const path = require('path');
+
+// Auto-load environment variables from .env or client/.env if not already populated
+const envCandidates = [
+  path.resolve(process.cwd(), '.env'),
+  path.resolve(process.cwd(), 'client/.env'),
+  path.resolve(__dirname, '../client/.env'),
+  path.resolve(__dirname, '.env')
+];
+for (const envFilePath of envCandidates) {
+  if (fs.existsSync(envFilePath)) {
+    try {
+      const fileLines = fs.readFileSync(envFilePath, 'utf8').split('\n');
+      for (const rawLine of fileLines) {
+        const line = rawLine.trim();
+        if (!line || line.startsWith('#')) continue;
+        const match = line.match(/^([^#=]+)=(.*)$/);
+        if (match) {
+          const key = match[1].trim();
+          let val = match[2].trim();
+          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+            val = val.slice(1, -1);
+          }
+          if (process.env[key] === undefined) {
+            process.env[key] = val;
+          }
+        }
+      }
+    } catch (e) {}
+  }
+}
+
 let admin;
 try {
   admin = require('firebase-admin');
+  try {
+    const firestoreModule = require('firebase-admin/firestore');
+    if (!admin.firestore) {
+      admin.firestore = function(app) {
+        return app ? firestoreModule.getFirestore(app) : firestoreModule.getFirestore();
+      };
+    }
+    if (!admin.firestore.FieldValue) {
+      admin.firestore.FieldValue = firestoreModule.FieldValue;
+      admin.firestore.Timestamp = firestoreModule.Timestamp;
+      admin.firestore.FieldPath = firestoreModule.FieldPath;
+    }
+  } catch (fsErr) {}
+
+  try {
+    const authModule = require('firebase-admin/auth');
+    if (!admin.auth) {
+      admin.auth = function(app) {
+        return app ? authModule.getAuth(app) : authModule.getAuth();
+      };
+    }
+  } catch (authErr) {}
+
+  if (!Object.prototype.hasOwnProperty.call(admin, 'apps')) {
+    Object.defineProperty(admin, 'apps', {
+      get() {
+        return typeof admin.getApps === 'function' ? admin.getApps() : [];
+      },
+      configurable: true,
+    });
+  }
+
+  if (!admin.credential) {
+    admin.credential = {
+      cert: admin.cert,
+      applicationDefault: admin.applicationDefault,
+      refreshToken: admin.refreshToken,
+    };
+  }
 } catch (e) {
   admin = {
-    firestore: {
-      FieldValue: {
-        serverTimestamp: () => new Date().toISOString()
+    apps: [],
+    initializeApp: () => {},
+    firestore: Object.assign(
+      () => null,
+      {
+        FieldValue: {
+          serverTimestamp: () => new Date().toISOString()
+        }
       }
-    }
+    )
   };
 }
 
@@ -24,7 +99,8 @@ let dbInstance = null;
 let authInstance = null;
 
 if (hasLiveCredentials) {
-  if (!admin.apps.length) {
+  const currentApps = typeof admin.getApps === 'function' ? admin.getApps() : (admin.apps || []);
+  if (!currentApps.length) {
     const projectId = process.env.FIREBASE_PROJECT_ID || process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'demo-project';
     const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
     const privateKey = process.env.FIREBASE_PRIVATE_KEY
@@ -32,8 +108,9 @@ if (hasLiveCredentials) {
       : undefined;
 
     if (clientEmail && privateKey) {
+      const certCredential = admin.cert ? admin.cert({ projectId, clientEmail, privateKey }) : (admin.credential && admin.credential.cert ? admin.credential.cert({ projectId, clientEmail, privateKey }) : undefined);
       admin.initializeApp({
-        credential: admin.credential.cert({ projectId, clientEmail, privateKey }),
+        credential: certCredential,
         storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
       });
     } else {
@@ -44,10 +121,24 @@ if (hasLiveCredentials) {
     }
   }
 
-  dbInstance = admin.firestore();
-  authInstance = admin.auth();
   try {
-    dbInstance.settings({ ignoreUndefinedProperties: true });
+    const { getFirestore } = require('firebase-admin/firestore');
+    dbInstance = getFirestore();
+  } catch (e) {
+    dbInstance = typeof admin.firestore === 'function' ? admin.firestore() : null;
+  }
+
+  try {
+    const { getAuth } = require('firebase-admin/auth');
+    authInstance = getAuth();
+  } catch (e) {
+    authInstance = typeof admin.auth === 'function' ? admin.auth() : null;
+  }
+
+  try {
+    if (dbInstance && typeof dbInstance.settings === 'function') {
+      dbInstance.settings({ ignoreUndefinedProperties: true });
+    }
   } catch (e) {}
 } else {
   // In-process resilient, zero-latency Firestore engine with in-memory caching

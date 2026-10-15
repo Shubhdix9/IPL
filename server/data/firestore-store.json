@@ -1,187 +1,164 @@
 {
   "locations": {
     "main_arena": {
-      "id": "main_arena",
       "name": "IPL Mega Auction Arena 2026",
       "city": "BCCI National Command Arena",
       "isOnBreak": false,
       "leaderboardVisible": false,
-      "activePlayerId": "p_main_37",
-      "auctionStatus": "LIVE",
-      "timerDeadlineMs": 1792074601986,
+      "activePlayerId": null,
+      "auctionStatus": "UPCOMING",
+      "timerDeadlineMs": null,
       "timerDurationSeconds": 30,
       "timerPaused": false,
-      "timerRemainingMs": 30000,
-      "createdAt": "2026-10-15T02:40:51.229Z",
-      "updatedAt": {},
-      "startingCountdownDeadlineMs": 1792074556562
+      "timerRemainingMs": null,
+      "createdAt": {},
+      "updatedAt": {}
     }
   },
   "teams": {
     "team_csk_main": {
-      "id": "team_csk_main",
       "name": "Chennai Super Kings",
       "shortName": "CSK",
       "franchiseCode": "CSK",
       "color": "#f9cd05",
-      "secondaryColor": "#12315b",
       "city": "Chennai",
       "locationId": "main_arena",
       "budget": 900000000,
       "initialBudget": 900000000,
       "mistakes": 0,
       "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": {}
-    },
-    "team_dc_main": {
-      "id": "team_dc_main",
-      "name": "Delhi Capitals",
-      "shortName": "DC",
-      "franchiseCode": "DC",
-      "color": "#2563eb",
-      "secondaryColor": "#dc2626",
-      "city": "Delhi",
-      "locationId": "main_arena",
-      "budget": 900000000,
-      "initialBudget": 900000000,
-      "mistakes": 0,
-      "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": {}
-    },
-    "team_gt_main": {
-      "id": "team_gt_main",
-      "name": "Gujarat Titans",
-      "shortName": "GT",
-      "franchiseCode": "GT",
-      "color": "#1b2133",
-      "secondaryColor": "#d4af37",
-      "city": "Ahmedabad",
-      "locationId": "main_arena",
-      "budget": 880000000,
-      "initialBudget": 900000000,
-      "mistakes": 0,
-      "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": {}
-    },
-    "team_kkr_main": {
-      "id": "team_kkr_main",
-      "name": "Kolkata Knight Riders",
-      "shortName": "KKR",
-      "franchiseCode": "KKR",
-      "color": "#3a225d",
-      "secondaryColor": "#d4af37",
-      "city": "Kolkata",
-      "locationId": "main_arena",
-      "budget": 900000000,
-      "initialBudget": 900000000,
-      "mistakes": 0,
-      "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": {}
-    },
-    "team_lsg_main": {
-      "id": "team_lsg_main",
-      "name": "Lucknow Super Giants",
-      "shortName": "LSG",
-      "franchiseCode": "LSG",
-      "color": "#00a3e0",
-      "secondaryColor": "#ff671f",
-      "city": "Lucknow",
-      "locationId": "main_arena",
-      "budget": 900000000,
-      "initialBudget": 900000000,
-      "mistakes": 0,
-      "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.231Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "team_mi_main": {
-      "id": "team_mi_main",
       "name": "Mumbai Indians",
       "shortName": "MI",
       "franchiseCode": "MI",
       "color": "#004ba0",
-      "secondaryColor": "#d1ab3e",
       "city": "Mumbai",
       "locationId": "main_arena",
       "budget": 900000000,
       "initialBudget": 900000000,
       "mistakes": 0,
       "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": {}
-    },
-    "team_pbks_main": {
-      "id": "team_pbks_main",
-      "name": "Punjab Kings",
-      "shortName": "PBKS",
-      "franchiseCode": "PBKS",
-      "color": "#ed1b24",
-      "secondaryColor": "#c5a880",
-      "city": "Mohali",
-      "locationId": "main_arena",
-      "budget": 900000000,
-      "initialBudget": 900000000,
-      "mistakes": 0,
-      "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": {}
-    },
-    "team_rr_main": {
-      "id": "team_rr_main",
-      "name": "Rajasthan Royals",
-      "shortName": "RR",
-      "franchiseCode": "RR",
-      "color": "#eb178b",
-      "secondaryColor": "#004696",
-      "city": "Jaipur",
-      "locationId": "main_arena",
-      "budget": 900000000,
-      "initialBudget": 900000000,
-      "mistakes": 0,
-      "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.231Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "team_rcb_main": {
-      "id": "team_rcb_main",
       "name": "Royal Challengers Bengaluru",
       "shortName": "RCB",
       "franchiseCode": "RCB",
       "color": "#d32f2f",
-      "secondaryColor": "#000000",
       "city": "Bengaluru",
       "locationId": "main_arena",
       "budget": 900000000,
       "initialBudget": 900000000,
       "mistakes": 0,
       "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.231Z",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "team_dc_main": {
+      "name": "Delhi Capitals",
+      "shortName": "DC",
+      "franchiseCode": "DC",
+      "color": "#2563eb",
+      "city": "Delhi",
+      "locationId": "main_arena",
+      "budget": 900000000,
+      "initialBudget": 900000000,
+      "mistakes": 0,
+      "isDisqualified": false,
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "team_kkr_main": {
+      "name": "Kolkata Knight Riders",
+      "shortName": "KKR",
+      "franchiseCode": "KKR",
+      "color": "#3a225d",
+      "city": "Kolkata",
+      "locationId": "main_arena",
+      "budget": 900000000,
+      "initialBudget": 900000000,
+      "mistakes": 0,
+      "isDisqualified": false,
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "team_pbks_main": {
+      "name": "Punjab Kings",
+      "shortName": "PBKS",
+      "franchiseCode": "PBKS",
+      "color": "#ed1b24",
+      "city": "Mohali",
+      "locationId": "main_arena",
+      "budget": 900000000,
+      "initialBudget": 900000000,
+      "mistakes": 0,
+      "isDisqualified": false,
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "team_rr_main": {
+      "name": "Rajasthan Royals",
+      "shortName": "RR",
+      "franchiseCode": "RR",
+      "color": "#eb178b",
+      "city": "Jaipur",
+      "locationId": "main_arena",
+      "budget": 900000000,
+      "initialBudget": 900000000,
+      "mistakes": 0,
+      "isDisqualified": false,
+      "createdAt": {},
       "updatedAt": {}
     },
     "team_srh_main": {
-      "id": "team_srh_main",
       "name": "Sunrisers Hyderabad",
       "shortName": "SRH",
       "franchiseCode": "SRH",
       "color": "#ff6200",
-      "secondaryColor": "#000000",
       "city": "Hyderabad",
       "locationId": "main_arena",
       "budget": 900000000,
       "initialBudget": 900000000,
       "mistakes": 0,
       "isDisqualified": false,
-      "createdAt": "2026-10-15T02:40:51.231Z",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "team_lsg_main": {
+      "name": "Lucknow Super Giants",
+      "shortName": "LSG",
+      "franchiseCode": "LSG",
+      "color": "#00a3e0",
+      "city": "Lucknow",
+      "locationId": "main_arena",
+      "budget": 900000000,
+      "initialBudget": 900000000,
+      "mistakes": 0,
+      "isDisqualified": false,
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "team_gt_main": {
+      "name": "Gujarat Titans",
+      "shortName": "GT",
+      "franchiseCode": "GT",
+      "color": "#1b2133",
+      "city": "Ahmedabad",
+      "locationId": "main_arena",
+      "budget": 900000000,
+      "initialBudget": 900000000,
+      "mistakes": 0,
+      "isDisqualified": false,
+      "createdAt": {},
       "updatedAt": {}
     }
   },
   "players": {
     "p_main_1": {
-      "id": "p_main_1",
       "name": "Abdul Samad",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -190,19 +167,17 @@
       "country": "IND",
       "imageUrl": "/players/abdul_samad.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 1,
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": {},
-      "currentBidTeamName": "Mumbai Indians"
+      "createdAt": {},
+      "updatedAt": {}
     },
     "p_main_2": {
-      "id": "p_main_2",
       "name": "Abhishek Sharma",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -211,21 +186,17 @@
       "country": "IND",
       "imageUrl": "/players/abhishek_sharma.png.png",
       "locationId": "main_arena",
-      "status": "LIVE",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 2,
-      "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": {},
-      "currentBidTeamName": "Lucknow Super Giants",
-      "timerDeadlineMs": 1792074432580,
-      "timerPaused": false
+      "createdAt": {},
+      "updatedAt": {}
     },
     "p_main_3": {
-      "id": "p_main_3",
       "name": "Adam Milne",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -234,18 +205,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/adam_milne.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 3,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_4": {
-      "id": "p_main_4",
       "name": "Adam Zampa",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -254,19 +224,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/adam_zampa.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 4,
-      "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": {},
-      "currentBidTeamName": "Kolkata Knight Riders"
+      "createdAt": {},
+      "updatedAt": {}
     },
     "p_main_5": {
-      "id": "p_main_5",
       "name": "Adil Rashid",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -275,18 +243,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/adil_rashid.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 5,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_6": {
-      "id": "p_main_6",
       "name": "Ajinkya Rahane",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -295,18 +262,17 @@
       "country": "IND",
       "imageUrl": "/players/ajinkya_rahane.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 6,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_7": {
-      "id": "p_main_7",
       "name": "Akash Deep",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -315,18 +281,17 @@
       "country": "IND",
       "imageUrl": "/players/AKASH DEEP.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 7,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_8": {
-      "id": "p_main_8",
       "name": "Akeal Hosein",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -335,18 +300,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/akeal_hosein.png.jpeg",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 8,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_9": {
-      "id": "p_main_9",
       "name": "Alex Carey",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -355,18 +319,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/alex_carey.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 9,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_10": {
-      "id": "p_main_10",
       "name": "Alex Hales",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -375,18 +338,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/alex_hales.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 10,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_11": {
-      "id": "p_main_11",
       "name": "Andile Phehlukwayo",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -395,18 +357,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/andile_phehlukwayo.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 11,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_12": {
-      "id": "p_main_12",
       "name": "Andrew Tye",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -415,18 +376,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/andrew_tye.png.png",
       "locationId": "main_arena",
-      "status": "LIVE",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 12,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_13": {
-      "id": "p_main_13",
       "name": "Angkrish Raghuvanshi",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -435,18 +395,17 @@
       "country": "IND",
       "imageUrl": "/players/angkrish_raghuvanshi.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 13,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_14": {
-      "id": "p_main_14",
       "name": "Ankit Rajput",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -455,18 +414,17 @@
       "country": "IND",
       "imageUrl": "/players/ankit_rajput.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 14,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_15": {
-      "id": "p_main_15",
       "name": "Anmolpreet Singh",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -475,18 +433,17 @@
       "country": "IND",
       "imageUrl": "/players/anmolpreet_singh.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 15,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_16": {
-      "id": "p_main_16",
       "name": "Anrich Nortje",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -495,18 +452,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/anrich_nortje.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 16,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_17": {
-      "id": "p_main_17",
       "name": "Arjun Tendulkar",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -515,18 +471,17 @@
       "country": "IND",
       "imageUrl": "/players/arjun_tendulkar.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 17,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_18": {
-      "id": "p_main_18",
       "name": "Arshdeep Singh",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -535,18 +490,17 @@
       "country": "IND",
       "imageUrl": "/players/arshdeep_singh.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 18,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_19": {
-      "id": "p_main_19",
       "name": "Ashutosh Sharma",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -555,19 +509,17 @@
       "country": "IND",
       "imageUrl": "/players/ashutosh_sharma.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 19,
-      "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": {},
-      "currentBidTeamName": "Rajasthan Royals"
+      "createdAt": {},
+      "updatedAt": {}
     },
     "p_main_20": {
-      "id": "p_main_20",
       "name": "Avesh Khan",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -576,18 +528,17 @@
       "country": "IND",
       "imageUrl": "/players/avesh_khan.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 20,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_21": {
-      "id": "p_main_21",
       "name": "Axar Patel",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -596,18 +547,17 @@
       "country": "IND",
       "imageUrl": "/players/axar_patel.png.png",
       "locationId": "main_arena",
-      "status": "LIVE",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 21,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_22": {
-      "id": "p_main_22",
       "name": "Ayush Badoni",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -616,18 +566,17 @@
       "country": "IND",
       "imageUrl": "/players/ayush_badoni.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 22,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_23": {
-      "id": "p_main_23",
       "name": "Azmatullah Omarzai",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -636,19 +585,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/azhmatullah_omarzai.png.jpeg",
       "locationId": "main_arena",
-      "status": "SOLD",
-      "currentBid": 20000000,
-      "currentBidTeamId": "team_gt_main",
-      "currentBidId": "id_1792074567495_hvb17l",
-      "soldPrice": 20000000,
-      "teamId": "team_gt_main",
+      "status": "UPCOMING",
+      "currentBid": null,
+      "currentBidTeamId": null,
+      "currentBidId": null,
+      "soldPrice": null,
+      "teamId": null,
       "order": 23,
-      "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": {},
-      "currentBidTeamName": "Gujarat Titans"
+      "createdAt": {},
+      "updatedAt": {}
     },
     "p_main_24": {
-      "id": "p_main_24",
       "name": "Ben Cutting",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -664,11 +611,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 24,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_25": {
-      "id": "p_main_25",
       "name": "Ben Duckett",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -677,18 +623,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/ben_duckett.png.png",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 25,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_26": {
-      "id": "p_main_26",
       "name": "Ben Stokes",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -704,11 +649,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 26,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_27": {
-      "id": "p_main_27",
       "name": "Bhuvneshwar Kumar",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -724,11 +668,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 27,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_28": {
-      "id": "p_main_28",
       "name": "Brandon King",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -737,18 +680,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/brendon_king.png.jpeg",
       "locationId": "main_arena",
-      "status": "UNSOLD",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 28,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_29": {
-      "id": "p_main_29",
       "name": "Cameron Delport",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -764,11 +706,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 29,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_30": {
-      "id": "p_main_30",
       "name": "Cameron Green",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -784,11 +725,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 30,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_31": {
-      "id": "p_main_31",
       "name": "Carlos Brathwaite",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -804,11 +744,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 31,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_32": {
-      "id": "p_main_32",
       "name": "Chetan Sakariya",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -824,11 +763,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 32,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_33": {
-      "id": "p_main_33",
       "name": "Cheteshwar Pujara",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -837,18 +775,17 @@
       "country": "IND",
       "imageUrl": "/players/cheteswar_pujara.png.jpeg",
       "locationId": "main_arena",
-      "status": "LIVE",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 33,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_34": {
-      "id": "p_main_34",
       "name": "Chris Jordan",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -864,11 +801,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 34,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_35": {
-      "id": "p_main_35",
       "name": "Chris Woakes",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -884,11 +820,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 35,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_36": {
-      "id": "p_main_36",
       "name": "Colin de Grandhomme",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -904,11 +839,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 36,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_37": {
-      "id": "p_main_37",
       "name": "Dawid Malan",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -917,18 +851,17 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/david_malan.png.png",
       "locationId": "main_arena",
-      "status": "LIVE",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
       "soldPrice": null,
       "teamId": null,
       "order": 37,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_38": {
-      "id": "p_main_38",
       "name": "David Miller",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -944,11 +877,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 38,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_39": {
-      "id": "p_main_39",
       "name": "Deepak Chahar",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -964,11 +896,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 39,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_40": {
-      "id": "p_main_40",
       "name": "Deepak Hooda",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -984,11 +915,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 40,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_41": {
-      "id": "p_main_41",
       "name": "Devdutt Padikkal",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1004,11 +934,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 41,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_42": {
-      "id": "p_main_42",
       "name": "Devon Conway",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1024,11 +953,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 42,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_43": {
-      "id": "p_main_43",
       "name": "Dewald Brevis",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1044,11 +972,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 43,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_44": {
-      "id": "p_main_44",
       "name": "Dhruv Jurel",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1064,11 +991,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 44,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_45": {
-      "id": "p_main_45",
       "name": "Digvesh Rathi",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1084,11 +1010,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 45,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_46": {
-      "id": "p_main_46",
       "name": "Donovan Ferreira",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1104,11 +1029,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 46,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_47": {
-      "id": "p_main_47",
       "name": "Eshan Malinga",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1124,11 +1048,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 47,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_48": {
-      "id": "p_main_48",
       "name": "Evin Lewis",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1144,11 +1067,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 48,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_49": {
-      "id": "p_main_49",
       "name": "Fazalhaq Farooqi",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1164,11 +1086,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 49,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_50": {
-      "id": "p_main_50",
       "name": "Glenn Maxwell",
       "category": "ALL_ROUNDER",
       "basePrice": 20000000,
@@ -1184,11 +1105,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 50,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_51": {
-      "id": "p_main_51",
       "name": "Gurjapneet Singh",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1204,11 +1124,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 51,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_52": {
-      "id": "p_main_52",
       "name": "Hanuma Vihari",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1224,11 +1143,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 52,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_53": {
-      "id": "p_main_53",
       "name": "Hardik Pandya",
       "category": "ALL_ROUNDER",
       "basePrice": 20000000,
@@ -1244,11 +1162,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 53,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_54": {
-      "id": "p_main_54",
       "name": "Harpreet Bhatia",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1264,11 +1181,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 54,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_55": {
-      "id": "p_main_55",
       "name": "Harry Brook",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1284,11 +1200,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 55,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_56": {
-      "id": "p_main_56",
       "name": "Harshal Patel",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1304,11 +1219,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 56,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_57": {
-      "id": "p_main_57",
       "name": "Harshit Rana",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1324,11 +1238,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 57,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_58": {
-      "id": "p_main_58",
       "name": "Heinrich Klaasen",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1344,11 +1257,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 58,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_59": {
-      "id": "p_main_59",
       "name": "Ishant Sharma",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1364,11 +1276,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 59,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_60": {
-      "id": "p_main_60",
       "name": "Ishan Kishan",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1384,11 +1295,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 60,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_61": {
-      "id": "p_main_61",
       "name": "Jake Fraser-McGurk",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1404,11 +1314,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 61,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_62": {
-      "id": "p_main_62",
       "name": "Jimmy Neesham",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -1424,11 +1333,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 62,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_63": {
-      "id": "p_main_63",
       "name": "Jamie Overton",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -1444,11 +1352,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 63,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_64": {
-      "id": "p_main_64",
       "name": "Jason Holder",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -1464,11 +1371,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 64,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_65": {
-      "id": "p_main_65",
       "name": "Jason Roy",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1484,11 +1390,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 65,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_66": {
-      "id": "p_main_66",
       "name": "Jasprit Bumrah",
       "category": "BOWLER",
       "basePrice": 20000000,
@@ -1504,11 +1409,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 66,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_67": {
-      "id": "p_main_67",
       "name": "Jaydev Unadkat",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1524,11 +1428,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 67,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_68": {
-      "id": "p_main_68",
       "name": "Joe Root",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1544,11 +1447,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 68,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_69": {
-      "id": "p_main_69",
       "name": "Jofra Archer",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1564,11 +1466,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 69,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_70": {
-      "id": "p_main_70",
       "name": "Jonny Bairstow",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1584,11 +1485,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 70,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_71": {
-      "id": "p_main_71",
       "name": "Jos Buttler",
       "category": "WICKET_KEEPER",
       "basePrice": 20000000,
@@ -1604,11 +1504,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 71,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_72": {
-      "id": "p_main_72",
       "name": "Josh Hazlewood",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1624,11 +1523,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 72,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_73": {
-      "id": "p_main_73",
       "name": "Jhye Richardson",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1644,11 +1542,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 73,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_74": {
-      "id": "p_main_74",
       "name": "Kagiso Rabada",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1664,11 +1561,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 74,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_75": {
-      "id": "p_main_75",
       "name": "Karun Nair",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1684,11 +1580,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 75,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_76": {
-      "id": "p_main_76",
       "name": "Khaleel Ahmed",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1704,11 +1599,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 76,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_77": {
-      "id": "p_main_77",
       "name": "KL Rahul",
       "category": "BATSMAN",
       "basePrice": 20000000,
@@ -1724,11 +1618,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 77,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_78": {
-      "id": "p_main_78",
       "name": "Krishnappa Gowtham",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -1744,11 +1637,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 78,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_79": {
-      "id": "p_main_79",
       "name": "Krunal Pandya",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -1764,11 +1656,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 79,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_80": {
-      "id": "p_main_80",
       "name": "KS Bharat",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1784,11 +1675,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 80,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_81": {
-      "id": "p_main_81",
       "name": "Kuldeep Yadav",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1804,11 +1694,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 81,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_82": {
-      "id": "p_main_82",
       "name": "Kumar Kushagra",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1824,11 +1713,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 82,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_83": {
-      "id": "p_main_83",
       "name": "Kusal Mendis",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1844,11 +1732,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 83,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_84": {
-      "id": "p_main_84",
       "name": "Liam Livingstone",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -1864,11 +1751,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 84,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_85": {
-      "id": "p_main_85",
       "name": "Litton Das",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -1884,11 +1770,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 85,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_86": {
-      "id": "p_main_86",
       "name": "Lockie Ferguson",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1904,11 +1789,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 86,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_87": {
-      "id": "p_main_87",
       "name": "Lungi Ngidi",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1924,11 +1808,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 87,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_88": {
-      "id": "p_main_88",
       "name": "Maheesh Theekshana",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -1944,11 +1827,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 88,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_89": {
-      "id": "p_main_89",
       "name": "Manan Vohra",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1964,11 +1846,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 89,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_90": {
-      "id": "p_main_90",
       "name": "Mandeep Singh",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -1984,11 +1865,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 90,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_91": {
-      "id": "p_main_91",
       "name": "Manish Pandey",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2004,11 +1884,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 91,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_92": {
-      "id": "p_main_92",
       "name": "Manoj Bhandage",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2024,11 +1903,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 92,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_93": {
-      "id": "p_main_93",
       "name": "Marco Jansen",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2044,11 +1922,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 93,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_94": {
-      "id": "p_main_94",
       "name": "Marcus Stoinis",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2064,11 +1941,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 94,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_95": {
-      "id": "p_main_95",
       "name": "Mark Wood",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2084,11 +1960,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 95,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_96": {
-      "id": "p_main_96",
       "name": "Matheesha Pathirana",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2104,11 +1979,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 96,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_97": {
-      "id": "p_main_97",
       "name": "Matt Henry",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2124,11 +1998,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 97,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_98": {
-      "id": "p_main_98",
       "name": "Mayank Agarwal",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2144,11 +2017,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 98,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_99": {
-      "id": "p_main_99",
       "name": "Mayank Markande",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2164,11 +2036,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 99,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_100": {
-      "id": "p_main_100",
       "name": "Mayank Yadav",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2184,11 +2055,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 100,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_101": {
-      "id": "p_main_101",
       "name": "Mohammad Nabi",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2204,11 +2074,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 101,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_102": {
-      "id": "p_main_102",
       "name": "Mohammed Shami",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2224,11 +2093,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 102,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_103": {
-      "id": "p_main_103",
       "name": "Mohammed Siraj",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2244,11 +2112,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 103,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_104": {
-      "id": "p_main_104",
       "name": "Mitchell Marsh",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2264,11 +2131,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 104,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_105": {
-      "id": "p_main_105",
       "name": "Mitchell Santner",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2284,11 +2150,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 105,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_106": {
-      "id": "p_main_106",
       "name": "Mitchell Starc",
       "category": "BATSMAN",
       "basePrice": 20000000,
@@ -2304,11 +2169,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 106,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_107": {
-      "id": "p_main_107",
       "name": "Moeen Ali",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2324,11 +2188,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 107,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_108": {
-      "id": "p_main_108",
       "name": "Mohammad Mahmudullah",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2344,11 +2207,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 108,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_109": {
-      "id": "p_main_109",
       "name": "Mohit Sharma",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2364,11 +2226,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 109,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_110": {
-      "id": "p_main_110",
       "name": "Moises Henriques",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2384,11 +2245,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 110,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_111": {
-      "id": "p_main_111",
       "name": "MS Dhoni",
       "category": "WICKET_KEEPER",
       "basePrice": 20000000,
@@ -2404,11 +2264,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 111,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_112": {
-      "id": "p_main_112",
       "name": "Mukesh Kumar",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2424,11 +2283,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 112,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_113": {
-      "id": "p_main_113",
       "name": "Musheer Khan",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2444,11 +2302,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 113,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_114": {
-      "id": "p_main_114",
       "name": "Mustafizur Rahman",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2464,11 +2321,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 114,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_115": {
-      "id": "p_main_115",
       "name": "Naman Dhir",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2484,11 +2340,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 115,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_116": {
-      "id": "p_main_116",
       "name": "Nandre Burger",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2504,11 +2359,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 116,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_117": {
-      "id": "p_main_117",
       "name": "Nathan Coulter-Nile",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2524,11 +2378,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 117,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_118": {
-      "id": "p_main_118",
       "name": "Navdeep Saini",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2544,11 +2397,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 118,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_119": {
-      "id": "p_main_119",
       "name": "Nehal Wadhera",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2564,11 +2416,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 119,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_120": {
-      "id": "p_main_120",
       "name": "Nicholas Pooran",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -2584,11 +2435,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 120,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_121": {
-      "id": "p_main_121",
       "name": "Nitish Kumar Reddy",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2604,11 +2454,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 121,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_122": {
-      "id": "p_main_122",
       "name": "Nitish Rana",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2624,11 +2473,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 122,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_123": {
-      "id": "p_main_123",
       "name": "Noor Ahmad",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2644,11 +2492,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 123,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_124": {
-      "id": "p_main_124",
       "name": "Nuwan Thushara",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2664,11 +2511,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 124,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_125": {
-      "id": "p_main_125",
       "name": "Pat Cummins",
       "category": "BOWLER",
       "basePrice": 20000000,
@@ -2684,11 +2530,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 125,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_126": {
-      "id": "p_main_126",
       "name": "Phil Salt",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -2704,11 +2549,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 126,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_127": {
-      "id": "p_main_127",
       "name": "Prabhsimran Singh",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -2724,11 +2568,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 127,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_128": {
-      "id": "p_main_128",
       "name": "Prasidh Krishna",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2744,11 +2587,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 128,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_129": {
-      "id": "p_main_129",
       "name": "Prince Rai",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2764,11 +2606,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 129,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_130": {
-      "id": "p_main_130",
       "name": "Prince Yadav",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2784,11 +2625,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 130,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_131": {
-      "id": "p_main_131",
       "name": "Prithvi Shaw",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2804,11 +2644,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 131,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_132": {
-      "id": "p_main_132",
       "name": "Priyam Garg",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2824,11 +2663,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 132,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_133": {
-      "id": "p_main_133",
       "name": "Priyank Panchal",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2844,11 +2682,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 133,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_134": {
-      "id": "p_main_134",
       "name": "Priyansh Arya",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2864,11 +2701,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 134,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_135": {
-      "id": "p_main_135",
       "name": "Quinton de Kock",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -2884,11 +2720,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 135,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_136": {
-      "id": "p_main_136",
       "name": "Rahul Chahar",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -2904,11 +2739,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 136,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_137": {
-      "id": "p_main_137",
       "name": "Rahul Tewatia",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2924,11 +2758,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 137,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_138": {
-      "id": "p_main_138",
       "name": "Rahul Tripathi",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2944,11 +2777,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 138,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_139": {
-      "id": "p_main_139",
       "name": "Rajat Patidar",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -2964,11 +2796,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 139,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_140": {
-      "id": "p_main_140",
       "name": "Ramandeep Singh",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -2984,11 +2815,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 140,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_141": {
-      "id": "p_main_141",
       "name": "Rashid Khan",
       "category": "BOWLER",
       "basePrice": 20000000,
@@ -3004,11 +2834,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 141,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_142": {
-      "id": "p_main_142",
       "name": "Rasikh Salam",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3024,11 +2853,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 142,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_143": {
-      "id": "p_main_143",
       "name": "Ravindra Jadeja",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3044,11 +2872,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 143,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_144": {
-      "id": "p_main_144",
       "name": "Ricky Bhui",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3064,11 +2891,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 144,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_145": {
-      "id": "p_main_145",
       "name": "Rinku Singh",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3084,11 +2910,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 145,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_146": {
-      "id": "p_main_146",
       "name": "Rishabh Pant",
       "category": "WICKET_KEEPER",
       "basePrice": 20000000,
@@ -3104,11 +2929,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 146,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_147": {
-      "id": "p_main_147",
       "name": "Riyan Parag",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3124,11 +2948,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 147,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_148": {
-      "id": "p_main_148",
       "name": "Robin Minz",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -3144,11 +2967,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 148,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_149": {
-      "id": "p_main_149",
       "name": "Rohan Kadam",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3164,11 +2986,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 149,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_150": {
-      "id": "p_main_150",
       "name": "Rohit Sharma",
       "category": "BATSMAN",
       "basePrice": 20000000,
@@ -3184,11 +3005,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 150,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_151": {
-      "id": "p_main_151",
       "name": "Romario Shepherd",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3204,11 +3024,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 151,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_152": {
-      "id": "p_main_152",
       "name": "Ruturaj Gaikwad",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3224,11 +3043,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 152,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_153": {
-      "id": "p_main_153",
       "name": "Ryan Rickelton",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -3244,11 +3062,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 153,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_154": {
-      "id": "p_main_154",
       "name": "R. Sai Kishore",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3264,11 +3081,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 154,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_155": {
-      "id": "p_main_155",
       "name": "Sai Sudharsan",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3284,11 +3100,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 155,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_156": {
-      "id": "p_main_156",
       "name": "Sameer Rizvi",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3304,11 +3119,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 156,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_157": {
-      "id": "p_main_157",
       "name": "Sam Curran",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3324,11 +3138,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 157,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_158": {
-      "id": "p_main_158",
       "name": "Sandeep Lamichhane",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3344,11 +3157,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 158,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_159": {
-      "id": "p_main_159",
       "name": "Sandeep Sharma",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3364,11 +3176,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 159,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_160": {
-      "id": "p_main_160",
       "name": "Sanju Samson",
       "category": "WICKET_KEEPER",
       "basePrice": 20000000,
@@ -3384,11 +3195,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 160,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_161": {
-      "id": "p_main_161",
       "name": "Sarfaraz Khan",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3404,11 +3214,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 161,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_162": {
-      "id": "p_main_162",
       "name": "Saurabh Tiwary",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3424,11 +3233,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 162,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_163": {
-      "id": "p_main_163",
       "name": "Sean Abbott",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3444,11 +3252,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 163,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_164": {
-      "id": "p_main_164",
       "name": "Shahbaz Ahmed",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3464,11 +3271,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 164,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_165": {
-      "id": "p_main_165",
       "name": "Shaik Rasheed",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3484,11 +3290,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 165,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_166": {
-      "id": "p_main_166",
       "name": "Shai Hope",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -3504,11 +3309,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 166,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_167": {
-      "id": "p_main_167",
       "name": "Shakib Al Hasan",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3524,11 +3328,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 167,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_168": {
-      "id": "p_main_168",
       "name": "Shamar Joseph",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3544,11 +3347,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 168,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_169": {
-      "id": "p_main_169",
       "name": "Shams Mulani",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3564,11 +3366,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 169,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_170": {
-      "id": "p_main_170",
       "name": "Shardul Thakur",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3584,11 +3385,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 170,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_171": {
-      "id": "p_main_171",
       "name": "Shashank Singh",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3604,11 +3404,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 171,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_172": {
-      "id": "p_main_172",
       "name": "Shaun Marsh",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3624,11 +3423,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 172,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_173": {
-      "id": "p_main_173",
       "name": "Sheldon Cottrell",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3644,11 +3442,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 173,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_174": {
-      "id": "p_main_174",
       "name": "Sherfane Rutherford",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3664,11 +3461,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 174,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_175": {
-      "id": "p_main_175",
       "name": "Shimron Hetmyer",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3684,11 +3480,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 175,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_176": {
-      "id": "p_main_176",
       "name": "Shivam Dube",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3704,11 +3499,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 176,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_177": {
-      "id": "p_main_177",
       "name": "Shivam Mavi",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3724,11 +3518,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 177,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_178": {
-      "id": "p_main_178",
       "name": "Shreyas Gopal",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3744,11 +3537,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 178,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_179": {
-      "id": "p_main_179",
       "name": "Shreyas Iyer",
       "category": "BATSMAN",
       "basePrice": 20000000,
@@ -3764,11 +3556,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 179,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_180": {
-      "id": "p_main_180",
       "name": "Shubman Gill",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3784,11 +3575,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 180,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_181": {
-      "id": "p_main_181",
       "name": "Sikandar Raza",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3804,11 +3594,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 181,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_182": {
-      "id": "p_main_182",
       "name": "Simarjeet Singh",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3824,11 +3613,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 182,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_183": {
-      "id": "p_main_183",
       "name": "Smaran Ravichandran",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3844,11 +3632,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 183,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_184": {
-      "id": "p_main_184",
       "name": "Spencer Johnson",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3864,11 +3651,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 184,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_185": {
-      "id": "p_main_185",
       "name": "Stuart Binny",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3884,11 +3670,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 185,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_186": {
-      "id": "p_main_186",
       "name": "Sunil Narine",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3904,11 +3689,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 186,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_187": {
-      "id": "p_main_187",
       "name": "Suryakumar Yadav",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3924,11 +3708,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 187,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_188": {
-      "id": "p_main_188",
       "name": "Tilak Varma",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -3944,11 +3727,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 188,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_189": {
-      "id": "p_main_189",
       "name": "Tim Southee",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -3964,11 +3746,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 189,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_190": {
-      "id": "p_main_190",
       "name": "Tom Curran",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -3984,11 +3765,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 190,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_191": {
-      "id": "p_main_191",
       "name": "Travis Head",
       "category": "BATSMAN",
       "basePrice": 20000000,
@@ -4004,11 +3784,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 191,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_192": {
-      "id": "p_main_192",
       "name": "Trent Boult",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4024,11 +3803,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 192,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_193": {
-      "id": "p_main_193",
       "name": "Tristan Stubbs",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -4044,11 +3822,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 193,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_194": {
-      "id": "p_main_194",
       "name": "T. Natarajan",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4064,11 +3841,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 194,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_195": {
-      "id": "p_main_195",
       "name": "Umesh Yadav",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4084,11 +3860,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 195,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_196": {
-      "id": "p_main_196",
       "name": "Urvil Patel",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -4104,11 +3879,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 196,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_197": {
-      "id": "p_main_197",
       "name": "Vaibhav Arora",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4124,11 +3898,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 197,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_198": {
-      "id": "p_main_198",
       "name": "Vaibhav Sooryavanshi",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -4144,11 +3917,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 198,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_199": {
-      "id": "p_main_199",
       "name": "Varun Chakaravarthy",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4164,11 +3936,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 199,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_200": {
-      "id": "p_main_200",
       "name": "Vijay Shankar",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -4184,11 +3955,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 200,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_201": {
-      "id": "p_main_201",
       "name": "Virat Kohli",
       "category": "BATSMAN",
       "basePrice": 20000000,
@@ -4204,11 +3974,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 201,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_202": {
-      "id": "p_main_202",
       "name": "Vishnu Solanki",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -4224,11 +3993,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 202,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_203": {
-      "id": "p_main_203",
       "name": "Vishnu Vinod",
       "category": "WICKET_KEEPER",
       "basePrice": 10000000,
@@ -4244,11 +4012,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 203,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_204": {
-      "id": "p_main_204",
       "name": "Vijaykumar Vyshak",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4264,11 +4031,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 204,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_205": {
-      "id": "p_main_205",
       "name": "Wanindu Hasaranga",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -4284,11 +4050,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 205,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_206": {
-      "id": "p_main_206",
       "name": "Washington Sundar",
       "category": "ALL_ROUNDER",
       "basePrice": 15000000,
@@ -4304,11 +4069,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 206,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_207": {
-      "id": "p_main_207",
       "name": "Xavier Bartlett",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4324,11 +4088,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 207,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_208": {
-      "id": "p_main_208",
       "name": "Yashasvi Jaiswal",
       "category": "BATSMAN",
       "basePrice": 10000000,
@@ -4344,11 +4107,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 208,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_209": {
-      "id": "p_main_209",
       "name": "Yash Dayal",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4364,11 +4126,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 209,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_210": {
-      "id": "p_main_210",
       "name": "Yash Thakur",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4384,11 +4145,10 @@
       "soldPrice": null,
       "teamId": null,
       "order": 210,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     },
     "p_main_211": {
-      "id": "p_main_211",
       "name": "Yuzvendra Chahal",
       "category": "BOWLER",
       "basePrice": 15000000,
@@ -4404,327 +4164,11 @@
       "soldPrice": null,
       "teamId": null,
       "order": 211,
-      "createdAt": "2026-10-15T02:40:51.232Z",
+      "createdAt": {},
       "updatedAt": {}
     }
   },
-  "bids": {
-    "id_1792032359521_pl87rc": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_csk_main",
-      "teamName": "Chennai Super Kings",
-      "amount": 25000000,
-      "status": "WINNING",
-      "createdAt": {}
-    },
-    "id_1792071739561_8miw0y": {
-      "locationId": "main_arena",
-      "playerId": "p_main_4",
-      "teamId": "team_rcb_main",
-      "teamName": "Royal Challengers Bengaluru",
-      "amount": 20000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792071740782_hraepz": {
-      "locationId": "main_arena",
-      "playerId": "p_main_4",
-      "teamId": "team_rr_main",
-      "teamName": "Rajasthan Royals",
-      "amount": 25000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792071742019_jlyp6v": {
-      "locationId": "main_arena",
-      "playerId": "p_main_4",
-      "teamId": "team_kkr_main",
-      "teamName": "Kolkata Knight Riders",
-      "amount": 30000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792071743432_x3ays6": {
-      "locationId": "main_arena",
-      "playerId": "p_main_4",
-      "teamId": "team_lsg_main",
-      "teamName": "Lucknow Super Giants",
-      "amount": 35000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792071744325_shcxap": {
-      "locationId": "main_arena",
-      "playerId": "p_main_4",
-      "teamId": "team_srh_main",
-      "teamName": "Sunrisers Hyderabad",
-      "amount": 40000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792071748205_rnszy7": {
-      "locationId": "main_arena",
-      "playerId": "p_main_4",
-      "teamId": "team_gt_main",
-      "teamName": "Gujarat Titans",
-      "amount": 45000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792071758186_ilkyag": {
-      "locationId": "main_arena",
-      "playerId": "p_main_4",
-      "teamId": "team_kkr_main",
-      "teamName": "Kolkata Knight Riders",
-      "amount": 50000000,
-      "status": "WINNING",
-      "createdAt": {}
-    },
-    "id_1792071857555_1ydzgx": {
-      "locationId": "main_arena",
-      "playerId": "p_main_19",
-      "teamId": "team_gt_main",
-      "teamName": "Gujarat Titans",
-      "amount": 15000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792071858041_8819ww": {
-      "locationId": "main_arena",
-      "playerId": "p_main_19",
-      "teamId": "team_rr_main",
-      "teamName": "Rajasthan Royals",
-      "amount": 20000000,
-      "status": "WINNING",
-      "createdAt": {}
-    },
-    "id_1792072263807_ph0nm7": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_dc_main",
-      "teamName": "Delhi Capitals",
-      "amount": 15000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072267114_xjxysm": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_gt_main",
-      "teamName": "Gujarat Titans",
-      "amount": 20000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072267952_s1q7jk": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_kkr_main",
-      "teamName": "Kolkata Knight Riders",
-      "amount": 25000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072268639_e8rn3f": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_rr_main",
-      "teamName": "Rajasthan Royals",
-      "amount": 30000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072269449_gbpstb": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_rcb_main",
-      "teamName": "Royal Challengers Bengaluru",
-      "amount": 35000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072270292_c1o952": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_lsg_main",
-      "teamName": "Lucknow Super Giants",
-      "amount": 40000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072271012_okhseb": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_srh_main",
-      "teamName": "Sunrisers Hyderabad",
-      "amount": 45000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072272216_ki00hh": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_kkr_main",
-      "teamName": "Kolkata Knight Riders",
-      "amount": 50000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072273152_fccavi": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_gt_main",
-      "teamName": "Gujarat Titans",
-      "amount": 60000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072274058_5raoud": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_dc_main",
-      "teamName": "Delhi Capitals",
-      "amount": 70000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072277287_o23pxp": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_rr_main",
-      "teamName": "Rajasthan Royals",
-      "amount": 80000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072278972_ccden9": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_kkr_main",
-      "teamName": "Kolkata Knight Riders",
-      "amount": 90000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072282792_zwh0am": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_csk_main",
-      "teamName": "Chennai Super Kings",
-      "amount": 160000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072284654_4exrht": {
-      "locationId": "main_arena",
-      "playerId": "p_main_1",
-      "teamId": "team_mi_main",
-      "teamName": "Mumbai Indians",
-      "amount": 180000000,
-      "status": "WINNING",
-      "createdAt": {}
-    },
-    "id_1792072296501_r9nbcx": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_rcb_main",
-      "teamName": "Royal Challengers Bengaluru",
-      "amount": 15000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072298115_9t8sp9": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_lsg_main",
-      "teamName": "Lucknow Super Giants",
-      "amount": 20000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072299467_wo3am7": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_kkr_main",
-      "teamName": "Kolkata Knight Riders",
-      "amount": 25000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072300689_nsv1m4": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_rr_main",
-      "teamName": "Rajasthan Royals",
-      "amount": 30000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072301778_s748qm": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_dc_main",
-      "teamName": "Delhi Capitals",
-      "amount": 35000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072302811_9vwqqw": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_csk_main",
-      "teamName": "Chennai Super Kings",
-      "amount": 40000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072304026_zuzdz0": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_pbks_main",
-      "teamName": "Punjab Kings",
-      "amount": 45000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072305080_ha9fah": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_rcb_main",
-      "teamName": "Royal Challengers Bengaluru",
-      "amount": 50000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072306184_87z4yz": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_srh_main",
-      "teamName": "Sunrisers Hyderabad",
-      "amount": 60000000,
-      "status": "ACTIVE",
-      "createdAt": {}
-    },
-    "id_1792072308057_o3vnnh": {
-      "locationId": "main_arena",
-      "playerId": "p_main_2",
-      "teamId": "team_lsg_main",
-      "teamName": "Lucknow Super Giants",
-      "amount": 70000000,
-      "status": "WINNING",
-      "createdAt": {}
-    },
-    "id_1792074567495_hvb17l": {
-      "locationId": "main_arena",
-      "playerId": "p_main_23",
-      "teamId": "team_gt_main",
-      "teamName": "Gujarat Titans",
-      "amount": 20000000,
-      "status": "WINNING",
-      "createdAt": {}
-    }
-  },
+  "bids": {},
   "users": {
     "admin_user": {
       "uid": "admin_user",
@@ -4736,21 +4180,30 @@
       "createdAt": {},
       "updatedAt": {}
     },
-    "user_csk_manager": {
-      "id": "user_csk_manager",
-      "uid": "user_csk_manager",
-      "username": "csk_manager",
-      "email": "csk_manager@iplauction.local",
+    "user_auctioneer": {
+      "uid": "user_auctioneer",
+      "username": "auctioneer",
+      "email": "auctioneer@iplauction.local",
+      "role": "AUCTIONEER",
+      "locationId": "main_arena",
+      "isActive": true,
+      "passwordFallback": "password",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "user_csk": {
+      "uid": "user_csk",
+      "username": "csk",
+      "email": "csk@iplauction.local",
       "role": "TEAM_LEADER",
       "teamId": "team_csk_main",
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
     "user_owner_csk": {
-      "id": "user_owner_csk",
       "uid": "user_owner_csk",
       "username": "owner_csk",
       "email": "owner_csk@iplauction.local",
@@ -4759,128 +4212,22 @@
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
-    "user_dc_manager": {
-      "id": "user_dc_manager",
-      "uid": "user_dc_manager",
-      "username": "dc_manager",
-      "email": "dc_manager@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_dc_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
-    },
-    "user_owner_dc": {
-      "id": "user_owner_dc",
-      "uid": "user_owner_dc",
-      "username": "owner_dc",
-      "email": "owner_dc@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_dc_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
-    },
-    "user_gt_manager": {
-      "id": "user_gt_manager",
-      "uid": "user_gt_manager",
-      "username": "gt_manager",
-      "email": "gt_manager@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_gt_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
-    },
-    "user_owner_gt": {
-      "id": "user_owner_gt",
-      "uid": "user_owner_gt",
-      "username": "owner_gt",
-      "email": "owner_gt@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_gt_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
-    },
-    "user_kkr_manager": {
-      "id": "user_kkr_manager",
-      "uid": "user_kkr_manager",
-      "username": "kkr_manager",
-      "email": "kkr_manager@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_kkr_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.230Z",
-      "updatedAt": "2026-10-15T02:40:51.230Z"
-    },
-    "user_owner_kkr": {
-      "id": "user_owner_kkr",
-      "uid": "user_owner_kkr",
-      "username": "owner_kkr",
-      "email": "owner_kkr@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_kkr_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_lsg_manager": {
-      "id": "user_lsg_manager",
-      "uid": "user_lsg_manager",
-      "username": "lsg_manager",
-      "email": "lsg_manager@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_lsg_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_owner_lsg": {
-      "id": "user_owner_lsg",
-      "uid": "user_owner_lsg",
-      "username": "owner_lsg",
-      "email": "owner_lsg@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_lsg_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_mi_manager": {
-      "id": "user_mi_manager",
-      "uid": "user_mi_manager",
-      "username": "mi_manager",
-      "email": "mi_manager@iplauction.local",
+    "user_mi": {
+      "uid": "user_mi",
+      "username": "mi",
+      "email": "mi@iplauction.local",
       "role": "TEAM_LEADER",
       "teamId": "team_mi_main",
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
     "user_owner_mi": {
-      "id": "user_owner_mi",
       "uid": "user_owner_mi",
       "username": "owner_mi",
       "email": "owner_mi@iplauction.local",
@@ -4889,76 +4236,22 @@
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
-    "user_pbks_manager": {
-      "id": "user_pbks_manager",
-      "uid": "user_pbks_manager",
-      "username": "pbks_manager",
-      "email": "pbks_manager@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_pbks_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_owner_pbks": {
-      "id": "user_owner_pbks",
-      "uid": "user_owner_pbks",
-      "username": "owner_pbks",
-      "email": "owner_pbks@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_pbks_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_rr_manager": {
-      "id": "user_rr_manager",
-      "uid": "user_rr_manager",
-      "username": "rr_manager",
-      "email": "rr_manager@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_rr_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_owner_rr": {
-      "id": "user_owner_rr",
-      "uid": "user_owner_rr",
-      "username": "owner_rr",
-      "email": "owner_rr@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_rr_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_rcb_manager": {
-      "id": "user_rcb_manager",
-      "uid": "user_rcb_manager",
-      "username": "rcb_manager",
-      "email": "rcb_manager@iplauction.local",
+    "user_rcb": {
+      "uid": "user_rcb",
+      "username": "rcb",
+      "email": "rcb@iplauction.local",
       "role": "TEAM_LEADER",
       "teamId": "team_rcb_main",
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
     "user_owner_rcb": {
-      "id": "user_owner_rcb",
       "uid": "user_owner_rcb",
       "username": "owner_rcb",
       "email": "owner_rcb@iplauction.local",
@@ -4967,24 +4260,118 @@
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
-    "user_srh_manager": {
-      "id": "user_srh_manager",
-      "uid": "user_srh_manager",
-      "username": "srh_manager",
-      "email": "srh_manager@iplauction.local",
+    "user_dc": {
+      "uid": "user_dc",
+      "username": "dc",
+      "email": "dc@iplauction.local",
+      "role": "TEAM_LEADER",
+      "teamId": "team_dc_main",
+      "locationId": "main_arena",
+      "isActive": true,
+      "passwordFallback": "password",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "user_owner_dc": {
+      "uid": "user_owner_dc",
+      "username": "owner_dc",
+      "email": "owner_dc@iplauction.local",
+      "role": "TEAM_LEADER",
+      "teamId": "team_dc_main",
+      "locationId": "main_arena",
+      "isActive": true,
+      "passwordFallback": "password",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "user_kkr": {
+      "uid": "user_kkr",
+      "username": "kkr",
+      "email": "kkr@iplauction.local",
+      "role": "TEAM_LEADER",
+      "teamId": "team_kkr_main",
+      "locationId": "main_arena",
+      "isActive": true,
+      "passwordFallback": "password",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "user_owner_kkr": {
+      "uid": "user_owner_kkr",
+      "username": "owner_kkr",
+      "email": "owner_kkr@iplauction.local",
+      "role": "TEAM_LEADER",
+      "teamId": "team_kkr_main",
+      "locationId": "main_arena",
+      "isActive": true,
+      "passwordFallback": "password",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "user_pbks": {
+      "uid": "user_pbks",
+      "username": "pbks",
+      "email": "pbks@iplauction.local",
+      "role": "TEAM_LEADER",
+      "teamId": "team_pbks_main",
+      "locationId": "main_arena",
+      "isActive": true,
+      "passwordFallback": "password",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "user_owner_pbks": {
+      "uid": "user_owner_pbks",
+      "username": "owner_pbks",
+      "email": "owner_pbks@iplauction.local",
+      "role": "TEAM_LEADER",
+      "teamId": "team_pbks_main",
+      "locationId": "main_arena",
+      "isActive": true,
+      "passwordFallback": "password",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "user_rr": {
+      "uid": "user_rr",
+      "username": "rr",
+      "email": "rr@iplauction.local",
+      "role": "TEAM_LEADER",
+      "teamId": "team_rr_main",
+      "locationId": "main_arena",
+      "isActive": true,
+      "passwordFallback": "password",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "user_owner_rr": {
+      "uid": "user_owner_rr",
+      "username": "owner_rr",
+      "email": "owner_rr@iplauction.local",
+      "role": "TEAM_LEADER",
+      "teamId": "team_rr_main",
+      "locationId": "main_arena",
+      "isActive": true,
+      "passwordFallback": "password",
+      "createdAt": {},
+      "updatedAt": {}
+    },
+    "user_srh": {
+      "uid": "user_srh",
+      "username": "srh",
+      "email": "srh@iplauction.local",
       "role": "TEAM_LEADER",
       "teamId": "team_srh_main",
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
     "user_owner_srh": {
-      "id": "user_owner_srh",
       "uid": "user_owner_srh",
       "username": "owner_srh",
       "email": "owner_srh@iplauction.local",
@@ -4993,64 +4380,11 @@
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
-    "user_direct_csk": {
-      "id": "user_direct_csk",
-      "uid": "user_direct_csk",
-      "username": "csk",
-      "email": "csk@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_csk_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_direct_dc": {
-      "id": "user_direct_dc",
-      "uid": "user_direct_dc",
-      "username": "dc",
-      "email": "dc@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_dc_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_direct_gt": {
-      "id": "user_direct_gt",
-      "uid": "user_direct_gt",
-      "username": "gt",
-      "email": "gt@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_gt_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_direct_kkr": {
-      "id": "user_direct_kkr",
-      "uid": "user_direct_kkr",
-      "username": "kkr",
-      "email": "kkr@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_kkr_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_direct_lsg": {
-      "id": "user_direct_lsg",
-      "uid": "user_direct_lsg",
+    "user_lsg": {
+      "uid": "user_lsg",
       "username": "lsg",
       "email": "lsg@iplauction.local",
       "role": "TEAM_LEADER",
@@ -5058,2042 +4392,45 @@
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
-    "user_direct_mi": {
-      "id": "user_direct_mi",
-      "uid": "user_direct_mi",
-      "username": "mi",
-      "email": "mi@iplauction.local",
+    "user_owner_lsg": {
+      "uid": "user_owner_lsg",
+      "username": "owner_lsg",
+      "email": "owner_lsg@iplauction.local",
       "role": "TEAM_LEADER",
-      "teamId": "team_mi_main",
+      "teamId": "team_lsg_main",
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
-    "user_direct_pbks": {
-      "id": "user_direct_pbks",
-      "uid": "user_direct_pbks",
-      "username": "pbks",
-      "email": "pbks@iplauction.local",
+    "user_gt": {
+      "uid": "user_gt",
+      "username": "gt",
+      "email": "gt@iplauction.local",
       "role": "TEAM_LEADER",
-      "teamId": "team_pbks_main",
+      "teamId": "team_gt_main",
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     },
-    "user_direct_rr": {
-      "id": "user_direct_rr",
-      "uid": "user_direct_rr",
-      "username": "rr",
-      "email": "rr@iplauction.local",
+    "user_owner_gt": {
+      "uid": "user_owner_gt",
+      "username": "owner_gt",
+      "email": "owner_gt@iplauction.local",
       "role": "TEAM_LEADER",
-      "teamId": "team_rr_main",
+      "teamId": "team_gt_main",
       "locationId": "main_arena",
       "isActive": true,
       "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_direct_rcb": {
-      "id": "user_direct_rcb",
-      "uid": "user_direct_rcb",
-      "username": "rcb",
-      "email": "rcb@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_rcb_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_direct_srh": {
-      "id": "user_direct_srh",
-      "uid": "user_direct_srh",
-      "username": "srh",
-      "email": "srh@iplauction.local",
-      "role": "TEAM_LEADER",
-      "teamId": "team_srh_main",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
-    },
-    "user_auctioneer_main": {
-      "id": "user_auctioneer_main",
-      "uid": "user_auctioneer_main",
-      "username": "auctioneer",
-      "email": "auctioneer@iplauction.local",
-      "role": "AUCTIONEER",
-      "locationId": "main_arena",
-      "isActive": true,
-      "passwordFallback": "password",
-      "createdAt": "2026-10-15T02:40:51.231Z",
-      "updatedAt": "2026-10-15T02:40:51.231Z"
+      "createdAt": {},
+      "updatedAt": {}
     }
   },
-  "audit_logs": {
-    "id_1792030332303_93yve6": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_bangalore_1"
-      },
-      "locationId": "loc_bangalore",
-      "timestamp": {}
-    },
-    "id_1792030433994_6ha0gi": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_bangalore_1"
-      },
-      "locationId": "loc_bangalore",
-      "timestamp": {}
-    },
-    "id_1792030435882_toxrg0": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_bangalore_2"
-      },
-      "locationId": "loc_bangalore",
-      "timestamp": {}
-    },
-    "id_1792032359502_2ggba1": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_1",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792032359532_3z31am": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792032359521_pl87rc",
-        "playerId": "p_main_1",
-        "teamId": "team_csk_main",
-        "teamName": "Chennai Super Kings",
-        "amount": 25000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792032389407
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792032359561_vaf1ly": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "extend",
-        "locationId": "main_arena",
-        "deadlineMs": 1792032399407,
-        "paused": false,
-        "remainingMs": 39854,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792032359598_8mnd31": {
-      "eventType": "PLAYER_SOLD",
-      "details": {
-        "playerId": "p_main_1",
-        "teamId": "team_csk_main",
-        "amount": 25000000
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792068702929_0ib2j3": {
-      "eventType": "AUCTION_RESET",
-      "details": {
-        "locationId": "main_arena"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069137337_gl52b7": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_1",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069148196_k2y45a": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_1"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069182392_cbuw4u": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_2",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069184030_tr4twy": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_3",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069185051_al5rbb": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_4",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069186337_ihexod": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_5",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069197236_8d34wb": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 19101,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069224739_j4v0kd": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "extend",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 29101,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069225673_zeg8cv": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "extend",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 39101,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069226511_nct1zy": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 39101,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069227732_xbwcv4": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_6",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069234212_40lb80": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_7",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069264651_7ege1e": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_8",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069265203_kve09u": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_9",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069265839_6v8lwq": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_10",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069266393_o4a707": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_11",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069266711_witriz": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_12",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069266943_lci7bf": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_13",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069267243_zq83mf": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_14",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069267443_oizng4": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_15",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069267643_11hq2k": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_16",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069267826_uobhwk": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_17",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069268043_czwi1p": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_18",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069268193_wuc9jq": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_19",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792069278270_vibexi": {
-      "eventType": "AUCTION_RESET",
-      "details": {
-        "locationId": "main_arena"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070075676_bo1hno": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": false,
-        "remainingMs": null,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070076759_qlv2ci": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": false,
-        "remainingMs": null,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070183387_1wjgd4": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_1",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070199958_axawhz": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_2",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070211432_xj4e7y": {
-      "eventType": "AUCTION_RESET",
-      "details": {
-        "locationId": "main_arena"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070215108_884arl": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_1",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070232642_l0hmfl": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_2",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070247239_0yygfi": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_3",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070263266_kz8hjy": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_4",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070970651_m8t3dh": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_5",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070984304_nbu7r4": {
-      "eventType": "AUCTION_RESET",
-      "details": {
-        "locationId": "main_arena"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792070992205_jsadij": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_1",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071008429_5c0m34": {
-      "eventType": "AUCTION_RESET",
-      "details": {
-        "locationId": "main_arena"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071012000_nsc1xg": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_6",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071049516_6dkfah": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_10",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071177790_eg3vfl": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_1",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071216916_fxsozb": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_2",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071225328_opy9et": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_2"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071227021_5v67o4": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_3",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071241365_kj4xu0": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 15656,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071727470_dwisea": {
-      "eventType": "AUCTION_RESET",
-      "details": {
-        "locationId": "main_arena"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071731814_r7b74i": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_4",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071739561_0xry61": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792071739561_8miw0y",
-        "playerId": "p_main_4",
-        "teamId": "team_rcb_main",
-        "teamName": "Royal Challengers Bengaluru",
-        "amount": 20000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792071761814
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071740782_nc0f8p": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792071740782_hraepz",
-        "playerId": "p_main_4",
-        "teamId": "team_rr_main",
-        "teamName": "Rajasthan Royals",
-        "amount": 25000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792071761814
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071742019_gwbngz": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792071742019_jlyp6v",
-        "playerId": "p_main_4",
-        "teamId": "team_kkr_main",
-        "teamName": "Kolkata Knight Riders",
-        "amount": 30000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792071761814
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071743432_mluwoi": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792071743432_x3ays6",
-        "playerId": "p_main_4",
-        "teamId": "team_lsg_main",
-        "teamName": "Lucknow Super Giants",
-        "amount": 35000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792071761814
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071744325_sxjy77": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792071744325_shcxap",
-        "playerId": "p_main_4",
-        "teamId": "team_srh_main",
-        "teamName": "Sunrisers Hyderabad",
-        "amount": 40000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792071761814
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071748205_ysu2i4": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792071748205_rnszy7",
-        "playerId": "p_main_4",
-        "teamId": "team_gt_main",
-        "teamName": "Gujarat Titans",
-        "amount": 45000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792071761814
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071758186_1wc26o": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792071758186_ilkyag",
-        "playerId": "p_main_4",
-        "teamId": "team_kkr_main",
-        "teamName": "Kolkata Knight Riders",
-        "amount": 50000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792071768185
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071761929_qyyzxu": {
-      "eventType": "PLAYER_SOLD",
-      "details": {
-        "playerId": "p_main_4",
-        "teamId": "team_kkr_main",
-        "amount": 50000000
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071765109_kios6t": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_5",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071795319_qlw7rn": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_5"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071798391_bup8bn": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_13",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071810867_mz3wnz": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071812535_ipc9xi": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071814109_ohcwta": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071816186_zecu4j": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071819101_uaf703": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071819267_aarf8d": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071819434_33y455": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071820106_44w2af": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071820288_txo18c": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071820471_1e0pny": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 17524,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071828712_dyniho": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_13"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071854488_ivefvu": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_19",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071857555_rkjwi6": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792071857555_1ydzgx",
-        "playerId": "p_main_19",
-        "teamId": "team_gt_main",
-        "teamName": "Gujarat Titans",
-        "amount": 15000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792071884488
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071858042_rasj81": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792071858041_8819ww",
-        "playerId": "p_main_19",
-        "teamId": "team_rr_main",
-        "teamName": "Rajasthan Royals",
-        "amount": 20000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792071884488
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071875852_cbke3z": {
-      "eventType": "PLAYER_SOLD",
-      "details": {
-        "playerId": "p_main_19",
-        "teamId": "team_rr_main",
-        "amount": 20000000
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071877098_4r5dbb": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_22",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071883214_azs360": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_22"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071893275_rj5y5c": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_25",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071896392_20nc3e": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_25"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071898591_1cj1w1": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_28",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071902458_agpnwu": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_28"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071903434_ri72p5": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_33",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792071919376_rnpyqf": {
-      "eventType": "AUCTION_RESET",
-      "details": {
-        "locationId": "main_arena"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072259216_lxxqle": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_1",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072263807_ubvzud": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072263807_ph0nm7",
-        "playerId": "p_main_1",
-        "teamId": "team_dc_main",
-        "teamName": "Delhi Capitals",
-        "amount": 15000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072267114_tqi7z0": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072267114_xjxysm",
-        "playerId": "p_main_1",
-        "teamId": "team_gt_main",
-        "teamName": "Gujarat Titans",
-        "amount": 20000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072267952_ghk4wc": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072267952_s1q7jk",
-        "playerId": "p_main_1",
-        "teamId": "team_kkr_main",
-        "teamName": "Kolkata Knight Riders",
-        "amount": 25000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072268639_pxtobu": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072268639_e8rn3f",
-        "playerId": "p_main_1",
-        "teamId": "team_rr_main",
-        "teamName": "Rajasthan Royals",
-        "amount": 30000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072269449_0d9v5x": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072269449_gbpstb",
-        "playerId": "p_main_1",
-        "teamId": "team_rcb_main",
-        "teamName": "Royal Challengers Bengaluru",
-        "amount": 35000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072270292_g376nt": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072270292_c1o952",
-        "playerId": "p_main_1",
-        "teamId": "team_lsg_main",
-        "teamName": "Lucknow Super Giants",
-        "amount": 40000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072271012_lqg1s0": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072271012_okhseb",
-        "playerId": "p_main_1",
-        "teamId": "team_srh_main",
-        "teamName": "Sunrisers Hyderabad",
-        "amount": 45000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072272216_hsaqfl": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072272216_ki00hh",
-        "playerId": "p_main_1",
-        "teamId": "team_kkr_main",
-        "teamName": "Kolkata Knight Riders",
-        "amount": 50000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072273152_fbjjpe": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072273152_fccavi",
-        "playerId": "p_main_1",
-        "teamId": "team_gt_main",
-        "teamName": "Gujarat Titans",
-        "amount": 60000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072274058_5lp6ph": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072274058_5raoud",
-        "playerId": "p_main_1",
-        "teamId": "team_dc_main",
-        "teamName": "Delhi Capitals",
-        "amount": 70000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072277287_ilka4j": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072277287_o23pxp",
-        "playerId": "p_main_1",
-        "teamId": "team_rr_main",
-        "teamName": "Rajasthan Royals",
-        "amount": 80000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072278973_wtqef3": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072278972_ccden9",
-        "playerId": "p_main_1",
-        "teamId": "team_kkr_main",
-        "teamName": "Kolkata Knight Riders",
-        "amount": 90000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072289216
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072282792_8b7hso": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072282792_zwh0am",
-        "playerId": "p_main_1",
-        "teamId": "team_csk_main",
-        "teamName": "Chennai Super Kings",
-        "amount": 160000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072292791
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072284654_daz2mj": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072284654_4exrht",
-        "playerId": "p_main_1",
-        "teamId": "team_mi_main",
-        "teamName": "Mumbai Indians",
-        "amount": 180000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072294654
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072289244_7cepdv": {
-      "eventType": "PLAYER_SOLD",
-      "details": {
-        "playerId": "p_main_1",
-        "teamId": "team_mi_main",
-        "amount": 180000000
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072292434_qlsym9": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_2",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072296501_9av0bp": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072296501_r9nbcx",
-        "playerId": "p_main_2",
-        "teamId": "team_rcb_main",
-        "teamName": "Royal Challengers Bengaluru",
-        "amount": 15000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072298115_va3kf5": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072298115_9t8sp9",
-        "playerId": "p_main_2",
-        "teamId": "team_lsg_main",
-        "teamName": "Lucknow Super Giants",
-        "amount": 20000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072299467_74bih1": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072299467_wo3am7",
-        "playerId": "p_main_2",
-        "teamId": "team_kkr_main",
-        "teamName": "Kolkata Knight Riders",
-        "amount": 25000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072300689_xwp77a": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072300689_nsv1m4",
-        "playerId": "p_main_2",
-        "teamId": "team_rr_main",
-        "teamName": "Rajasthan Royals",
-        "amount": 30000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072301778_1l3wx0": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072301778_s748qm",
-        "playerId": "p_main_2",
-        "teamId": "team_dc_main",
-        "teamName": "Delhi Capitals",
-        "amount": 35000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072302811_6w8mk0": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072302811_9vwqqw",
-        "playerId": "p_main_2",
-        "teamId": "team_csk_main",
-        "teamName": "Chennai Super Kings",
-        "amount": 40000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072304026_2ykt5q": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072304026_zuzdz0",
-        "playerId": "p_main_2",
-        "teamId": "team_pbks_main",
-        "teamName": "Punjab Kings",
-        "amount": 45000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072305080_xekoqm": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072305080_ha9fah",
-        "playerId": "p_main_2",
-        "teamId": "team_rcb_main",
-        "teamName": "Royal Challengers Bengaluru",
-        "amount": 50000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072306184_onuwav": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072306184_87z4yz",
-        "playerId": "p_main_2",
-        "teamId": "team_srh_main",
-        "teamName": "Sunrisers Hyderabad",
-        "amount": 60000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072308057_89hkw9": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792072308057_o3vnnh",
-        "playerId": "p_main_2",
-        "teamId": "team_lsg_main",
-        "teamName": "Lucknow Super Giants",
-        "amount": 70000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792072322434
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072322515_s927jc": {
-      "eventType": "PLAYER_SOLD",
-      "details": {
-        "playerId": "p_main_2",
-        "teamId": "team_lsg_main",
-        "amount": 70000000
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072325578_648i3f": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_6",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072355605_qekura": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_6"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072358662_6ndtv3": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_10",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072392567_bz3fam": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_10"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072396575_hmvt8d": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_13",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072426835_evaaak": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_13"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072433992_szu8zc": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_19",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072491324_hfc6rq": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_19"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072494373_1uy4ej": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_22",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072519448_55wvth": {
-      "eventType": "AUCTION_RESET",
-      "details": {
-        "locationId": "main_arena"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072943460_jf2vw4": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_1",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072973507_wtgyo6": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_1"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072977178_7d6uax": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_2",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072987159_t6sksf": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_3",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072987863_ts82qc": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_3",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072996566_46m35n": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_3"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792072999607_yvpncp": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_6",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073004974_h1betp": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_6"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073006144_ze11s3": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_10",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073008028_jln3gp": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_10"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073008950_rwskof": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_13",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073010292_i1w7qa": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_13"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073011187_tpdan6": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_19",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073017908_ff4x3w": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_3"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073021554_a5cifj": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_4",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073039480_3p7drc": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 12075,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073042063_to4q7v": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_19"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073048422_yg1tgp": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_22",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073051680_14zd52": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_4"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073055319_bjq0er": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_5",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073083817_e02wo9": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_22"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073085450_lm42bk": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_5"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073087427_qd845s": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_25",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073089093_n2kq6i": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_6",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073119225_rq0asd": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_6"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073122871_ost50a": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_7",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073131269_1f3ddu": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_25"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073135576_bwmd44": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_28",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073152997_02irrc": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_7"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073156743_7jf57w": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_8",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073186931_bs5s35": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_8"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073190506_nqd0t0": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_9",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073204932_chhe5e": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_28"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073208826_m1thfk": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_33",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073220608_jkcdtk": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_9"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073224184_0fhugt": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_10",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073254284_y4ki4p": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_10"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073257970_vmm65s": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_11",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073288139_ydm88n": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_11"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073291721_8zrca5": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_12",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073691203_u3oahb": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "pause",
-        "locationId": "main_arena",
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 0,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073702022_2hsmrp": {
-      "eventType": "TIMER_CONTROL",
-      "details": {
-        "action": "resume",
-        "locationId": "main_arena",
-        "deadlineMs": 1792073732021,
-        "paused": false,
-        "remainingMs": 0,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073872381_ftykgx": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_13",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073902496_1mq4iv": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_13"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073906077_9obbzo": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_14",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073936177_2lj66w": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_14"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073939748_x70c4h": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_15",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073969842_53vqcs": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_15"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792073973277_hysmzd": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_16",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074003387_c7o83c": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_16"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074006970_cbvn4n": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_17",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074037071_hs1a99": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_17"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074040666_0x509z": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_18",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074070761_7ids34": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_18"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074074342_zyezg0": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_19",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074104445_yq4ylx": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_19"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074108016_6jn19t": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_20",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074138117_f5miao": {
-      "eventType": "PLAYER_UNSOLD",
-      "details": {
-        "playerId": "p_main_20"
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074141710_v93fi6": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_21",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074224500_m5x93n": {
-      "eventType": "BREAK_TOGGLED",
-      "details": {
-        "show": true,
-        "locationId": "main_arena",
-        "isOnBreak": true,
-        "deadlineMs": null,
-        "paused": true,
-        "remainingMs": 0,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074402581_7db9ut": {
-      "eventType": "BREAK_TOGGLED",
-      "details": {
-        "show": false,
-        "locationId": "main_arena",
-        "isOnBreak": false,
-        "deadlineMs": 1792074432580,
-        "paused": false,
-        "remainingMs": 0,
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074558194_39yarh": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_23",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074567495_jh9s1n": {
-      "eventType": "NEW_BID",
-      "details": {
-        "bidId": "id_1792074567495_hvb17l",
-        "playerId": "p_main_23",
-        "teamId": "team_gt_main",
-        "teamName": "Gujarat Titans",
-        "amount": 20000000,
-        "locationId": "main_arena",
-        "updatedDeadlineMs": 1792074588194
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074568753_zt7zat": {
-      "eventType": "PLAYER_SOLD",
-      "details": {
-        "playerId": "p_main_23",
-        "teamId": "team_gt_main",
-        "amount": 20000000
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    },
-    "id_1792074571986_ta2jw6": {
-      "eventType": "ADVANCE_PLAYER",
-      "details": {
-        "playerId": "p_main_37",
-        "durationSeconds": 30
-      },
-      "locationId": "main_arena",
-      "timestamp": {}
-    }
-  }
+  "audit_logs": {}
 }
