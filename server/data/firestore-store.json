@@ -6,12 +6,12 @@
       "city": "BCCI National Command Arena",
       "isOnBreak": false,
       "leaderboardVisible": false,
-      "activePlayerId": "p_main_5",
-      "auctionStatus": "LIVE",
-      "timerDeadlineMs": 1792071795109,
+      "activePlayerId": null,
+      "auctionStatus": "UPCOMING",
+      "timerDeadlineMs": null,
       "timerDurationSeconds": 30,
       "timerPaused": false,
-      "timerRemainingMs": 30000,
+      "timerRemainingMs": null,
       "createdAt": "2026-10-15T02:40:51.229Z",
       "updatedAt": {}
     }
@@ -74,7 +74,7 @@
       "secondaryColor": "#d4af37",
       "city": "Kolkata",
       "locationId": "main_arena",
-      "budget": 850000000,
+      "budget": 900000000,
       "initialBudget": 900000000,
       "mistakes": 0,
       "isDisqualified": false,
@@ -250,12 +250,12 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/adam_zampa.png.png",
       "locationId": "main_arena",
-      "status": "SOLD",
-      "currentBid": 50000000,
-      "currentBidTeamId": "team_kkr_main",
-      "currentBidId": "id_1792071758186_ilkyag",
-      "soldPrice": 50000000,
-      "teamId": "team_kkr_main",
+      "status": "UPCOMING",
+      "currentBid": null,
+      "currentBidTeamId": null,
+      "currentBidId": null,
+      "soldPrice": null,
+      "teamId": null,
       "order": 4,
       "createdAt": "2026-10-15T02:40:51.232Z",
       "updatedAt": {},
@@ -271,7 +271,7 @@
       "country": "OVERSEAS",
       "imageUrl": "/players/adil_rashid.png.png",
       "locationId": "main_arena",
-      "status": "LIVE",
+      "status": "UPCOMING",
       "currentBid": null,
       "currentBidTeamId": null,
       "currentBidId": null,
@@ -559,7 +559,8 @@
       "teamId": null,
       "order": 19,
       "createdAt": "2026-10-15T02:40:51.232Z",
-      "updatedAt": {}
+      "updatedAt": {},
+      "currentBidTeamName": "Rajasthan Royals"
     },
     "p_main_20": {
       "id": "p_main_20",
@@ -4474,6 +4475,24 @@
       "amount": 50000000,
       "status": "WINNING",
       "createdAt": {}
+    },
+    "id_1792071857555_1ydzgx": {
+      "locationId": "main_arena",
+      "playerId": "p_main_19",
+      "teamId": "team_gt_main",
+      "teamName": "Gujarat Titans",
+      "amount": 15000000,
+      "status": "ACTIVE",
+      "createdAt": {}
+    },
+    "id_1792071858041_8819ww": {
+      "locationId": "main_arena",
+      "playerId": "p_main_19",
+      "teamId": "team_rr_main",
+      "teamName": "Rajasthan Royals",
+      "amount": 20000000,
+      "status": "WINNING",
+      "createdAt": {}
     }
   },
   "users": {
@@ -5526,6 +5545,276 @@
       "details": {
         "playerId": "p_main_5",
         "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071795319_qlw7rn": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_5"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071798391_bup8bn": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_13",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071810867_mz3wnz": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071812535_ipc9xi": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071814109_ohcwta": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071816186_zecu4j": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071819101_uaf703": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071819267_aarf8d": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071819434_33y455": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071820106_44w2af": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071820288_txo18c": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071820471_1e0pny": {
+      "eventType": "TIMER_CONTROL",
+      "details": {
+        "action": "pause",
+        "locationId": "main_arena",
+        "deadlineMs": null,
+        "paused": true,
+        "remainingMs": 17524,
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071828712_dyniho": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_13"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071854488_ivefvu": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_19",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071857555_rkjwi6": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792071857555_1ydzgx",
+        "playerId": "p_main_19",
+        "teamId": "team_gt_main",
+        "teamName": "Gujarat Titans",
+        "amount": 15000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792071884488
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071858042_rasj81": {
+      "eventType": "NEW_BID",
+      "details": {
+        "bidId": "id_1792071858041_8819ww",
+        "playerId": "p_main_19",
+        "teamId": "team_rr_main",
+        "teamName": "Rajasthan Royals",
+        "amount": 20000000,
+        "locationId": "main_arena",
+        "updatedDeadlineMs": 1792071884488
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071875852_cbke3z": {
+      "eventType": "PLAYER_SOLD",
+      "details": {
+        "playerId": "p_main_19",
+        "teamId": "team_rr_main",
+        "amount": 20000000
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071877098_4r5dbb": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_22",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071883214_azs360": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_22"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071893275_rj5y5c": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_25",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071896392_20nc3e": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_25"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071898591_1cj1w1": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_28",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071902458_agpnwu": {
+      "eventType": "PLAYER_UNSOLD",
+      "details": {
+        "playerId": "p_main_28"
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071903434_ri72p5": {
+      "eventType": "ADVANCE_PLAYER",
+      "details": {
+        "playerId": "p_main_33",
+        "durationSeconds": 30
+      },
+      "locationId": "main_arena",
+      "timestamp": {}
+    },
+    "id_1792071919376_rnpyqf": {
+      "eventType": "AUCTION_RESET",
+      "details": {
+        "locationId": "main_arena"
       },
       "locationId": "main_arena",
       "timestamp": {}

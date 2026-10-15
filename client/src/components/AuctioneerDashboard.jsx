@@ -34,6 +34,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   const [autoPilotEnabled, setAutoPilotEnabled] = useState(true);
   const [autoAdvanceCountdown, setAutoAdvanceCountdown] = useState(null);
   const [slotCompletedNotice, setSlotCompletedNotice] = useState(false);
+  const [playerHistory, setPlayerHistory] = useState([]);
   const isResolvingRef = useRef(false);
 
   // Local ticker derived from server deadline with automated resolution at zero
@@ -193,6 +194,11 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   const advanceNextPlayer = async (targetId) => {
     if (!selectedLocation) return;
     try {
+      // Record current live player into player history before advancing
+      if (livePlayer && (!playerHistory.length || playerHistory[playerHistory.length - 1].id !== livePlayer.id)) {
+        setPlayerHistory(prev => [...prev, livePlayer]);
+      }
+
       const upcomingPool = players.filter(p => 
         (poolFilter === 'ALL' || p.pool === poolFilter) && 
         p.status === 'UPCOMING' &&
@@ -235,6 +241,61 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
       }
     } catch (err) {
       console.error('Failed to advance next player:', err);
+    }
+  };
+
+  const goToPreviousPlayer = async () => {
+    if (!selectedLocation) return;
+    if (playerHistory.length === 0) {
+      alert('No previous player in session history.');
+      return;
+    }
+
+    const prevPlayer = playerHistory[playerHistory.length - 1];
+    setPlayerHistory(prev => prev.slice(0, -1));
+
+    // Clear auto-advance countdown and resolution flags
+    setAutoAdvanceCountdown(null);
+    isResolvingRef.current = false;
+    setSlotCompletedNotice(false);
+
+    try {
+      // Reopen previous player in backend (refunds franchise purse if was sold, sets status back to LIVE)
+      const res = await fetch(`${API_URL}/api/auction/reopen`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          locationId: selectedLocation,
+          playerId: prevPlayer.id
+        })
+      });
+
+      // Restart authoritative countdown for the reopened previous player
+      await controlTimer('start', { durationSeconds: timerConfigDuration });
+
+      const data = await res.json();
+      const loadedPlayer = (data && data.id) ? data : prevPlayer;
+
+      setLivePlayer({
+        ...loadedPlayer,
+        status: 'LIVE',
+        soldPrice: null,
+        teamId: null
+      });
+      setCurrentBid(loadedPlayer.basePrice || prevPlayer.basePrice);
+      setBiddingTeam('');
+      setBidHistory([]);
+      fetchTeams();
+
+      // Ensure previous player is in local player list if not already
+      setPlayers(prev => {
+        if (!prev.some(p => p.id === loadedPlayer.id)) {
+          return [loadedPlayer, ...prev];
+        }
+        return prev;
+      });
+    } catch (err) {
+      console.error('Failed to return to previous player:', err);
     }
   };
 
@@ -288,11 +349,10 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   }, [selectedLocation]);
 
   const bringToLot = (player) => {
-    setLivePlayer({ ...player, status: 'LIVE' });
-    setCurrentBid(player.basePrice);
-    setBiddingTeam('');
-    setBidHistory([]);
-    socket.emit('setLivePlayer', { locationId: selectedLocation, playerId: player.id });
+    if (livePlayer && livePlayer.id !== player.id) {
+      setPlayerHistory(prev => [...prev.filter(p => p.id !== livePlayer.id), livePlayer]);
+    }
+    advanceNextPlayer(player.id);
   };
 
   const toggleLeaderboard = () => {
@@ -535,11 +595,27 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
           </button>
 
           <button
+            className="btn btn-secondary"
+            disabled={playerHistory.length === 0}
+            onClick={goToPreviousPlayer}
+            style={{ 
+              padding: '0.55rem 1rem', 
+              fontSize: '0.8rem',
+              fontWeight: '700',
+              opacity: playerHistory.length === 0 ? 0.45 : 1,
+              cursor: playerHistory.length === 0 ? 'not-allowed' : 'pointer'
+            }}
+            title={playerHistory.length > 0 ? `Return to previous player: ${playerHistory[playerHistory.length - 1].name}` : 'No previous player in session history'}
+          >
+            ◀ PREVIOUS PLAYER
+          </button>
+
+          <button
             className="btn btn-gold"
             onClick={() => advanceNextPlayer()}
-            style={{ padding: '0.55rem 1.25rem', fontSize: '0.8rem' }}
+            style={{ padding: '0.55rem 1.25rem', fontSize: '0.8rem', fontWeight: '800' }}
           >
-            NEXT LOT
+            NEXT PLAYER ▶
           </button>
           
           <button
@@ -894,7 +970,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                       gap: '0.75rem',
                       flexWrap: 'wrap'
                     }}>
-                      <span>⏱️ AUTO-ADVANCING TO NEXT LOT IN {autoAdvanceCountdown}s</span>
+                      <span>⏱️ AUTO-ADVANCING TO NEXT PLAYER IN {autoAdvanceCountdown}s</span>
                       <button 
                         onClick={() => setAutoAdvanceCountdown(null)} 
                         className="btn btn-secondary" 
@@ -908,9 +984,9 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                           advanceNextPlayer();
                         }} 
                         className="btn btn-gold" 
-                        style={{ padding: '0.25rem 0.65rem', fontSize: '0.72rem' }}
+                        style={{ padding: '0.25rem 0.65rem', fontSize: '0.72rem', fontWeight: '800' }}
                       >
-                        LOAD NEXT NOW &rarr;
+                        NEXT PLAYER ▶
                       </button>
                     </div>
                   )}
@@ -934,12 +1010,25 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                     </div>
                   )}
 
-                  <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginTop: '1.5rem' }}>
-                    <button className="btn btn-gold" onClick={() => advanceNextPlayer()}>
-                      NEXT LOT &rarr;
+                  <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginTop: '1.5rem', flexWrap: 'wrap' }}>
+                    <button 
+                      className="btn btn-secondary" 
+                      disabled={playerHistory.length === 0}
+                      onClick={goToPreviousPlayer}
+                      style={{ 
+                        opacity: playerHistory.length === 0 ? 0.45 : 1, 
+                        cursor: playerHistory.length === 0 ? 'not-allowed' : 'pointer',
+                        fontWeight: '700' 
+                      }}
+                      title={playerHistory.length > 0 ? `Return to: ${playerHistory[playerHistory.length - 1].name}` : 'No previous player in session history'}
+                    >
+                      ◀ PREVIOUS PLAYER
+                    </button>
+                    <button className="btn btn-gold" onClick={() => advanceNextPlayer()} style={{ fontWeight: '800' }}>
+                      NEXT PLAYER ▶
                     </button>
                     <button className="btn btn-secondary" onClick={reopenPlayer}>
-                      REOPEN LOT
+                      REOPEN CURRENT LOT
                     </button>
                   </div>
                 </div>
@@ -971,13 +1060,24 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                   <p style={{ color: 'var(--text-muted)', fontSize: '1rem', fontFamily: 'JetBrains Mono, monospace' }}>
                     NO ACTIVE LOT CURRENTLY ON GAVEL STAGE
                   </p>
-                  <button 
-                    className="btn btn-gold" 
-                    onClick={() => advanceNextPlayer()} 
-                    style={{ padding: '0.95rem 2.5rem', fontSize: '1.05rem', fontWeight: '800', letterSpacing: '0.05em' }}
-                  >
-                    ⚡ START AUCTION ({autoPilotEnabled ? 'AUTO-PILOT ACTIVE' : 'MANUAL'})
-                  </button>
+                  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                    {playerHistory.length > 0 && (
+                      <button 
+                        className="btn btn-secondary" 
+                        onClick={goToPreviousPlayer} 
+                        style={{ padding: '0.85rem 1.5rem', fontSize: '0.9rem', fontWeight: '700' }}
+                      >
+                        ◀ PREVIOUS PLAYER ({playerHistory[playerHistory.length - 1].name})
+                      </button>
+                    )}
+                    <button 
+                      className="btn btn-gold" 
+                      onClick={() => advanceNextPlayer()} 
+                      style={{ padding: '0.95rem 2.25rem', fontSize: '1.05rem', fontWeight: '800', letterSpacing: '0.05em' }}
+                    >
+                      NEXT PLAYER ▶
+                    </button>
+                  </div>
                   <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
                     Active Slot: <strong style={{ color: 'var(--gold-bright)' }}>{poolFilter}</strong> ({players.filter(p => poolFilter === 'ALL' || p.pool === poolFilter).length} upcoming lots)
                   </div>
