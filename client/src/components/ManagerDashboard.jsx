@@ -498,35 +498,38 @@ export default function ManagerDashboard() {
     }).sort((a, b) => b.overallScore - a.overallScore);
 
     return (
-      <div key={location.id} style={{ marginBottom: '3rem' }}>
-        <h2 style={{ color: 'var(--primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          📍 {location.name} Results
-        </h2>
-        <div style={{ overflowX: 'auto', borderRadius: '8px', border: '1px solid var(--glass-border)' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', background: 'rgba(0,0,0,0.2)' }}>
+      <div key={location.id} style={{ marginBottom: '2.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+          <h3 style={{ color: 'var(--gold-bright)', margin: 0, fontWeight: '800', letterSpacing: '0.04em' }}>
+            {location.name.toUpperCase()} STANDINGS & VALUATION
+          </h3>
+          <span className="badge badge-gold">VENUE AUDIT</span>
+        </div>
+        <div className="table-container">
+          <table className="glass-table">
             <thead>
-              <tr style={{ background: 'rgba(255,255,255,0.05)', textAlign: 'left' }}>
-                <th style={{ padding: '1rem' }}>Rank</th>
-                <th style={{ padding: '1rem' }}>Franchise</th>
-                <th style={{ padding: '1rem' }}>Bought Here</th>
-                <th style={{ padding: '1rem' }}>Money Spent</th>
-                <th style={{ padding: '1rem' }}>Rem. Purse</th>
-                <th style={{ padding: '1rem' }}>Points</th>
-                <th style={{ padding: '1rem' }}>Overall Score</th>
+              <tr>
+                <th>Rank</th>
+                <th>Franchise</th>
+                <th>Purchased Here</th>
+                <th>Expenditure</th>
+                <th>Remaining Purse</th>
+                <th>Squad Points</th>
+                <th style={{ color: 'var(--gold-bright)' }}>Score</th>
               </tr>
             </thead>
             <tbody>
               {analyzedTeamsForLocation.map((team, index) => (
-                <tr key={team.id} style={{ borderBottom: '1px solid var(--glass-border)' }}>
-                  <td style={{ padding: '1rem' }}>
-                    {index === 0 ? '🏆 1st' : index === 1 ? '🥈 2nd' : index === 2 ? '🥉 3rd' : `${index + 1}th`}
+                <tr key={team.id}>
+                  <td style={{ fontWeight: '800', fontFamily: 'JetBrains Mono, monospace', color: index === 0 ? 'var(--gold-bright)' : 'var(--text-secondary)' }}>
+                    #{index + 1}
                   </td>
-                  <td style={{ padding: '1rem', fontWeight: 'bold', color: 'var(--primary)' }}>{team.name}</td>
-                  <td style={{ padding: '1rem' }}>{team.localPlayers.length}</td>
-                  <td style={{ padding: '1rem', color: 'var(--danger)' }}>₹{(team.localMoneySpent / 10000000).toFixed(2)} Cr</td>
-                  <td style={{ padding: '1rem', color: 'var(--success)' }}>₹{(team.remainingPurse / 10000000).toFixed(2)} Cr</td>
-                  <td style={{ padding: '1rem' }}>{team.localPoints}</td>
-                  <td style={{ padding: '1rem', fontWeight: 'bold' }}>{team.overallScore.toFixed(2)}</td>
+                  <td style={{ fontWeight: '700', color: '#ffffff' }}>{team.name}</td>
+                  <td style={{ fontFamily: 'JetBrains Mono, monospace' }}>{team.localPlayers.length}</td>
+                  <td style={{ color: 'var(--crimson-danger)', fontFamily: 'JetBrains Mono, monospace' }}>₹{(team.localMoneySpent / 10000000).toFixed(2)} Cr</td>
+                  <td style={{ color: 'var(--emerald-live)', fontFamily: 'JetBrains Mono, monospace' }}>₹{(team.remainingPurse / 10000000).toFixed(2)} Cr</td>
+                  <td style={{ fontFamily: 'JetBrains Mono, monospace' }}>{team.localPoints}</td>
+                  <td style={{ fontWeight: '800', color: 'var(--gold-bright)', fontFamily: 'JetBrains Mono, monospace' }}>{team.overallScore.toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>
@@ -539,50 +542,97 @@ export default function ManagerDashboard() {
   return (
     <div className="dashboard-grid">
       {/* SIDEBAR NAVIGATION */}
-      <div className="dashboard-sidebar glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <h2 style={{ marginBottom: '1rem', textAlign: 'center', color: 'var(--primary)' }}>Manager Menu</h2>
+      <div className="dashboard-sidebar glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', padding: '1.25rem' }}>
+        <div style={{ marginBottom: '0.75rem', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.75rem' }}>
+          <span style={{ fontSize: '0.7rem', color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+            OPERATIONS DESK
+          </span>
+          <h3 style={{ fontSize: '1.15rem', color: '#ffffff', fontWeight: '800', margin: '0.2rem 0 0 0' }}>DIRECTOR MENU</h3>
+        </div>
         <button 
           onClick={() => { setActiveTab('LIVE_AUCTION'); }}
           className="btn"
-          style={{ background: activeTab === 'LIVE_AUCTION' ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: activeTab === 'LIVE_AUCTION' ? '#000' : 'white', textAlign: 'left', fontWeight: 'bold' }}
+          style={{ 
+            background: activeTab === 'LIVE_AUCTION' ? 'var(--gold-surface)' : 'transparent', 
+            color: activeTab === 'LIVE_AUCTION' ? 'var(--gold-bright)' : 'var(--text-secondary)', 
+            border: activeTab === 'LIVE_AUCTION' ? '1px solid var(--gold-border)' : '1px solid transparent',
+            justifyContent: 'flex-start',
+            fontSize: '0.82rem',
+            padding: '0.75rem 1rem'
+          }}
         >
-          🔨 Live Auction Room
+          LIVE GAVEL CONSOLE
         </button>
         <button 
           onClick={() => { setActiveTab('DASHBOARD'); setSelectedLocation(null); }}
           className="btn"
-          style={{ background: activeTab === 'DASHBOARD' ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: activeTab === 'DASHBOARD' ? '#000' : 'white', textAlign: 'left' }}
+          style={{ 
+            background: activeTab === 'DASHBOARD' ? 'var(--gold-surface)' : 'transparent', 
+            color: activeTab === 'DASHBOARD' ? 'var(--gold-bright)' : 'var(--text-secondary)', 
+            border: activeTab === 'DASHBOARD' ? '1px solid var(--gold-border)' : '1px solid transparent',
+            justifyContent: 'flex-start',
+            fontSize: '0.82rem',
+            padding: '0.75rem 1rem'
+          }}
         >
-          📊 Overview
+          TELEMETRY OVERVIEW
         </button>
         <button 
           onClick={() => { setActiveTab('LEADERBOARDS'); setSelectedLocation(null); }}
           className="btn"
-          style={{ background: activeTab === 'LEADERBOARDS' ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: activeTab === 'LEADERBOARDS' ? '#000' : 'white', textAlign: 'left' }}
+          style={{ 
+            background: activeTab === 'LEADERBOARDS' ? 'var(--gold-surface)' : 'transparent', 
+            color: activeTab === 'LEADERBOARDS' ? 'var(--gold-bright)' : 'var(--text-secondary)', 
+            border: activeTab === 'LEADERBOARDS' ? '1px solid var(--gold-border)' : '1px solid transparent',
+            justifyContent: 'flex-start',
+            fontSize: '0.82rem',
+            padding: '0.75rem 1rem'
+          }}
         >
-          🏆 Leaderboards
+          TOURNAMENT STANDINGS
         </button>
         <button 
           onClick={() => { setActiveTab('VENUES'); setSelectedLocation(null); }}
           className="btn"
-          style={{ background: activeTab === 'VENUES' ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: activeTab === 'VENUES' ? '#000' : 'white', textAlign: 'left' }}
+          style={{ 
+            background: activeTab === 'VENUES' ? 'var(--gold-surface)' : 'transparent', 
+            color: activeTab === 'VENUES' ? 'var(--gold-bright)' : 'var(--text-secondary)', 
+            border: activeTab === 'VENUES' ? '1px solid var(--gold-border)' : '1px solid transparent',
+            justifyContent: 'flex-start',
+            fontSize: '0.82rem',
+            padding: '0.75rem 1rem'
+          }}
         >
-          📍 Venues & Users
+          ARENA & OPERATORS
         </button>
         <button 
           onClick={() => { setActiveTab('CONFIG'); setSelectedLocation(null); }}
           className="btn"
-          style={{ background: activeTab === 'CONFIG' ? 'var(--primary)' : 'rgba(255,255,255,0.05)', color: activeTab === 'CONFIG' ? '#000' : 'white', textAlign: 'left' }}
+          style={{ 
+            background: activeTab === 'CONFIG' ? 'var(--gold-surface)' : 'transparent', 
+            color: activeTab === 'CONFIG' ? 'var(--gold-bright)' : 'var(--text-secondary)', 
+            border: activeTab === 'CONFIG' ? '1px solid var(--gold-border)' : '1px solid transparent',
+            justifyContent: 'flex-start',
+            fontSize: '0.82rem',
+            padding: '0.75rem 1rem'
+          }}
         >
-          ⚙️ System Config
+          ROSTER POOL & CONFIG
         </button>
         <div style={{ flex: 1 }}></div>
         <button 
           onClick={() => { setActiveTab('DANGER'); setSelectedLocation(null); }}
           className="btn"
-          style={{ background: activeTab === 'DANGER' ? 'var(--danger)' : 'rgba(220,53,69,0.1)', color: activeTab === 'DANGER' ? 'white' : 'var(--danger)', textAlign: 'left', border: '1px solid var(--danger)' }}
+          style={{ 
+            background: activeTab === 'DANGER' ? 'var(--crimson-surface)' : 'transparent', 
+            color: 'var(--crimson-danger)', 
+            justifyContent: 'flex-start', 
+            border: '1px solid var(--crimson-border)',
+            fontSize: '0.82rem',
+            padding: '0.75rem 1rem'
+          }}
         >
-          ⚠️ Danger Zone
+          DATABASE RESET OVERRIDE
         </button>
       </div>
 
@@ -600,19 +650,19 @@ export default function ManagerDashboard() {
         {activeTab === 'DASHBOARD' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div className="glass-panel" style={{ padding: '2rem' }}>
-              <h1 style={{ color: 'var(--primary)', marginBottom: '2rem' }}>Global Analytics</h1>
+              <h1 style={{ color: '#ffffff', marginBottom: '1.5rem', fontWeight: '800' }}>Global Auction Telemetry</h1>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
-                <div className="card glass-panel" style={{ textAlign: 'center' }}>
-                  <h3 style={{ color: 'var(--text-muted)' }}>Total Venues</h3>
-                  <h1 style={{ fontSize: '3rem', color: 'var(--primary)' }}>{locations.length}</h1>
+                <div style={{ background: 'rgba(10, 13, 18, 0.85)', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)', textAlign: 'center' }}>
+                  <h3 style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: 'JetBrains Mono, monospace' }}>Active Venues</h3>
+                  <h1 style={{ fontSize: '3rem', color: '#ffffff', fontFamily: 'JetBrains Mono, monospace', margin: '0.25rem 0' }}>{locations.length}</h1>
                 </div>
-                <div className="card glass-panel" style={{ textAlign: 'center' }}>
-                  <h3 style={{ color: 'var(--text-muted)' }}>Franchises</h3>
-                  <h1 style={{ fontSize: '3rem', color: 'var(--accent)' }}>{teams.length}</h1>
+                <div style={{ background: 'rgba(10, 13, 18, 0.85)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--gold-border)', textAlign: 'center' }}>
+                  <h3 style={{ color: 'var(--gold-bright)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: 'JetBrains Mono, monospace' }}>Franchises</h3>
+                  <h1 style={{ fontSize: '3rem', color: 'var(--gold-bright)', fontFamily: 'JetBrains Mono, monospace', margin: '0.25rem 0' }}>{teams.length}</h1>
                 </div>
-                <div className="card glass-panel" style={{ textAlign: 'center' }}>
-                  <h3 style={{ color: 'var(--text-muted)' }}>Sold Players</h3>
-                  <h1 style={{ fontSize: '3rem', color: 'var(--success)' }}>{playersCount}</h1>
+                <div style={{ background: 'rgba(10, 13, 18, 0.85)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--emerald-border)', textAlign: 'center' }}>
+                  <h3 style={{ color: 'var(--emerald-live)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: 'JetBrains Mono, monospace' }}>Sold Players</h3>
+                  <h1 style={{ fontSize: '3rem', color: 'var(--emerald-live)', fontFamily: 'JetBrains Mono, monospace', margin: '0.25rem 0' }}>{playersCount}</h1>
                 </div>
               </div>
             </div>
@@ -634,7 +684,7 @@ export default function ManagerDashboard() {
         {/* LEADERBOARDS TAB */}
         {activeTab === 'LEADERBOARDS' && (
           <div className="glass-panel" style={{ padding: '2rem' }}>
-            <h1 style={{ marginBottom: '2rem', color: 'var(--primary)' }}>Venue-Wise Results</h1>
+            <h1 style={{ marginBottom: '1.5rem', color: '#ffffff', fontWeight: '800' }}>Venue Performance Audits</h1>
             {locations.length > 0 ? (
               locations.map(loc => renderLocationLeaderboard(loc))
             ) : (
@@ -648,7 +698,7 @@ export default function ManagerDashboard() {
           <div className="glass-panel" style={{ padding: '2rem' }}>
             {!selectedLocation ? (
               <>
-                <h1 style={{ color: 'var(--primary)', marginBottom: '2rem' }}>📍 Manage Venues</h1>
+                <h1 style={{ color: '#ffffff', marginBottom: '1.5rem', fontWeight: '800' }}>Manage Venues & Hubs</h1>
                 <form onSubmit={handleCreateLocation} style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
                   <input 
                     type="text" 
@@ -686,24 +736,24 @@ export default function ManagerDashboard() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <button 
                       onClick={() => setSelectedLocation(null)}
-                      className="btn"
-                      style={{ background: 'rgba(255,255,255,0.1)' }}
+                      className="btn btn-secondary"
+                      style={{ padding: '0.45rem 1rem' }}
                     >
-                      ⬅️ Back
+                      &larr; All Venues
                     </button>
-                    <h2 style={{ color: 'var(--primary)', margin: 0 }}>{selectedLocation.name} Hub</h2>
+                    <h2 style={{ color: '#ffffff', margin: 0, fontWeight: '800' }}>{selectedLocation.name} Operations Hub</h2>
                   </div>
                   
-                  <div style={{ display: 'flex', gap: '1rem' }}>
-                    <button onClick={handleDownloadCSV} className="btn" style={{ background: 'var(--accent)', color: '#000' }}>
-                      ⬇️ Export Passwords (CSV)
+                  <div style={{ display: 'flex', gap: '0.75rem' }}>
+                    <button onClick={handleDownloadCSV} className="btn btn-gold" style={{ fontSize: '0.78rem' }}>
+                      EXPORT PASSWORDS (CSV)
                     </button>
                     <button 
                       onClick={() => handleDeleteLocation(selectedLocation.id)}
-                      className="btn"
-                      style={{ background: 'var(--danger)' }}
+                      className="btn btn-danger"
+                      style={{ fontSize: '0.78rem' }}
                     >
-                      🗑️ Delete Venue
+                      DECOMMISSION VENUE
                     </button>
                   </div>
                 </div>
@@ -792,7 +842,7 @@ export default function ManagerDashboard() {
                         </div>
                       )}
                       <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-                        <button type="submit" className="btn" style={{ background: 'var(--primary)', height: '42px' }}>➕ Create Account</button>
+                        <button type="submit" className="btn btn-gold" style={{ height: '42px', fontSize: '0.8rem' }}>CREATE ACCOUNT</button>
                       </div>
                     </form>
 
@@ -847,20 +897,22 @@ export default function ManagerDashboard() {
                                     </div>
                                   ) : (
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                      <span style={{ color: 'var(--text-muted)' }}>{user.password}</span>
+                                      <span style={{ color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono, monospace' }}>{user.password}</span>
                                       <button 
                                         onClick={() => { setEditingPasswordFor(user.id); setNewPasswordValue(''); }} 
-                                        style={{ background: 'none', border: 'none', cursor: 'pointer', opacity: 0.5 }}
+                                        className="btn btn-secondary"
+                                        style={{ padding: '0.2rem 0.5rem', fontSize: '0.68rem' }}
                                         title="Edit Password"
                                       >
-                                        ✏️
+                                        EDIT
                                       </button>
                                       <button 
                                         onClick={() => copyToClipboard(user.password)} 
-                                        style={{ background: 'none', border: 'none', cursor: 'pointer', opacity: 0.5 }}
+                                        className="btn btn-secondary"
+                                        style={{ padding: '0.2rem 0.5rem', fontSize: '0.68rem' }}
                                         title="Copy Password"
                                       >
-                                        📋
+                                        COPY
                                       </button>
                                     </div>
                                   )}
@@ -914,9 +966,11 @@ export default function ManagerDashboard() {
                   transition: 'all 0.3s ease'
                 }}
               >
-                <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>📄</div>
-                <h2>Drag & Drop your Excel file here</h2>
-                <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>or click to browse from your computer</p>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', color: 'var(--gold-bright)', letterSpacing: '0.15em', marginBottom: '0.75rem', fontWeight: '700' }}>
+                  [ROSTER DATA IMPORT]
+                </div>
+                <h2 style={{ color: '#ffffff', fontWeight: '800' }}>Drop Structured Excel / CSV Roster Sheet</h2>
+                <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem', fontSize: '0.85rem' }}>Click or drag file (.xlsx, .xls, .csv) to parse player pool</p>
                 <input 
                   type="file" 
                   accept=".xlsx, .xls, .csv" 
@@ -950,11 +1004,11 @@ export default function ManagerDashboard() {
                             flexDirection: 'column',
                             minWidth: '200px'
                           }}>
-                            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem' }}>
+                            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem', fontFamily: 'JetBrains Mono, monospace' }}>
                               Database Status
                             </span>
-                            <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: uploadSuccess ? 'var(--success)' : 'var(--primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                              {uploadSuccess ? '✅ ' : '📊 '}{previewPlayers.length} Players
+                            <span style={{ fontSize: '1.4rem', fontWeight: '800', color: uploadSuccess ? 'var(--emerald-live)' : 'var(--gold-bright)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'JetBrains Mono, monospace' }}>
+                              {uploadSuccess ? '[LOADED] ' : '[READY] '}{previewPlayers.length} PLAYERS
                             </span>
                           </div>
 
@@ -962,16 +1016,16 @@ export default function ManagerDashboard() {
                             background: playersWithPhotos === previewPlayers.length ? 'rgba(16, 185, 129, 0.1)' : 'rgba(245, 158, 11, 0.1)', 
                             border: `1px solid ${playersWithPhotos === previewPlayers.length ? 'rgba(16, 185, 129, 0.3)' : 'rgba(245, 158, 11, 0.3)'}`,
                             padding: '1rem 1.5rem', 
-                            borderRadius: '12px',
+                            borderRadius: '8px',
                             display: 'flex',
                             flexDirection: 'column',
                             minWidth: '200px'
                           }}>
-                            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem' }}>
+                            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem', fontFamily: 'JetBrains Mono, monospace' }}>
                               Photos Matched
                             </span>
-                            <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: playersWithPhotos === previewPlayers.length ? 'var(--success)' : '#fbbf24', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                              📸 {playersWithPhotos} / {previewPlayers.length}
+                            <span style={{ fontSize: '1.4rem', fontWeight: '800', color: playersWithPhotos === previewPlayers.length ? 'var(--emerald-live)' : 'var(--amber-warning)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'JetBrains Mono, monospace' }}>
+                              {playersWithPhotos} / {previewPlayers.length} MATCHED
                             </span>
                           </div>
                         </div>
@@ -1011,8 +1065,8 @@ export default function ManagerDashboard() {
                             borderRight: '1px solid rgba(239, 68, 68, 0.2)',
                             borderBottom: '1px solid rgba(239, 68, 68, 0.2)',
                           }}>
-                            <h3 style={{ color: 'var(--danger)', marginBottom: '1rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                              <span style={{ fontSize: '1.2rem' }}>⚠️</span> Action Required: Missing Photos ({previewPlayers.length - playersWithPhotos})
+                            <h3 style={{ color: 'var(--crimson-danger)', marginBottom: '1rem', fontSize: '1rem', fontWeight: '700', letterSpacing: '0.04em' }}>
+                              ACTION REQUIRED: MISSING ASSETS ({previewPlayers.length - playersWithPhotos})
                             </h3>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', maxHeight: '160px', overflowY: 'auto', paddingRight: '0.5rem' }}>
                               {previewPlayers.filter(p => !p.imageUrl).map((p, idx) => (
@@ -1114,15 +1168,17 @@ export default function ManagerDashboard() {
 
         {/* DANGER ZONE TAB */}
         {activeTab === 'DANGER' && (
-          <div className="glass-panel" style={{ padding: '3rem', border: '2px solid var(--danger)', textAlign: 'center' }}>
-            <div style={{ fontSize: '5rem', marginBottom: '1rem' }}>⚠️</div>
-            <h1 style={{ color: 'var(--danger)', marginBottom: '1rem', fontSize: '3rem' }}>Danger Zone</h1>
-            <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
-              This action will completely wipe the player database, erase all bids, and reset all franchise budgets back to 90 Crore. 
-              <strong> Venues, Teams, and Passwords will remain intact.</strong> Use this to prepare for a brand new auction.
+          <div style={{ padding: '3rem', border: '1px solid var(--crimson-border)', background: 'rgba(239, 68, 68, 0.04)', borderRadius: '10px', textAlign: 'center' }}>
+            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', color: 'var(--crimson-danger)', letterSpacing: '0.2em', marginBottom: '1rem', fontWeight: '700' }}>
+              [CRITICAL ADMINISTRATIVE OVERRIDE]
+            </div>
+            <h1 style={{ color: '#ffffff', marginBottom: '1rem', fontSize: '2.5rem', fontWeight: '900' }}>Database Reset Console</h1>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1rem', maxWidth: '600px', margin: '0 auto 2rem auto', lineHeight: 1.6 }}>
+              This action will completely wipe the player database, erase all bids, and reset all franchise budgets back to ₹90.00 Crore. 
+              <strong> Venues, Teams, and Passwords will remain intact.</strong>
             </p>
-            <button onClick={handleResetPlayers} className="btn" style={{ background: 'var(--danger)', fontSize: '1.5rem', padding: '1rem 3rem' }}>
-              Reset Player Database
+            <button onClick={handleResetPlayers} className="btn btn-danger" style={{ fontSize: '1rem', padding: '1rem 3rem' }}>
+              WIPE PLAYER DATABASE & RESET ALL PURSES
             </button>
           </div>
         )}

@@ -1,0 +1,2112 @@
+[
+  {
+    "name": "Abdul Samad",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 86,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/abdul_samad.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Abhishek Sharma",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 87,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/abhishek_sharma.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Adam Milne",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 88,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/adam_milne.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Adam Zampa",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/adam_zampa.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Adil Rashid",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 90,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/adil_rashid.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ajinkya Rahane",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 91,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/ajinkya_rahane.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Akash Deep",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 92,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/AKASH DEEP.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Akeal Hosein",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 93,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/akeal_hosein.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Alex Carey",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 94,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/alex_carey.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Alex Hales",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 95,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/alex_hales.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Andile Phehlukwayo",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 96,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/andile_phehlukwayo.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Andrew Tye",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/andrew_tye.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Angkrish Raghuvanshi",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 98,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/angkrish_raghuvanshi.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ankit Rajput",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 99,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/ankit_rajput.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Anmolpreet Singh",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 85,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/anmolpreet_singh.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Anrich Nortje",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 86,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/anrich_nortje.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Arjun Tendulkar",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/arjun_tendulkar.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Arshdeep Singh",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 88,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/arshdeep_singh.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ashutosh Sharma",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 89,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/ashutosh_sharma.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Avesh Khan",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 90,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/avesh_khan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Axar Patel",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 91,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/axar_patel.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ayush Badoni",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 92,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/ayush_badoni.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Azmatullah Omarzai",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 93,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/azhmatullah_omarzai.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ben Cutting",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/ben_cutting.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ben Duckett",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 95,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/ben_duckett.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ben Stokes",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 96,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/ben_stokes.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Bhuvneshwar Kumar",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/bhuvneshwar_kumar.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Brandon King",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 98,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/brendon_king.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Cameron Delport",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 99,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/cameron_dellport.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Cameron Green",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 85,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/cameron_green.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Carlos Brathwaite",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 86,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/carlos_brathwaite.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Chetan Sakariya",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/chetan_sakariya.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Cheteshwar Pujara",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 88,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/cheteswar_pujara.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Chris Jordan",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/chris_jordan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Chris Woakes",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 90,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/chris_woakes.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Colin de Grandhomme",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 91,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/colin de _grandhomme.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Dawid Malan",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 92,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/david_malan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "David Miller",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 93,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/david_miller.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Deepak Chahar",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/deepak_chahar.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Deepak Hooda",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 95,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/deepak_hooda.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Devdutt Padikkal",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 96,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/devdutt_padikkal.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Devon Conway",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 97,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/devon_convay.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Dewald Brevis",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 98,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/dewald_brevis.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Dhruv Jurel",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 99,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/dhruv_jurel.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Digvesh Rathi",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 85,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/digvesh_rathi.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Donovan Ferreira",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 86,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/donovan_ferreira.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Eshan Malinga",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/eshan_malinga.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Evin Lewis",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 88,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/evin_lewis.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Fazalhaq Farooqi",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/faizal_haq_farooqi.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Glenn Maxwell",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 20000000,
+    "points": 90,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/glen_maxwell.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Gurjapneet Singh",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 91,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/gurjapneet_singh.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Hanuma Vihari",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 92,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/hanuma_vihari.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Hardik Pandya",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 20000000,
+    "points": 93,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/hardik_pandya.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Harpreet Bhatia",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 94,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/harpreet_bhatia.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Harry Brook",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 95,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/harry_brook.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Harshal Patel",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 96,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/harshal_patel.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Harshit Rana",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/harshit_rana.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Heinrich Klaasen",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 98,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/heinrich_klaasen.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ishant Sharma",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 99,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/ishant_sharma.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ishan Kishan",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 85,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/ishan_kishan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jake Fraser-McGurk",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 86,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/jake fraser_mcgurk.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jimmy Neesham",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/james_neesham.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jamie Overton",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 88,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/jamie_overton.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jason Holder",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/jason_holder.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jason Roy",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 90,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/jason_roy.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jasprit Bumrah",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 20000000,
+    "points": 91,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/jasprit_bumrah.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jaydev Unadkat",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 92,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/jaydev_unadkat.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Joe Root",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 93,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/joe_root.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jofra Archer",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/jofra_archer.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jonny Bairstow",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 95,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/jonny_bairstow.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jos Buttler",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 20000000,
+    "points": 96,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/jos_buttler.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Josh Hazlewood",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/jos_hazlewood.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Jhye Richardson",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 98,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/jyhe_richardson.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Kagiso Rabada",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 99,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/kagiso_rabada.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Karun Nair",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 85,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/karun_nair.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Khaleel Ahmed",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 86,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/khaleel_ahmed.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "KL Rahul",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 20000000,
+    "points": 87,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/kl_rahul.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Krishnappa Gowtham",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 88,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/krishnappa_gowtham.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Krunal Pandya",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/krunal_pandya.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "KS Bharat",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 90,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/ks_bharat.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Kuldeep Yadav",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 91,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/kuldeep_yadav.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Kumar Kushagra",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 92,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/kumar_kushagra.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Kusal Mendis",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 93,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/kushal_mendis.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Liam Livingstone",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/liam_livinstone.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Litton Das",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 95,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/linton_das.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Lockie Ferguson",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 96,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/lockie_ferguson.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Lungi Ngidi",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/lungi_ngidi.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Maheesh Theekshana",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 98,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/maheesh_theekshana.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Manan Vohra",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 99,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/manan_wohra.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mandeep Singh",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 85,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/mandeep_singh.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Manish Pandey",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 86,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/manish_pandey.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Manoj Bhandage",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/manoj_bhandage.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Marco Jansen",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 88,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/marco_jansen.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Marcus Stoinis",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/marcus_stoinis.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mark Wood",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 90,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/mark_wood.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Matheesha Pathirana",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 91,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/matheesha_pathirana.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Matt Henry",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 92,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/matt_henry.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mayank Agarwal",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 93,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/mayank_agrawal.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mayank Markande",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/mayank_markande.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mayank Yadav",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 95,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/mayank_yadav.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mohammad Nabi",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 96,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/md_nabi.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mohammed Shami",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/md_shami.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mohammed Siraj",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 98,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/md_siraj.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mitchell Marsh",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 99,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/mitchell_marsh.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mitchell Santner",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 85,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/mitchell_santher.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mitchell Starc",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 20000000,
+    "points": 86,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/mitchell_starc.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Moeen Ali",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/moeen_ali.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mohammad Mahmudullah",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 88,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/mohammad_mahamadulah.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mohit Sharma",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/mohit_sharma.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Moises Henriques",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 90,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/moises_henriques.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "MS Dhoni",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 20000000,
+    "points": 91,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/ms_dhoni.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mukesh Kumar",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 92,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/mukesh_kumar.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Musheer Khan",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 93,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/musheer_khan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Mustafizur Rahman",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/mustafizur_rehman.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Naman Dhir",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 95,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/naman_dhir.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Nandre Burger",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 96,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/nandre_burger.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Nathan Coulter-Nile",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/nathan_coulternile.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Navdeep Saini",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 98,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/navdeep_saini.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Nehal Wadhera",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 99,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/nehal_wadhera_png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Nicholas Pooran",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 85,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/nicholas_pooran.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Nitish Kumar Reddy",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 86,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/nitish_kumar_reddy.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Nitish Rana",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 87,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/nitish_rana.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Noor Ahmad",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 88,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/noor_ahmed.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Nuwan Thushara",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/nuwan_thushara.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Pat Cummins",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 20000000,
+    "points": 90,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/pat_cummins.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Phil Salt",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 91,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/phil_salt.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Prabhsimran Singh",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 92,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/prabhsimran_singh.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Prasidh Krishna",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 93,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/prasidh_krishna.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Prince Rai",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/prince_rai.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Prince Yadav",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 95,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/prince_yadav.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Prithvi Shaw",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 96,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/prithvi_shaw.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Priyam Garg",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 97,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/priyam_garg.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Priyank Panchal",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 98,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/priyank_panchal.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Priyansh Arya",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 99,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/priyansh_arya.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Quinton de Kock",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 85,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/quinton_dekoch.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rahul Chahar",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 86,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/rahul_chahar.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rahul Tewatia",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/rahul_tewatia.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rahul Tripathi",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 88,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/rahul_triphthi.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rajat Patidar",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 89,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/rajat_patidar.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ramandeep Singh",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 90,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/ramandeep_singh.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rashid Khan",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 20000000,
+    "points": 91,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/rashid_khan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rasikh Salam",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 92,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/rasik_salam.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ravindra Jadeja",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 93,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/ravindra_jadeja.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ricky Bhui",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 94,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/ricky_bhui.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rinku Singh",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 95,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/rinku_singh.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rishabh Pant",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 20000000,
+    "points": 96,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/rishab_pant.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Riyan Parag",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 97,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/riyan_parag.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Robin Minz",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 98,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/robin_minz.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rohan Kadam",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 99,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/rohan_kadam.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Rohit Sharma",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 20000000,
+    "points": 85,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/rohit_sharma.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Romario Shepherd",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 86,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/romario_shepherd.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ruturaj Gaikwad",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 87,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/ruturaj_gaikwad.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Ryan Rickelton",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 88,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/ryan_rickelton.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "R. Sai Kishore",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/sai_kishore.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sai Sudharsan",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 90,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/sai_sudharsan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sameer Rizvi",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 91,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/sameer_rizvi.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sam Curran",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 92,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/sam_curran.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sandeep Lamichhane",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 93,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/sandeep_lamichhane.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sandeep Sharma",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/sandeep_sharma.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sanju Samson",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 20000000,
+    "points": 95,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/sanju_samson.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sarfaraz Khan",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 96,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/sarfaraz_khan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Saurabh Tiwary",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 97,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/saurav_tiwari.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sean Abbott",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 98,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/sean_abott.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shahbaz Ahmed",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 99,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/shabaz_ahmed.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shaik Rasheed",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 85,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/shaik_rasheed.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shai Hope",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 86,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/shai_hope.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shakib Al Hasan",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/shakib_alhassan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shamar Joseph",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 88,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/shamar_joseph.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shams Mulani",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/shams_mulani.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shardul Thakur",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 90,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/shardul_thakur.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shashank Singh",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 91,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/shashank_singh.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shaun Marsh",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 92,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/SHAUN MARSH.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sheldon Cottrell",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 93,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/sheldon_cottrell.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sherfane Rutherford",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/sherfane_rutherford.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shimron Hetmyer",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 95,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/shimron_hetmyer.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shivam Dube",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 96,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/shivam_dube.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shivam Mavi",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/shivam_mavi.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shreyas Gopal",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 98,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/shreyas_gopal.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shreyas Iyer",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 20000000,
+    "points": 99,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/shreyas_iyer.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Shubman Gill",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 85,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/shubman_gill.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sikandar Raza",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 86,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/sikndar_raza.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Simarjeet Singh",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/simarjeet_singh.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Smaran Ravichandran",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 88,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/smaran_ravichandran.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Spencer Johnson",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/spencer_johnson.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Stuart Binny",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 90,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/stuart_binny.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Sunil Narine",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 91,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/sunil_narayan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Suryakumar Yadav",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 92,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/surya_kumaryadav.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Tilak Varma",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 93,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/tilak_verma.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Tim Southee",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/tim_southee.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Tom Curran",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 95,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/tom_curran.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Travis Head",
+    "category": "BATSMAN",
+    "country": "OVERSEAS",
+    "basePrice": 20000000,
+    "points": 96,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/travis_head.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Trent Boult",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/trent_boult.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Tristan Stubbs",
+    "category": "WICKET_KEEPER",
+    "country": "OVERSEAS",
+    "basePrice": 10000000,
+    "points": 98,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/tristan_stubbs.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "T. Natarajan",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 99,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/t_natrajan.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Umesh Yadav",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 85,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/umesh_yadav.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Urvil Patel",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 86,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/urvil_patel.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Vaibhav Arora",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 87,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/vaibhav_arora.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Vaibhav Sooryavanshi",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 88,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/vaibha_sooryavanshi.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Varun Chakaravarthy",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 89,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/varun_chakarvarthy.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Vijay Shankar",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 90,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/vijay_shankar.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Virat Kohli",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 20000000,
+    "points": 91,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/virat_kohli.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Vishnu Solanki",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 92,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/vishnu_solanki.png.jpg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Vishnu Vinod",
+    "category": "WICKET_KEEPER",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 93,
+    "pool": "POOL-4 Wicket-Keeper",
+    "imageUrl": "/players/vishnu_vinod.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Vijaykumar Vyshak",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 94,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/vyashk_vijay_kumar.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Wanindu Hasaranga",
+    "category": "ALL_ROUNDER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 95,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/wanindu_hasaranga.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Washington Sundar",
+    "category": "ALL_ROUNDER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 96,
+    "pool": "POOL-3 All-Rounder",
+    "imageUrl": "/players/washington_sundar.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Xavier Bartlett",
+    "category": "BOWLER",
+    "country": "OVERSEAS",
+    "basePrice": 15000000,
+    "points": 97,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/xavier_bartlett.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Yashasvi Jaiswal",
+    "category": "BATSMAN",
+    "country": "IND",
+    "basePrice": 10000000,
+    "points": 98,
+    "pool": "POOL-1 Batsman",
+    "imageUrl": "/players/yashasvi_jaiswal.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Yash Dayal",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 99,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/yash_dayal.png.png",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Yash Thakur",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 85,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/yash_thakur.png.jpeg",
+    "status": "UPCOMING"
+  },
+  {
+    "name": "Yuzvendra Chahal",
+    "category": "BOWLER",
+    "country": "IND",
+    "basePrice": 15000000,
+    "points": 86,
+    "pool": "POOL-2 Bowler",
+    "imageUrl": "/players/yuzi_chahal.png.png",
+    "status": "UPCOMING"
+  }
+]

@@ -19,24 +19,46 @@ const NavigationBar = () => {
   const { user, logout } = useAuth();
   const location = useLocation();
 
-  // Hide the navbar on public pages (Landing, Login, and Viewer)
-  // It will only show on protected dashboards (Manager, Auctioneer, Team Leader)
+  // Hide the navbar on public landing & viewer
   if (['/', '/login', '/viewer'].includes(location.pathname)) {
     return null;
   }
 
+  const getRoleBadge = (role) => {
+    switch (role) {
+      case 'ADMIN': return 'SYSTEM DIRECTOR';
+      case 'AUCTIONEER': return 'GAVEL MASTER';
+      case 'TEAM_LEADER': return 'FRANCHISE DESK';
+      default: return 'OPERATOR';
+    }
+  };
+
   return (
-    <nav className="navbar glass-panel">
-      <Link to="/" style={{ textDecoration: 'none' }}><div className="nav-brand">IPL Auction Pro</div></Link>
+    <header className="navbar">
+      <Link to="/" className="nav-brand-wrap">
+        <span className="nav-status-pill"></span>
+        <span className="nav-brand">IPL AUCTION PRO</span>
+        <span className="nav-subtext">OFFICIAL OPS</span>
+      </Link>
+
       <div className="nav-links">
-        <Link to="/" className="nav-link" style={{ marginRight: '1rem', background: 'rgba(255,255,255,0.1)', padding: '0.25rem 1rem', borderRadius: '4px' }}>🏠 Home</Link>
-        {!user ? (
-          <Link to="/login" className="nav-link" style={{ marginLeft: 'auto', background: 'var(--primary)', color: 'white', padding: '0.25rem 1rem', borderRadius: '4px' }}>Login</Link>
-        ) : (
-          <button onClick={logout} className="btn" style={{ marginLeft: 'auto', padding: '0.25rem 1rem' }}>Logout ({user.username})</button>
+        <Link to="/" className="nav-link">Overview</Link>
+        {user && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <span className="badge badge-gold">
+              {getRoleBadge(user.role)}: {user.username}
+            </span>
+            <button 
+              onClick={logout} 
+              className="btn btn-secondary" 
+              style={{ padding: '0.4rem 0.9rem', fontSize: '0.75rem' }}
+            >
+              Disconnect
+            </button>
+          </div>
         )}
       </div>
-    </nav>
+    </header>
   );
 };
 
@@ -49,8 +71,8 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Login portalName="Franchise Portal Login" />} />
-            <Route path="/management" element={<Login portalName="Management Secure Login" />} />
+            <Route path="/login" element={<Login portalName="Franchise War Room Access" />} />
+            <Route path="/management" element={<Login portalName="Operations Command Authentication" />} />
             <Route path="/manager" element={
               <ProtectedRoute requiredRole="ADMIN"><ManagerDashboard /></ProtectedRoute>
             } />

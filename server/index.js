@@ -534,7 +534,7 @@ app.delete('/api/users/:id', async (req, res) => {
 // Bring next or selected player to the live block
 app.post('/api/auction/set-live', async (req, res) => {
   try {
-    const { locationId, playerId } = req.body;
+    const { locationId, playerId, durationSeconds } = req.body;
     if (!locationId) return res.status(400).json({ error: 'locationId required' });
 
     let targetPlayerId = playerId;
@@ -554,6 +554,10 @@ app.post('/api/auction/set-live', async (req, res) => {
       targetPlayerId = nextSnap.docs[0].id;
     }
 
+    const duration = Number(durationSeconds) || 30;
+    const nowMs = Date.now();
+    const deadlineMs = nowMs + duration * 1000;
+
     const playerRef = db.collection('players').doc(targetPlayerId);
     const locationRef = db.collection('locations').doc(locationId);
     const now = admin.firestore.FieldValue.serverTimestamp();
@@ -572,15 +576,163 @@ app.post('/api/auction/set-live', async (req, res) => {
 
       t.update(locationRef, {
         activePlayerId: targetPlayerId,
+        auctionStatus: 'LIVE',
+        timerDeadlineMs: deadlineMs,
+        timerDurationSeconds: duration,
+        timerPaused: false,
+        timerRemainingMs: duration * 1000,
         updatedAt: now,
       });
     });
 
     const updated = await playerRef.get();
-    const livePlayerData = { id: updated.id, ...updated.data() };
-    await logAuditEvent('ADVANCE_PLAYER', { playerId: targetPlayerId }, locationId);
+    const livePlayerData = { 
+      id: updated.id, 
+      ...updated.data(), 
+      timerDeadlineMs: deadlineMs,
+      timerDurationSeconds: duration 
+    };
+    await logAuditEvent('ADVANCE_PLAYER', { playerId: targetPlayerId, durationSeconds: duration }, locationId);
     broadcastEvent(locationId, 'livePlayerUpdated', livePlayerData);
+    broadcastEvent(locationId, 'timerUpdated', { 
+      locationId, 
+      deadlineMs, 
+      durationSeconds: duration, 
+      paused: false,
+      remainingMs: duration * 1000 
+    });
+
     res.json(livePlayerData);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Authoritative Timer Control: Start, Pause, Resume, Extend
+app.post('/api/auction/timer', async (req, res) => {
+  try {
+    const { locationId, action, durationSeconds, addSeconds } = req.body;
+    if (!locationId) return res.status(400).json({ error: 'locationId required' });
+
+    const locationRef = db.collection('locations').doc(locationId);
+    const nowMs = Date.now();
+
+    const result = await db.runTransaction(async (t) => {
+      const locDoc = await t.get(locationRef);
+      if (!locDoc.exists) throw new Error('Location not found');
+      const locData = locDoc.data();
+
+      let newDeadlineMs = locData.timerDeadlineMs;
+      let newPaused = Boolean(locData.timerPaused);
+      let newRemainingMs = locData.timerRemainingMs;
+      let newDuration = Number(durationSeconds) || Number(locData.timerDurationSeconds) || 30;
+
+      if (action === 'start') {
+        newPaused = false;
+        newDeadlineMs = nowMs + newDuration * 1000;
+        newRemainingMs = newDuration * 1000;
+      } else if (action === 'pause') {
+        if (!newPaused && newDeadlineMs) {
+          newRemainingMs = Math.max(0, newDeadlineMs - nowMs);
+          newPaused = true;
+          newDeadlineMs = null;
+        }
+      } else if (action === 'resume') {
+        if (newPaused) {
+          const rem = Number(newRemainingMs) || (newDuration * 1000);
+          newDeadlineMs = nowMs + rem;
+          newPaused = false;
+        }
+      } else if (action === 'extend') {
+        const extraSec = Number(addSeconds) || 10;
+        if (newPaused) {
+          newRemainingMs = (Number(newRemainingMs) || 0) + extraSec * 1000;
+        } else {
+          const currentEnd = newDeadlineMs ? Math.max(nowMs, newDeadlineMs) : nowMs;
+          newDeadlineMs = currentEnd + extraSec * 1000;
+          newRemainingMs = Math.max(0, newDeadlineMs - nowMs);
+        }
+      } else if (action === 'set_duration') {
+        newDuration = Number(durationSeconds) || 30;
+        if (!newPaused) {
+          newDeadlineMs = nowMs + newDuration * 1000;
+          newRemainingMs = newDuration * 1000;
+        }
+      }
+
+      const updatePayload = {
+        timerDeadlineMs: newDeadlineMs,
+        timerPaused: newPaused,
+        timerRemainingMs: newRemainingMs,
+        timerDurationSeconds: newDuration,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      };
+
+      t.update(locationRef, updatePayload);
+      return { locationId, deadlineMs: newDeadlineMs, paused: newPaused, remainingMs: newRemainingMs, durationSeconds: newDuration };
+    });
+
+    broadcastEvent(locationId, 'timerUpdated', result);
+    await logAuditEvent('TIMER_CONTROL', { action, ...result }, locationId);
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Full Auction Reset (Emergency or Fresh Start)
+app.post('/api/auction/reset', async (req, res) => {
+  try {
+    const { locationId, confirmText } = req.body;
+    if (confirmText !== 'RESET') {
+      return res.status(400).json({ error: 'Please confirm reset by providing confirmText: "RESET"' });
+    }
+    const locId = locationId || 'main_arena';
+
+    // 1. Reset all players in this location to UPCOMING
+    const playersSnap = await db.collection('players').where('locationId', '==', locId).get();
+    const batch = db.batch();
+    playersSnap.forEach((doc) => {
+      batch.update(doc.ref, {
+        status: 'UPCOMING',
+        currentBid: null,
+        currentBidTeamId: null,
+        currentBidId: null,
+        soldPrice: null,
+        teamId: null,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      });
+    });
+
+    // 2. Reset all team budgets
+    const teamsSnap = await db.collection('teams').where('locationId', '==', locId).get();
+    teamsSnap.forEach((doc) => {
+      batch.update(doc.ref, {
+        budget: DEFAULT_PURSE,
+        mistakes: 0,
+        isDisqualified: false,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      });
+    });
+
+    // 3. Reset location state
+    const locRef = db.collection('locations').doc(locId);
+    batch.update(locRef, {
+      activePlayerId: null,
+      auctionStatus: 'UPCOMING',
+      timerDeadlineMs: null,
+      timerPaused: false,
+      timerRemainingMs: null,
+      isOnBreak: false,
+      leaderboardVisible: false,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    });
+
+    await batch.commit();
+
+    broadcastEvent(locId, 'auctionReset', { locationId: locId });
+    await logAuditEvent('AUCTION_RESET', { locationId: locId }, locId);
+    res.json({ success: true, message: 'Auction reset successfully for location: ' + locId });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -589,7 +741,7 @@ app.post('/api/auction/set-live', async (req, res) => {
 // Place an authoritative bid
 app.post('/api/bids', async (req, res) => {
   try {
-    const { locationId, playerId, teamId, amount } = req.body;
+    const { locationId, playerId, teamId, amount, autoExtendSeconds = 10 } = req.body;
     if (!locationId || !playerId || !teamId || !amount) {
       return res.status(400).json({ error: 'locationId, playerId, teamId, and amount are required' });
     }
@@ -597,11 +749,15 @@ app.post('/api/bids', async (req, res) => {
     const numAmount = Math.round(Number(amount));
     const playerRef = db.collection('players').doc(playerId);
     const teamRef = db.collection('teams').doc(teamId);
+    const locationRef = db.collection('locations').doc(locationId);
+
+    const nowMs = Date.now();
 
     const result = await db.runTransaction(async (transaction) => {
-      const [playerDoc, teamDoc] = await Promise.all([
+      const [playerDoc, teamDoc, locationDoc] = await Promise.all([
         transaction.get(playerRef),
         transaction.get(teamRef),
+        transaction.get(locationRef)
       ]);
 
       if (!playerDoc.exists) throw new Error('Player not found');
@@ -609,7 +765,17 @@ app.post('/api/bids', async (req, res) => {
 
       const playerData = playerDoc.data();
       const teamData = teamDoc.data();
+      const locationData = locationDoc.exists ? locationDoc.data() : {};
 
+      // 1. Authoritative Timer Deadline Validation
+      if (locationData.timerPaused) {
+        throw new Error('Auction bidding is currently paused by the auctioneer');
+      }
+      if (locationData.timerDeadlineMs && nowMs > locationData.timerDeadlineMs) {
+        throw new Error('Bidding deadline has expired. Bid rejected.');
+      }
+
+      // 2. Player Status Validation
       if (playerData.status !== 'LIVE') {
         throw new Error(`Cannot bid: player status is ${playerData.status}, must be LIVE`);
       }
@@ -617,14 +783,21 @@ app.post('/api/bids', async (req, res) => {
         throw new Error(`Cannot bid: team ${teamData.name} is disqualified`);
       }
 
+      // 3. Budget Validation
       const teamBudget = Number(teamData.budget || 0);
       if (numAmount > teamBudget) {
-        throw new Error(`Insufficient budget: ₹${numAmount / 10_000_000} Cr exceeds remaining ₹${teamBudget / 10_000_000} Cr`);
+        throw new Error(`Insufficient budget: ₹${(numAmount / 10_000_000).toFixed(2)} Cr exceeds remaining ₹${(teamBudget / 10_000_000).toFixed(2)} Cr`);
       }
 
+      // 4. Increment and Current Price Validation
       const currentPrice = Number(playerData.currentBid || playerData.basePrice || 0);
       if (numAmount <= currentPrice) {
-        throw new Error(`Bid must exceed current price ₹${currentPrice / 10_000_000} Cr`);
+        throw new Error(`Bid must exceed current price of ₹${(currentPrice / 10_000_000).toFixed(2)} Cr`);
+      }
+
+      // Prevent a franchise from bidding against itself as current highest bidder
+      if (playerData.currentBidTeamId && String(playerData.currentBidTeamId) === String(teamId)) {
+        throw new Error('Your franchise currently holds the highest bid!');
       }
 
       const bidRef = db.collection('bids').doc();
@@ -634,6 +807,7 @@ app.post('/api/bids', async (req, res) => {
         locationId,
         playerId,
         teamId,
+        teamName: teamData.name || teamData.shortName,
         amount: numAmount,
         status: 'ACTIVE',
         createdAt: now,
@@ -642,21 +816,46 @@ app.post('/api/bids', async (req, res) => {
       transaction.update(playerRef, {
         currentBid: numAmount,
         currentBidTeamId: teamId,
+        currentBidTeamName: teamData.name || teamData.shortName,
         currentBidId: bidRef.id,
         updatedAt: now,
       });
+
+      // 5. Timer Extension on Final Seconds (e.g. if under 10 seconds remaining, extend)
+      let updatedDeadline = locationData.timerDeadlineMs;
+      if (locationData.timerDeadlineMs) {
+        const remainingSeconds = Math.max(0, (locationData.timerDeadlineMs - nowMs) / 1000);
+        if (remainingSeconds < 10) {
+          updatedDeadline = nowMs + (Number(autoExtendSeconds) || 10) * 1000;
+          transaction.update(locationRef, {
+            timerDeadlineMs: updatedDeadline,
+            timerRemainingMs: updatedDeadline - nowMs,
+            updatedAt: now,
+          });
+        }
+      }
 
       return {
         bidId: bidRef.id,
         playerId,
         teamId,
+        teamName: teamData.name || teamData.shortName,
         amount: numAmount,
         locationId,
+        updatedDeadlineMs: updatedDeadline
       };
     });
 
     await logAuditEvent('NEW_BID', result, locationId);
     broadcastEvent(locationId, 'newBid', result);
+    if (result.updatedDeadlineMs) {
+      broadcastEvent(locationId, 'timerUpdated', {
+        locationId,
+        deadlineMs: result.updatedDeadlineMs,
+        paused: false,
+        remainingMs: Math.max(0, result.updatedDeadlineMs - Date.now())
+      });
+    }
     res.json(result);
   } catch (err) {
     res.status(400).json({ error: err.message });

@@ -17,6 +17,78 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   const [poolFilter, setPoolFilter] = useState('ALL');
   const [lastSoldPlayer, setLastSoldPlayer] = useState(null);
   const [isBreakMode, setIsBreakMode] = useState(false);
+  const [animateBid, setAnimateBid] = useState(false);
+  const [leaderboardActive, setLeaderboardActive] = useState(false);
+
+  // Authoritative Server Timer State
+  const [timerDeadline, setTimerDeadline] = useState(null);
+  const [timerSecondsLeft, setTimerSecondsLeft] = useState(null);
+  const [timerPaused, setTimerPaused] = useState(false);
+  const [timerConfigDuration, setTimerConfigDuration] = useState(30);
+  const [showResetModal, setShowResetModal] = useState(false);
+  const [resetConfirmInput, setResetConfirmInput] = useState('');
+
+  // Local ticker derived from server deadline
+  useEffect(() => {
+    if (!timerDeadline || timerPaused) return;
+
+    const interval = setInterval(() => {
+      const remainingMs = timerDeadline - Date.now();
+      const sec = Math.max(0, Math.ceil(remainingMs / 1000));
+      setTimerSecondsLeft(sec);
+      if (remainingMs <= 0) {
+        clearInterval(interval);
+      }
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [timerDeadline, timerPaused]);
+
+  const controlTimer = async (action, extra = {}) => {
+    if (!selectedLocation) return;
+    try {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/auction/timer`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          locationId: selectedLocation,
+          action,
+          durationSeconds: extra.durationSeconds || timerConfigDuration,
+          addSeconds: extra.addSeconds || 10
+        })
+      });
+    } catch (err) {
+      console.error('Failed to control timer:', err);
+    }
+  };
+
+  const handleResetAuction = async () => {
+    if (resetConfirmInput !== 'RESET') {
+      alert('Please type RESET exactly into the confirmation prompt.');
+      return;
+    }
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/auction/reset`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ locationId: selectedLocation, confirmText: 'RESET' })
+      });
+      if (res.ok) {
+        setShowResetModal(false);
+        setResetConfirmInput('');
+        setLivePlayer(null);
+        setCurrentBid('');
+        setBiddingTeam('');
+        setBidHistory([]);
+        setTimerDeadline(null);
+        setTimerSecondsLeft(null);
+        fetchTeams();
+        alert('Auction reset completed successfully.');
+      }
+    } catch (err) {
+      console.error('Failed to reset auction:', err);
+    }
+  };
 
   const getNextBidAmount = (current) => {
     if (current < 5000000) return current + 500000;
@@ -58,7 +130,10 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
       const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/auction/set-live`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ locationId: selectedLocation })
+        body: JSON.stringify({ 
+          locationId: selectedLocation,
+          durationSeconds: timerConfigDuration
+        })
       });
       const data = await res.json();
       if (data && data.id) {
@@ -66,6 +141,11 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
         setCurrentBid(data.basePrice);
         setBiddingTeam('');
         setBidHistory([]);
+        if (data.timerDeadlineMs) {
+          setTimerDeadline(data.timerDeadlineMs);
+          setTimerSecondsLeft(Math.max(0, Math.ceil((data.timerDeadlineMs - Date.now()) / 1000)));
+          setTimerPaused(false);
+        }
         setPlayers(prev => prev.filter(p => p.id !== data.id));
       } else if (data.error) {
         alert(data.error);
@@ -101,14 +181,26 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
         setBidHistory([]);
         setCurrentBid(player.basePrice);
         setBiddingTeam('');
-        fetchTeams(); // Fetch teams to refresh budgets
+        fetchTeams();
+      });
+
+      socket.on('timerUpdated', (data) => {
+        if (data.deadlineMs) {
+          setTimerDeadline(data.deadlineMs);
+          setTimerSecondsLeft(Math.max(0, Math.ceil((data.deadlineMs - Date.now()) / 1000)));
+        }
+        setTimerPaused(Boolean(data.paused));
+        if (data.paused && data.remainingMs !== undefined) {
+          setTimerSecondsLeft(Math.max(0, Math.ceil(data.remainingMs / 1000)));
+        }
       });
 
       return () => {
         socket.off('playerSold');
         socket.off('penaltyIssued');
         socket.off('playerReopened');
-      }
+        socket.off('timerUpdated');
+      };
     }
   }, [selectedLocation]);
 
@@ -119,12 +211,6 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
     setBidHistory([]);
     socket.emit('setLivePlayer', { locationId: selectedLocation, playerId: player.id });
   };
-
-  const [animateBid, setAnimateBid] = useState(false);
-  const [leaderboardActive, setLeaderboardActive] = useState(false);
-
-  const getAvatar = (name, url) => url || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=1e293b&color=fff&size=128`;
-
 
   const toggleLeaderboard = () => {
     const newState = !leaderboardActive;
@@ -137,13 +223,11 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
     const bidAmount = isFirstBid ? parseFloat(currentBid) : getNextBidAmount(parseFloat(currentBid));
     
     setBidHistory(prev => [...prev, { amount: currentBid, teamId: biddingTeam }]);
-    
     setCurrentBid(bidAmount);
     setBiddingTeam(teamId);
     
-    // Trigger animation
     setAnimateBid(true);
-    setTimeout(() => setAnimateBid(false), 500);
+    setTimeout(() => setAnimateBid(false), 400);
 
     socket.emit('placeBid', {
       locationId: selectedLocation,
@@ -170,7 +254,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   };
 
   const sellPlayer = () => {
-    if (!biddingTeam) return alert('Select a team!');
+    if (!biddingTeam) return alert('Select a winning franchise before confirming sale!');
     const amount = parseFloat(currentBid);
     socket.emit('sellPlayer', {
       locationId: selectedLocation,
@@ -190,19 +274,19 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   };
 
   const issuePenalty = (teamId) => {
-    if (window.confirm("Are you sure you want to issue a penalty mistake to this team? 3 mistakes = Disqualified.")) {
+    if (window.confirm("Confirm: Issue formal rule infraction penalty? 3 infractions triggers automated disqualification.")) {
       socket.emit('issuePenalty', { teamId, locationId: selectedLocation });
     }
   };
 
   const reversePenalty = (teamId) => {
-    if (window.confirm("Are you sure you want to reverse a penalty mistake for this team?")) {
+    if (window.confirm("Confirm: Reverse last infraction penalty for this franchise?")) {
       socket.emit('reversePenalty', { teamId, locationId: selectedLocation });
     }
   };
 
   const reopenPlayer = () => {
-    if (!window.confirm("Are you sure you want to re-open this player? The sale will be cancelled.")) return;
+    if (!window.confirm("Confirm: Reopen this player lot? Any recorded sale will be nullified.")) return;
     socket.emit('reopenPlayer', { locationId: selectedLocation, playerId: livePlayer.id });
   };
 
@@ -213,14 +297,11 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
   };
 
   const getTeamEligibility = (team, nextBidAmount, player) => {
-    if (team.isDisqualified) return { eligible: false, reason: 'Disqualified' };
+    if (team.isDisqualified) return { eligible: false, reason: 'DISQUALIFIED' };
     if (!player) return { eligible: true };
     
-    // Check Budget
-    if (team.budget < nextBidAmount) return { eligible: false, reason: 'Insufficient Budget' };
-
-    // Squad size limit
-    if (team.players?.length >= 15) return { eligible: false, reason: 'Max Squad Size (15)' };
+    if (team.budget < nextBidAmount) return { eligible: false, reason: 'INSUFFICIENT PURSE' };
+    if (team.players?.length >= 15) return { eligible: false, reason: 'ROSTER FULL (15)' };
 
     const bowlers = team.players?.filter(p => p.category === 'BOWLER').length || 0;
     const batsmen = team.players?.filter(p => p.category === 'BATSMAN').length || 0;
@@ -231,8 +312,8 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
     const indianCount = (team.players?.length || 0) - overseasCount;
     const isOverseas = player.country && player.country.toUpperCase() !== 'IND' && player.country.toUpperCase() !== 'INDIA';
 
-    if (isOverseas && overseasCount >= 4) return { eligible: false, reason: 'Max Overseas (4)' };
-    if (!isOverseas && indianCount >= 12) return { eligible: false, reason: 'Must Pick Overseas' };
+    if (isOverseas && overseasCount >= 4) return { eligible: false, reason: 'MAX OVERSEAS (4)' };
+    if (!isOverseas && indianCount >= 12) return { eligible: false, reason: 'OVERSEAS SLOT REQUIRED' };
 
     const reqBowlers = Math.max(0, 4 - (bowlers + (player.category === 'BOWLER' ? 1 : 0)));
     const reqBatsmen = Math.max(0, 4 - (batsmen + (player.category === 'BATSMAN' ? 1 : 0)));
@@ -243,297 +324,538 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
     const remainingSlots = 15 - ((team.players?.length || 0) + 1);
     
     if (requiredSlots > remainingSlots) {
-      return { eligible: false, reason: 'Impossible to meet minimums' };
+      return { eligible: false, reason: 'MINIMUM QUOTA VIOLATION' };
     }
     
     return { eligible: true };
   };
 
+  const getAvatar = (name, url) => url || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=141b25&color=d4af37&size=128`;
+
   if (!selectedLocation) {
-    return <div>Error: No location assigned to this auctioneer.</div>;
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--crimson-danger)', fontFamily: 'JetBrains Mono, monospace' }}>
+        ERROR: NO VENUE ASSIGNED TO CURRENT OPERATOR.
+      </div>
+    );
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      {/* Fast Control Header Bar */}
-      <div className="glass-panel" style={{ padding: '0.75rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <span style={{ fontWeight: 'bold', color: 'var(--primary)', fontSize: '1.1rem' }}>📍 Auction Room:</span>
-          {locations.length > 0 && (
-            <select
-              value={selectedLocation || ''}
-              onChange={(e) => setAdminSelectedLocation(e.target.value)}
-              style={{ padding: '0.5rem 1rem', background: 'var(--bg-dark)', color: 'white', border: '1px solid var(--primary)', borderRadius: '8px', fontWeight: 'bold' }}
-            >
-              {locations.map(l => (
-                <option key={l.id} value={l.id}>{l.name}</option>
-              ))}
-            </select>
-          )}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      
+      {/* Gavel Master Command Bar */}
+      <div style={{ 
+        padding: '0.85rem 1.5rem', 
+        background: 'rgba(10, 13, 18, 0.95)',
+        border: '1px solid var(--gold-border)',
+        borderRadius: '8px',
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        flexWrap: 'wrap', 
+        gap: '1rem' 
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: 'var(--gold-primary)', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: '700' }}>
+            AUTHORITATIVE ARENA:
+          </span>
+          <span className="badge badge-gold" style={{ fontSize: '0.8rem', padding: '0.35rem 0.85rem' }}>
+            IPL MEGA AUCTION ARENA 2026
+          </span>
         </div>
 
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <button
-            className="btn"
-            onClick={advanceNextPlayer}
-            style={{
-              background: 'linear-gradient(135deg, #10b981, #059669)',
-              color: 'white',
-              fontWeight: '800',
-              fontSize: '1.1rem',
-              padding: '0.6rem 1.5rem',
-              borderRadius: '8px',
-              boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)'
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          
+          {/* Authoritative Server Countdown Bar */}
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.5rem', 
+            padding: '0.35rem 0.75rem', 
+            background: 'rgba(255, 255, 255, 0.04)', 
+            border: '1px solid rgba(255, 255, 255, 0.1)', 
+            borderRadius: '4px' 
+          }}>
+            <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono, monospace' }}>TIMER:</span>
+            <span style={{ 
+              fontSize: '1.05rem', 
+              fontWeight: '900', 
+              fontFamily: 'JetBrains Mono, monospace',
+              color: timerPaused 
+                ? 'var(--amber-warning)' 
+                : ((timerSecondsLeft !== null && timerSecondsLeft <= 5) ? 'var(--crimson-danger)' : 'var(--gold-bright)')
+            }}>
+              {timerSecondsLeft !== null ? `${timerSecondsLeft}s` : '--'}
+            </span>
+            {timerPaused && (
+              <span className="badge" style={{ background: 'var(--amber-surface)', color: 'var(--amber-warning)', fontSize: '0.65rem' }}>
+                PAUSED
+              </span>
+            )}
+          </div>
+
+          {/* Timer Preset Selector */}
+          <select 
+            value={timerConfigDuration}
+            onChange={(e) => {
+              const dur = Number(e.target.value);
+              setTimerConfigDuration(dur);
+              controlTimer('set_duration', { durationSeconds: dur });
             }}
+            className="form-input"
+            style={{ width: 'auto', padding: '0.4rem 0.6rem', fontSize: '0.75rem', fontFamily: 'JetBrains Mono, monospace' }}
           >
-            ▶ NEXT PLAYER
+            <option value={15}>15 SEC PRESET</option>
+            <option value={30}>30 SEC PRESET</option>
+            <option value={45}>45 SEC PRESET</option>
+            <option value={60}>60 SEC PRESET</option>
+          </select>
+
+          {/* Timer Action Buttons */}
+          <button
+            className="btn btn-secondary"
+            onClick={() => controlTimer(timerPaused ? 'resume' : 'pause')}
+            style={{ padding: '0.45rem 0.8rem', fontSize: '0.75rem' }}
+          >
+            {timerPaused ? 'RESUME TIMER' : 'PAUSE TIMER'}
           </button>
+
+          <button
+            className="btn btn-secondary"
+            onClick={() => controlTimer('extend', { addSeconds: 10 })}
+            style={{ padding: '0.45rem 0.8rem', fontSize: '0.75rem', color: 'var(--gold-bright)' }}
+          >
+            +10s EXTEND
+          </button>
+
+          <button
+            className="btn btn-gold"
+            onClick={advanceNextPlayer}
+            style={{ padding: '0.55rem 1.25rem', fontSize: '0.8rem' }}
+          >
+            NEXT LOT
+          </button>
+          
+          <button
+            className={`btn ${isBreakMode ? 'btn-amber' : 'btn-secondary'}`}
+            onClick={toggleBreak}
+            style={{ padding: '0.55rem 1.25rem', fontSize: '0.8rem' }}
+          >
+            {isBreakMode ? 'RESUME SESSION' : 'OFFICIAL RECESS'}
+          </button>
+          
+          <button 
+            className={`btn ${leaderboardActive ? 'btn-primary' : 'btn-secondary'}`}
+            style={{ padding: '0.55rem 1rem', fontSize: '0.8rem' }}
+            onClick={toggleLeaderboard}
+          >
+            {leaderboardActive ? 'HIDE STANDINGS' : 'BROADCAST STANDINGS'}
+          </button>
+
           <button
             className="btn"
-            onClick={toggleBreak}
-            style={{
-              background: isBreakMode ? 'var(--warning)' : 'rgba(255,255,255,0.1)',
-              color: isBreakMode ? '#000' : 'white',
-              fontWeight: 'bold',
-              padding: '0.6rem 1.2rem',
-              borderRadius: '8px'
+            onClick={() => setShowResetModal(true)}
+            style={{ 
+              padding: '0.45rem 0.75rem', 
+              fontSize: '0.72rem', 
+              background: 'var(--crimson-surface)', 
+              color: 'var(--crimson-danger)', 
+              border: '1px solid var(--crimson-border)' 
             }}
           >
-            {isBreakMode ? '☕ Resume Auction' : '☕ Pause (Break)'}
+            RESET AUCTION
           </button>
         </div>
       </div>
 
-      <div className="auctioneer-grid">
-        {/* LEFT COLUMN: UPCOMING PLAYERS */}
-        <div className="auctioneer-sidebar glass-panel">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h2>Upcoming Players</h2>
-          <button 
-            className="btn" 
-            style={{ padding: '0.5rem', background: leaderboardActive ? 'var(--primary)' : 'rgba(255,255,255,0.1)', fontSize: '0.8rem' }}
-            onClick={toggleLeaderboard}
-          >
-            {leaderboardActive ? 'Hide Leaderboard' : 'Show Leaderboard'}
-          </button>
+      {/* Emergency Reset Confirmation Modal */}
+      {showResetModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.85)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999,
+          padding: '1rem'
+        }}>
+          <div style={{
+            background: 'var(--surface-primary)',
+            border: '1px solid var(--crimson-border)',
+            padding: '2rem',
+            borderRadius: '8px',
+            maxWidth: '460px',
+            width: '100%',
+            boxShadow: '0 25px 60px rgba(0,0,0,0.9)'
+          }}>
+            <h3 style={{ color: 'var(--crimson-danger)', fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: '800' }}>
+              CRITICAL: RESET ENTIRE AUCTION
+            </h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.5, marginBottom: '1.25rem' }}>
+              This action will reset all players back to UPCOMING, restore all 10 franchise budgets to ₹90.00 Cr, and clear active gavel lots for this session.
+            </p>
+            <p style={{ color: '#ffffff', fontSize: '0.8rem', fontFamily: 'JetBrains Mono, monospace', marginBottom: '0.5rem' }}>
+              To confirm, please type <strong>RESET</strong> below:
+            </p>
+            <input
+              type="text"
+              value={resetConfirmInput}
+              onChange={(e) => setResetConfirmInput(e.target.value)}
+              className="form-input"
+              placeholder="Type RESET"
+              style={{ marginBottom: '1.25rem', textTransform: 'uppercase' }}
+            />
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
+              <button className="btn btn-secondary" onClick={() => { setShowResetModal(false); setResetConfirmInput(''); }}>
+                CANCEL
+              </button>
+              <button className="btn btn-danger" onClick={handleResetAuction}>
+                CONFIRM DESTRUCTIVE RESET
+              </button>
+            </div>
+          </div>
         </div>
+      )}
+
+      {/* 3-Column Command Deck */}
+      <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr 320px', gap: '1.25rem' }}>
         
-        {/* Dynamic Pool Filter */}
-        {players.some(p => p.pool) && (
-          <select 
-            value={poolFilter} 
-            onChange={(e) => setPoolFilter(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem', marginTop: '1rem', background: 'var(--bg-dark)', color: 'white', border: '1px solid var(--primary)', borderRadius: '4px' }}
-          >
-            <option value="ALL">All Sets / Pools</option>
-            {[...new Set(players.filter(p => p.pool).map(p => p.pool))]
+        {/* LEFT COLUMN: UPCOMING ROSTER QUEUE */}
+        <div style={{ 
+          background: 'rgba(10, 13, 18, 0.85)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: '8px',
+          padding: '1.25rem',
+          display: 'flex',
+          flexDirection: 'column',
+          height: 'calc(100vh - 170px)',
+          overflow: 'hidden'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <div>
+              <h3 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#ffffff' }}>ROSTER QUEUE</h3>
+              <span style={{ fontSize: '0.7rem', color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace' }}>
+                {players.length} PENDING LOTS
+              </span>
+            </div>
+          </div>
+          
+          {players.some(p => p.pool) && (
+            <select 
+              value={poolFilter} 
+              onChange={(e) => setPoolFilter(e.target.value)}
+              className="form-input"
+              style={{ padding: '0.45rem', fontSize: '0.8rem', marginBottom: '0.75rem' }}
+            >
+              <option value="ALL">ALL LOT CATEGORIES</option>
+              {[...new Set(players.filter(p => p.pool).map(p => p.pool))]
+                .sort((a, b) => {
+                  const getPoolNumber = (poolStr) => {
+                    if (!poolStr) return 999;
+                    const match = poolStr.match(/POOL\s*[-]?\s*(\d+)/i);
+                    return match ? parseInt(match[1], 10) : 999;
+                  };
+                  return getPoolNumber(a) - getPoolNumber(b);
+                })
+                .map(pool => (
+                <option key={pool} value={pool}>{pool}</option>
+              ))}
+            </select>
+          )}
+
+          <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.5rem', paddingRight: '0.25rem' }}>
+            {players
+              .filter(p => poolFilter === 'ALL' || p.pool === poolFilter)
               .sort((a, b) => {
                 const getPoolNumber = (poolStr) => {
                   if (!poolStr) return 999;
                   const match = poolStr.match(/POOL\s*[-]?\s*(\d+)/i);
                   return match ? parseInt(match[1], 10) : 999;
                 };
-                return getPoolNumber(a) - getPoolNumber(b);
+                const poolNumA = getPoolNumber(a.pool);
+                const poolNumB = getPoolNumber(b.pool);
+                if (poolNumA !== poolNumB) return poolNumA - poolNumB;
+                return a.name.localeCompare(b.name);
               })
-              .map(pool => (
-              <option key={pool} value={pool}>{pool}</option>
-            ))}
-          </select>
-        )}
-
-        <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          {players
-            .filter(p => poolFilter === 'ALL' || p.pool === poolFilter)
-            .sort((a, b) => {
-              const getPoolNumber = (poolStr) => {
-                if (!poolStr) return 999;
-                const match = poolStr.match(/POOL\s*[-]?\s*(\d+)/i);
-                return match ? parseInt(match[1], 10) : 999;
-              };
-              const poolNumA = getPoolNumber(a.pool);
-              const poolNumB = getPoolNumber(b.pool);
-              if (poolNumA !== poolNumB) return poolNumA - poolNumB;
-              return a.name.localeCompare(b.name);
-            })
-            .map(p => (
-            <div key={p.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '4px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <img src={getAvatar(p.name, p.imageUrl)} style={{ width: '30px', height: '30px', borderRadius: '50%', objectFit: 'cover' }} />
-                <span>{p.name}</span>
+              .map(p => (
+              <div key={p.id} style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center', 
+                padding: '0.65rem 0.75rem', 
+                background: 'rgba(16, 21, 29, 0.7)', 
+                borderRadius: '4px',
+                border: '1px solid rgba(255, 255, 255, 0.04)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <img src={getAvatar(p.name, p.imageUrl)} style={{ width: '28px', height: '28px', borderRadius: '4px', objectFit: 'cover' }} alt="" />
+                  <div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#ffffff' }}>{p.name}</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono, monospace' }}>
+                      ₹{(p.basePrice / 10000000).toFixed(2)} Cr
+                    </div>
+                  </div>
+                </div>
+                <button 
+                  className="btn btn-secondary" 
+                  style={{ padding: '0.3rem 0.6rem', fontSize: '0.7rem' }} 
+                  onClick={() => bringToLot(p)} 
+                  disabled={livePlayer && livePlayer.status === 'LIVE'}
+                >
+                  LOAD
+                </button>
               </div>
-              <button className="btn" style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem' }} onClick={() => bringToLot(p)} disabled={livePlayer && livePlayer.status === 'LIVE'}>Bring to Lot</button>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* MIDDLE COLUMN: LIVE CONTROL PANEL */}
-      <div className="dashboard-main glass-panel">
-        <h2>Live Control Panel</h2>
-        {livePlayer ? (
-          <div className="card glass-panel" style={{ marginTop: '2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img src={getAvatar(livePlayer.name, livePlayer.imageUrl)} className="player-avatar-large" />
-            <h1 style={{ fontSize: '3.5rem', color: 'var(--primary)' }}>{livePlayer.name} {livePlayer.country !== 'IND' && livePlayer.country !== 'India' ? '✈️' : ''}</h1>
-            <span className={`badge badge-${livePlayer.category.toLowerCase()}`} style={{ marginTop: '0.5rem' }}>{livePlayer.category}</span>
-            <p style={{ fontSize: '1.5rem', margin: '1rem 0' }}>Base Price: ₹{livePlayer.basePrice / 10000000} Cr</p>
-            
-            {livePlayer.status === 'LIVE' ? (
-              <div style={{ marginTop: '1rem', background: 'var(--bg-darker)', padding: '1.5rem', borderRadius: '8px', width: '100%' }}>
-                <h3 className={animateBid ? 'animate-bid' : ''} style={{ marginBottom: '0.5rem', fontSize: '2.5rem', transition: 'color 0.2s' }}>
-                  Current Bid: ₹{currentBid / 10000000} Cr
-                </h3>
-                {biddingTeam && <p style={{ color: 'var(--primary)', fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '0.5rem' }}>Highest Bidder: {teams.find(t => t.id === parseInt(biddingTeam))?.name}</p>}
-                
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
+        {/* MIDDLE COLUMN: LIVE GAVEL CONSOLE */}
+        <div style={{ 
+          background: 'rgba(10, 13, 18, 0.95)',
+          border: '1px solid var(--gold-border)',
+          borderRadius: '8px',
+          padding: '1.75rem',
+          display: 'flex',
+          flexDirection: 'column',
+          height: 'calc(100vh - 170px)',
+          overflowY: 'auto'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <span style={{ fontSize: '0.75rem', color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.15em' }}>
+              OFFICIAL GAVEL DECK
+            </span>
+            {livePlayer && (
+              <span className={`badge ${livePlayer.status === 'LIVE' ? 'badge-live' : livePlayer.status === 'SOLD' ? 'badge-sold' : 'badge-unsold'}`}>
+                {livePlayer.status}
+              </span>
+            )}
+          </div>
+
+          {livePlayer ? (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <div style={{ 
+                width: '90px', 
+                height: '90px', 
+                borderRadius: '8px', 
+                background: 'rgba(20, 27, 37, 0.9)', 
+                border: '1px solid var(--gold-border)', 
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem'
+              }}>
+                <img src={getAvatar(livePlayer.name, livePlayer.imageUrl)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="" />
+              </div>
+
+              <h1 style={{ fontSize: '2.4rem', fontWeight: '900', color: '#ffffff', marginBottom: '0.25rem' }}>
+                {livePlayer.name}
+              </h1>
+
+              <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                <span className="badge badge-gold">{livePlayer.category.replace('_', ' ')}</span>
+                <span className="badge" style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)' }}>
+                  BASE: ₹{(livePlayer.basePrice / 10000000).toFixed(2)} Cr
+                </span>
+                <span className="badge" style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-secondary)' }}>
+                  {livePlayer.country || 'DOMESTIC'}
+                </span>
+              </div>
+              
+              {livePlayer.status === 'LIVE' ? (
+                <div style={{ width: '100%', background: 'rgba(16, 21, 29, 0.9)', padding: '1.5rem', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--gold-bright)', letterSpacing: '0.12em', fontFamily: 'JetBrains Mono, monospace', marginBottom: '0.25rem' }}>
+                    CURRENT VALUATION
+                  </div>
+                  <h2 className={animateBid ? 'animate-bid' : ''} style={{ fontSize: '3rem', fontWeight: '900', color: '#ffffff', fontFamily: 'JetBrains Mono, monospace', margin: 0 }}>
+                    ₹{(parseFloat(currentBid) / 10000000).toFixed(2)} Cr
+                  </h2>
+                  
+                  <div style={{ marginTop: '0.5rem', marginBottom: '1.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>
+                    LEADING FRANCHISE: <strong style={{ color: 'var(--gold-bright)' }}>{teams.find(t => t.id === parseInt(biddingTeam))?.name || 'AWAITING OPENING BID'}</strong>
+                  </div>
 
                   {bidHistory.length > 0 && (
-                    <button className="btn" style={{ background: 'var(--warning)', color: 'black', fontWeight: 'bold' }} onClick={reverseBid}>
-                      Reverse Last Bid ↩️
+                    <button 
+                      className="btn btn-amber" 
+                      style={{ padding: '0.4rem 1rem', fontSize: '0.75rem', marginBottom: '1rem' }} 
+                      onClick={reverseBid}
+                    >
+                      REVERSE LAST BID
                     </button>
                   )}
-                </div>
 
-                <p style={{ marginBottom: '1rem', color: 'var(--text-muted)' }}>
-                  {!biddingTeam 
-                    ? `Click a team to start bidding at Base Price (₹${currentBid / 10000000} Cr)` 
-                    : `Click a team to increment bid by +₹${(getNextBidAmount(parseFloat(currentBid)) - currentBid) / 100000} L`
-                  }
-                </p>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                  {teams.map(t => {
-                    const nextBidAmount = biddingTeam ? getNextBidAmount(parseFloat(currentBid)) : parseFloat(currentBid);
-                    const eligibility = getTeamEligibility(t, nextBidAmount, livePlayer);
-                    const isBidding = parseInt(biddingTeam) === t.id;
-                    return (
-                      <div key={t.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                        <button 
-                          className="btn"
-                          disabled={t.isDisqualified}
-                          style={{ 
-                            background: isBidding ? 'var(--primary)' : 'rgba(255,255,255,0.1)', 
-                            border: isBidding ? '2px solid white' : (eligibility.eligible ? '1px solid var(--glass-border)' : '1px solid var(--danger)'),
-                            opacity: t.isDisqualified ? 0.5 : 1,
-                            padding: '0.8rem 0.5rem',
-                            fontSize: '0.9rem',
-                            fontWeight: 'bold',
-                            transition: 'all 0.2s',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            gap: '0.2rem'
-                          }}
-                          onClick={() => incrementBid(t.id)}
-                        >
-                          {t.name}
-                          {t.isDisqualified && <span style={{fontSize: '0.8rem', color: 'var(--danger)'}}>(Disqualified)</span>}
-                        </button>
-                        {!eligibility.eligible && !t.isDisqualified && (
-                          <div style={{ color: 'var(--danger)', fontSize: '0.85rem', fontWeight: 'bold' }}>
-                            ⚠ {eligibility.reason}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                  {/* 10-Franchise Bid Paddle Grid */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                    {teams.map(t => {
+                      const nextBidAmount = biddingTeam ? getNextBidAmount(parseFloat(currentBid)) : parseFloat(currentBid);
+                      const eligibility = getTeamEligibility(t, nextBidAmount, livePlayer);
+                      const isBidding = parseInt(biddingTeam) === t.id;
+                      
+                      return (
+                        <div key={t.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                          <button 
+                            className="btn"
+                            disabled={t.isDisqualified}
+                            style={{ 
+                              background: isBidding 
+                                ? 'linear-gradient(135deg, var(--gold-bright), var(--gold-primary))' 
+                                : 'rgba(20, 27, 37, 0.9)', 
+                              color: isBidding ? '#000000' : '#ffffff',
+                              border: isBidding 
+                                ? '1px solid #ffffff' 
+                                : eligibility.eligible 
+                                  ? '1px solid rgba(255, 255, 255, 0.1)' 
+                                  : '1px solid var(--crimson-border)',
+                              opacity: t.isDisqualified ? 0.35 : 1,
+                              padding: '0.65rem 0.4rem',
+                              fontSize: '0.78rem',
+                              fontWeight: '700',
+                              flexDirection: 'column',
+                              gap: '0.15rem'
+                            }}
+                            onClick={() => incrementBid(t.id)}
+                          >
+                            <span>{t.name}</span>
+                            <span style={{ fontSize: '0.65rem', opacity: 0.8, fontFamily: 'JetBrains Mono, monospace' }}>
+                              ₹{(t.budget / 10000000).toFixed(1)}Cr
+                            </span>
+                          </button>
+                          {!eligibility.eligible && !t.isDisqualified && (
+                            <span style={{ color: 'var(--crimson-danger)', fontSize: '0.65rem', fontFamily: 'JetBrains Mono, monospace' }}>
+                              {eligibility.reason}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  
+                  {/* Final Gavel Actions */}
+                  <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', paddingTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                    <button 
+                      className="btn btn-success" 
+                      onClick={sellPlayer} 
+                      style={{ fontSize: '1rem', padding: '0.85rem 2.5rem', fontWeight: '800' }}
+                    >
+                      CONFIRM SALE
+                    </button>
+                    {bidHistory.length === 0 && (
+                      <button 
+                        className="btn btn-danger" 
+                        onClick={markUnsold} 
+                        style={{ fontSize: '1rem', padding: '0.85rem 2.5rem', fontWeight: '800' }}
+                      >
+                        PASS UNSOLD
+                      </button>
+                    )}
+                  </div>
                 </div>
-                
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '2rem' }}>
-                  <button className="btn btn-success" onClick={sellPlayer} style={{ fontSize: '1.5rem', padding: '1rem 3rem' }}>SOLD!</button>
-                  {bidHistory.length === 0 && (
-                    <button className="btn btn-danger" onClick={markUnsold} style={{ fontSize: '1.5rem', padding: '1rem 3rem' }}>UNSOLD</button>
+              ) : (
+                <div style={{ marginTop: '1.5rem', width: '100%', padding: '1.5rem', background: 'rgba(16, 21, 29, 0.85)', borderRadius: '6px' }}>
+                  <div style={{ 
+                    color: livePlayer.status === 'SOLD' ? 'var(--emerald-live)' : 'var(--crimson-danger)', 
+                    fontSize: '2rem', 
+                    fontWeight: '800',
+                    fontFamily: 'JetBrains Mono, monospace'
+                  }}>
+                    {livePlayer.status === 'SOLD' ? `SOLD FOR ₹${(parseFloat(currentBid) / 10000000).toFixed(2)} CR` : 'PASSED UNSOLD'}
+                  </div>
+                  {livePlayer.status === 'SOLD' && biddingTeam && (
+                    <div style={{ color: 'var(--text-secondary)', marginTop: '0.5rem', fontSize: '1.1rem' }}>
+                      ACQUIRED BY: <strong style={{ color: '#ffffff' }}>{teams.find(t => t.id === parseInt(biddingTeam))?.name}</strong>
+                    </div>
                   )}
+
+                  <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginTop: '1.5rem' }}>
+                    <button className="btn btn-gold" onClick={advanceNextPlayer}>
+                      NEXT LOT &rarr;
+                    </button>
+                    <button className="btn btn-secondary" onClick={reopenPlayer}>
+                      REOPEN LOT
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div style={{ marginTop: '2rem' }}>
-                <h2 style={{ color: livePlayer.status === 'SOLD' ? 'var(--success)' : 'var(--danger)', fontSize: '2.5rem' }}>
-                  {livePlayer.status === 'SOLD' ? `SOLD for ₹${currentBid / 10000000} Cr` : 'UNSOLD'}
-                </h2>
-                {livePlayer.status === 'SOLD' && biddingTeam && (
-                  <h3 style={{ color: 'white', marginTop: '0.5rem', fontSize: '1.8rem' }}>
-                    to {teams.find(t => t.id === parseInt(biddingTeam))?.name}
-                  </h3>
-                )}
-              </div>
-            )}
-            
-            {(livePlayer.status === 'SOLD' || livePlayer.status === 'UNSOLD') && (
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-                <button className="btn" style={{ fontSize: '1.2rem', padding: '1rem 2rem', background: 'var(--primary)', color: '#000', fontWeight: 'bold' }} onClick={advanceNextPlayer}>
-                  ▶ Next Player
-                </button>
-                <button className="btn" style={{ fontSize: '1.2rem', padding: '1rem 2rem', background: 'var(--warning)', color: 'black', fontWeight: 'bold' }} onClick={reopenPlayer}>
-                  Re-Open Player
-                </button>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
-            <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', textAlign: 'center' }}>No player currently on the auction block.</p>
-            <button className="btn" style={{ fontSize: '1.3rem', padding: '1rem 2.5rem', background: 'linear-gradient(135deg, #10b981, #059669)', color: 'white', fontWeight: 'bold', borderRadius: '10px', boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)' }} onClick={advanceNextPlayer}>
-              ▶ Bring Next Player to Lot
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* RIGHT COLUMN: AUCTION INFO */}
-      <div className="auctioneer-sidebar glass-panel">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-          <h2 style={{ margin: 0 }}>Auction Info</h2>
-          <button className="btn" onClick={toggleBreak} style={{ background: isBreakMode ? 'var(--warning)' : 'rgba(255,255,255,0.1)', color: isBreakMode ? 'black' : 'white', fontWeight: 'bold', padding: '0.5rem 1rem' }}>
-            ☕ {isBreakMode ? 'End Break' : 'Break Time'}
-          </button>
+              )}
+            </div>
+          ) : (
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.25rem' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1rem', fontFamily: 'JetBrains Mono, monospace' }}>
+                NO ACTIVE LOT CURRENTLY ON GAVEL STAGE
+              </p>
+              <button className="btn btn-gold" onClick={advanceNextPlayer} style={{ padding: '0.85rem 2rem' }}>
+                CALL FIRST PLAYER TO LOT
+              </button>
+            </div>
+          )}
         </div>
-        
-        {lastSoldPlayer && (
-          <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'var(--bg-darker)', borderRadius: '8px', borderLeft: '4px solid var(--success)' }}>
-            <h3 style={{ fontSize: '0.9rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Last Sold Player</h3>
-            <p style={{ color: 'var(--text-main)', fontWeight: 'bold', fontSize: '1.5rem' }}>{lastSoldPlayer.name}</p>
-            <p style={{ marginTop: '0.5rem' }}>Sold to: <span style={{ color: 'white', fontWeight: 'bold' }}>{teams.find(t => t.id === lastSoldPlayer.teamId)?.name}</span></p>
-            <p>Price: <span style={{ color: 'var(--success)', fontWeight: 'bold', fontSize: '1.2rem' }}>₹{lastSoldPlayer.soldPrice / 10000000} Cr</span></p>
-          </div>
-        )}
 
-        <div style={{ marginTop: '2rem' }}>
-          <h3 style={{ borderBottom: '1px solid var(--glass-border)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Franchise Purses</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        {/* RIGHT COLUMN: PURSES & DISCIPLINE */}
+        <div style={{ 
+          background: 'rgba(10, 13, 18, 0.85)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: '8px',
+          padding: '1.25rem',
+          display: 'flex',
+          flexDirection: 'column',
+          height: 'calc(100vh - 170px)',
+          overflowY: 'auto'
+        }}>
+          <div style={{ marginBottom: '1rem' }}>
+            <h3 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#ffffff' }}>FRANCHISE STATUS</h3>
+            <span style={{ fontSize: '0.7rem', color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace' }}>
+              PURSES & PENALTY COUNTERS
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
             {teams.map(t => (
-              <div key={t.id} style={{ display: 'flex', flexDirection: 'column', background: 'rgba(255,255,255,0.05)', padding: '0.75rem', borderRadius: '4px' }}>
+              <div key={t.id} style={{ 
+                background: 'rgba(16, 21, 29, 0.85)', 
+                padding: '0.75rem', 
+                borderRadius: '6px',
+                border: t.isDisqualified ? '1px solid var(--crimson-border)' : '1px solid rgba(255, 255, 255, 0.04)'
+              }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
-                    <div style={{ fontWeight: 'bold', color: 'white', textDecoration: t.isDisqualified ? 'line-through' : 'none' }}>{t.name}</div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Squad: {t.players?.length || 0}/15</div>
+                    <div style={{ fontWeight: '700', fontSize: '0.85rem', color: '#ffffff', textDecoration: t.isDisqualified ? 'line-through' : 'none' }}>
+                      {t.name}
+                    </div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
+                      Roster: {t.players?.length || 0}/15
+                    </div>
                   </div>
-                  <div style={{ color: 'var(--accent)', fontWeight: 'bold', fontSize: '1.1rem' }}>
-                    ₹{t.budget / 10000000} Cr
+                  <div style={{ color: 'var(--gold-bright)', fontWeight: '800', fontSize: '0.95rem', fontFamily: 'JetBrains Mono, monospace' }}>
+                    ₹{(t.budget / 10000000).toFixed(2)} Cr
                   </div>
                 </div>
                 
-                {/* Penalty Controls */}
-                <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '0.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', color: t.mistakes >= 3 ? 'var(--danger)' : 'var(--warning)', fontWeight: 'bold' }}>
-                    Mistakes: {t.mistakes || 0}/3 {t.isDisqualified ? '(DISQUALIFIED)' : ''}
+                {/* Penalty Status & Controls */}
+                <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.04)', paddingTop: '0.4rem' }}>
+                  <span style={{ fontSize: '0.7rem', color: t.mistakes >= 3 ? 'var(--crimson-danger)' : t.mistakes > 0 ? 'var(--amber-warning)' : 'var(--text-dim)', fontWeight: '700', fontFamily: 'JetBrains Mono, monospace' }}>
+                    INFRACTIONS: {t.mistakes || 0}/3 {t.isDisqualified ? '[LOCKED]' : ''}
                   </span>
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <div style={{ display: 'flex', gap: '0.35rem' }}>
                     {t.mistakes > 0 && (
                       <button 
-                        className="btn" 
-                        style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem', background: 'var(--warning)', color: 'black', fontWeight: 'bold' }}
+                        className="btn btn-secondary" 
+                        style={{ padding: '0.2rem 0.5rem', fontSize: '0.65rem' }}
                         onClick={() => reversePenalty(t.id)}
                       >
-                        - Penalty
+                        - REDUCE
                       </button>
                     )}
                     {!t.isDisqualified && (
                       <button 
                         className="btn btn-danger" 
-                        style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}
+                        style={{ padding: '0.2rem 0.5rem', fontSize: '0.65rem' }}
                         onClick={() => issuePenalty(t.id)}
                       >
-                        + Penalty
+                        + PENALTY
                       </button>
                     )}
                   </div>
@@ -542,8 +864,8 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
             ))}
           </div>
         </div>
+
       </div>
-    </div>
     </div>
   );
 }
