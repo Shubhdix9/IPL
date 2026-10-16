@@ -29,9 +29,19 @@
   --crimson-surface: rgba(239, 68, 68, 0.1);
   --crimson-border: rgba(239, 68, 68, 0.35);
 
-  --slate-blue: #3b82f6;
-  --slate-blue-surface: rgba(59, 130, 246, 0.1);
-  --slate-blue-border: rgba(59, 130, 246, 0.3);
+  /* IPL Auction Pro Cinematic Theme */
+  --navy-midnight: #03101F;
+  --navy-dark: #061827;
+  --ipl-gold: #FFC928;
+  --electric-blue: #00A8FF;
+  --white-main: #F5F7FA;
+  --muted-blue: #91A6BE;
+  --live-green: #00E6A0;
+  --live-red: #FF3B30;
+
+  --slate-blue: #00A8FF;
+  --slate-blue-surface: rgba(0, 168, 255, 0.1);
+  --slate-blue-border: rgba(0, 168, 255, 0.3);
 
   /* Typography Colors */
   --text-main: #f8fafc;
@@ -149,6 +159,7 @@ h1, h2, h3, h4, .font-heading {
   color: var(--text-main);
   background: linear-gradient(135deg, #ffffff 30%, var(--gold-bright) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -432,14 +443,31 @@ select.form-input option {
   100% { opacity: 1; transform: scale(1); }
 }
 
-.live-pulse-dot {
+.live-pulse-dot,
+.live-dot-green {
   display: inline-block;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--emerald-live);
-  box-shadow: 0 0 8px var(--emerald-live);
+  background: var(--live-green);
+  box-shadow: 0 0 8px var(--live-green);
   animation: liveDotPulse 1.8s infinite ease-in-out;
+}
+
+.live-dot-red {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--live-red);
+  box-shadow: 0 0 8px var(--live-red);
+  animation: liveDotPulseRed 1.6s infinite ease-in-out;
+}
+
+@keyframes liveDotPulseRed {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 /* Clean Telemetry Tables */

@@ -24,8 +24,8 @@ const NavigationBar = () => {
   const { user, logout } = useAuth();
   const location = useLocation();
 
-  // Hide the navbar on public landing & viewer
-  if (['/', '/login', '/viewer'].includes(location.pathname)) {
+  // Hide the navbar on public landing, viewer, and public modal routes
+  if (['/', '/room', '/teams', '/how-to-play', '/login', '/management', '/viewer'].includes(location.pathname)) {
     return null;
   }
 
@@ -76,6 +76,9 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/room" element={<ViewerDashboard />} />
+            <Route path="/teams" element={<LandingPage initialSection="teams" />} />
+            <Route path="/how-to-play" element={<LandingPage initialSection="how-to-play" />} />
             <Route path="/login" element={<Login portalName="Franchise War Room Access" />} />
             <Route path="/management" element={<Login portalName="Operations Command Authentication" />} />
             <Route path="/manager" element={

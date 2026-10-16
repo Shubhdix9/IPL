@@ -1,14 +1,23 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
 export default function Login({ portalName }) {
-  const [username, setUsername] = useState('');
+  const [searchParams] = useSearchParams();
+  const teamParam = searchParams.get('team');
+
+  const [username, setUsername] = useState(teamParam ? teamParam.toLowerCase() : '');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login, user } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (teamParam) {
+      setUsername(teamParam.toLowerCase());
+    }
+  }, [teamParam]);
 
   // If already logged in, automatically redirect them to their dashboard
   useEffect(() => {
@@ -114,7 +123,7 @@ export default function Login({ portalName }) {
             color: '#ffffff',
             letterSpacing: '-0.02em'
           }}>
-            {portalName || 'System Authentication'}
+            {teamParam ? `${teamParam.toUpperCase()} War Room Access` : (portalName || 'System Authentication')}
           </h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.35rem' }}>
             Provide designated operator credentials to initialize session
