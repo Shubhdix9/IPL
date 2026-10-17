@@ -4,12 +4,12 @@ import { getFirestore, connectFirestoreEmulator, type Firestore } from 'firebase
 import { getStorage, connectStorageEmulator, type FirebaseStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || 'AIzaSyBFd1KdOT2_tpAmTPqJ4cYm87FDZSisRN4',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || '',
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'iplauction-5c41c.firebaseapp.com',
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'iplauction-5c41c',
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'iplauction-5c41c.firebasestorage.app',
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '678425148616',
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '1:678425148616:web:1e957faa5b185b05fe39fd',
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '',
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '',
 };
 
 export const app: FirebaseApp = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
