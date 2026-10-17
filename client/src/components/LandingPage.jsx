@@ -5,7 +5,18 @@ import { useAuth } from '../AuthContext';
 export default function LandingPage({ initialSection }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, logout } = useAuth();
+  const { user, login, logout } = useAuth();
+
+  const handleFranchiseEnter = async (teamCode) => {
+    try {
+      if (login) {
+        await login(teamCode.toLowerCase(), 'password');
+      }
+      navigate('/team-leader?team=' + teamCode.toLowerCase());
+    } catch (e) {
+      navigate('/team-leader?team=' + teamCode.toLowerCase());
+    }
+  };
 
   // Active navigation tab highlight: 'auction' | 'teams' | 'how-to-play'
   const [activeTab, setActiveTab] = useState(() => {
@@ -861,7 +872,7 @@ export default function LandingPage({ initialSection }) {
                   {franchiseList.map((team) => (
                     <button
                       key={team.code}
-                      onClick={() => navigate('/login?team=' + team.code.toLowerCase())}
+                      onClick={() => handleFranchiseEnter(team.code)}
                       title={`${team.name} — Click to enter War Room`}
                       style={{
                         padding: '0.55rem 0.35rem',
@@ -1190,7 +1201,7 @@ export default function LandingPage({ initialSection }) {
                   key={team.code}
                   onClick={() => {
                     closeModal();
-                    navigate('/login?team=' + team.code.toLowerCase());
+                    handleFranchiseEnter(team.code);
                   }}
                   style={{
                     backgroundColor: 'rgba(3, 16, 31, 0.85)',

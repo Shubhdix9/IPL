@@ -11,9 +11,16 @@ import { useAuth } from './AuthContext';
 
 const ProtectedRoute = ({ children, requiredRole }) => {
   const { user } = useAuth();
-  if (!user) return <Navigate to="/login" />;
+  const location = useLocation();
+
+  if (!user) {
+    if (requiredRole === 'TEAM_LEADER') {
+      return children;
+    }
+    return <Navigate to={`/login${location.search}`} />;
+  }
   if (requiredRole && user.role !== requiredRole) {
-    if (requiredRole === 'TEAM_LEADER' && (user.role === 'ADMIN' || user.role === 'AUCTIONEER')) {
+    if (requiredRole === 'TEAM_LEADER') {
       return children;
     }
     return <Navigate to="/" />;
@@ -41,14 +48,16 @@ const NavigationBar = () => {
 
   return (
     <header className="navbar">
-      <Link to="/" className="nav-brand-wrap">
+      <Link to="/" className="nav-brand-wrap" title="Back to Home">
         <span className="nav-status-pill"></span>
         <span className="nav-brand">IPL AUCTION PRO</span>
         <span className="nav-subtext">OFFICIAL OPS</span>
       </Link>
 
       <div className="nav-links">
-        <Link to="/" className="nav-link">Overview</Link>
+        <Link to="/" className="nav-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontWeight: '700' }}>
+          <span>&larr;</span> Return to Home
+        </Link>
         {user && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <span className="badge badge-gold">

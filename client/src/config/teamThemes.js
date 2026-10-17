@@ -1,4 +1,31 @@
 export const teamThemes = {
+  csk: {
+    id: 'csk',
+    code: 'CSK',
+    name: 'Chennai Super Kings',
+    slogan: 'Whistle Podu',
+    sloganGraphic: ['WHISTLE', 'PODU'],
+    heroFocus: '50% 25%',
+    customBanner: '/assets/teams/csk/hero.png',
+    watermarkType: 'svg',
+    assets: {
+      logoFull: '/teams/csk.svg',
+      emblemOutline: '/teams/csk.svg',
+      emblemCrop: '/teams/csk.svg',
+      hero: '/assets/teams/csk/hero.png',
+    },
+    colors: {
+      primary: '#F9CD05',       // Official CSK Canary Yellow
+      secondary: '#004BA0',     // Official CSK Royal Navy Blue
+      tertiary: '#FF822E',      // Lion mane fiery amber accent
+      accentUi: '#F9CD05',      // Vibrant CSK Yellow for UI accents & badges (WCAG AAA with #050B16)
+      liftedStrips: {
+        primary: '#F9CD05',     // Canary Yellow
+        secondary: '#1A5DB5',   // Lifted Royal Blue for strip contrast
+        tertiary: '#FF822E',    // Fiery amber
+      },
+    },
+  },
   dc: {
     id: 'dc',
     code: 'DC',
@@ -129,13 +156,126 @@ export const teamThemes = {
       },
     },
   },
+  mi: {
+    id: 'mi',
+    code: 'MI',
+    name: 'Mumbai Indians',
+    slogan: 'Duniya Hila Denge Hum',
+    sloganGraphic: ['DUNIYA', 'HILA DENGE HUM'],
+    heroFocus: '50% 25%',
+    customBanner: '/assets/teams/mi/hero.png',
+    watermarkType: 'svg',
+    assets: {
+      logoFull: '/teams/mi.svg',
+      emblemOutline: '/teams/mi.svg',
+      emblemCrop: '/teams/mi.svg',
+      hero: '/assets/teams/mi/hero.png',
+    },
+    colors: {
+      primary: '#004BA0',       // Official MI Royal Blue
+      secondary: '#D1AB3E',     // Official MI Championship Gold
+      tertiary: '#002D62',      // Deep Stadium Navy
+      accentUi: '#0078FF',      // Vibrant Electric MI Blue for UI badges & accents
+      liftedStrips: {
+        primary: '#1A6ED8',     // Lifted Blue for card top strip contrast
+        secondary: '#D1AB3E',   // Championship Gold
+        tertiary: '#00A3FF',    // Electric Sky Blue highlight
+      },
+    },
+  },
+  lsg: {
+    id: 'lsg',
+    code: 'LSG',
+    name: 'Lucknow Super Giants',
+    slogan: 'Ab Apni Baari Hai',
+    sloganGraphic: ['AB APNI', 'BAARI HAI'],
+    heroFocus: '50% 25%',
+    customBanner: '/assets/teams/lsg/hero.png',
+    watermarkType: 'svg',
+    assets: {
+      logoFull: '/teams/lsg.svg',
+      emblemOutline: '/teams/lsg.svg',
+      emblemCrop: '/teams/lsg.svg',
+      hero: '/assets/teams/lsg/hero.png',
+    },
+    colors: {
+      primary: '#0A4D5C',       // Official LSG Deep Teal
+      secondary: '#FF671F',     // Official LSG Saffron/Orange trim
+      tertiary: '#002B36',      // Deep Stadium Navy/Teal
+      accentUi: '#00C2E8',      // Vibrant LSG Cyan for UI badges & accents
+      liftedStrips: {
+        primary: '#00A3E0',     // LSG Cyan for card top strip contrast
+        secondary: '#FF671F',   // Saffron Orange
+        tertiary: '#00E5FF',    // Electric Turquoise highlight
+      },
+    },
+  },
+  gt: {
+    id: 'gt',
+    code: 'GT',
+    name: 'Gujarat Titans',
+    slogan: 'Aava De',
+    sloganGraphic: ['AAVA', 'DE'],
+    heroFocus: '50% 25%',
+    customBanner: '/assets/teams/gt/hero.png',
+    watermarkType: 'svg',
+    assets: {
+      logoFull: '/teams/gt.svg',
+      emblemOutline: '/teams/gt.svg',
+      emblemCrop: '/teams/gt.svg',
+      hero: '/assets/teams/gt/hero.png',
+    },
+    colors: {
+      primary: '#1C2841',       // Official GT Deep Space Navy
+      secondary: '#C5A059',     // Official GT Trophy Gold
+      tertiary: '#58B5E1',      // Lightning Bolt Electric Ice Blue
+      accentUi: '#E2B857',      // Shimmering GT Gold for UI badges & accents
+      liftedStrips: {
+        primary: '#2A3A5D',     // Lifted Deep Navy for card top strip contrast
+        secondary: '#E2B857',   // Trophy Gold
+        tertiary: '#58B5E1',    // Lightning Ice Blue
+      },
+    },
+  },
+  rcb: {
+    id: 'rcb',
+    code: 'RCB',
+    name: 'Royal Challengers Bengaluru',
+    slogan: 'Play Bold',
+    sloganGraphic: ['PLAY', 'BOLD'],
+    heroFocus: '50% 25%',
+    customBanner: '/assets/teams/rcb/hero.png',
+    watermarkType: 'svg',
+    assets: {
+      logoFull: '/teams/rcb.svg',
+      emblemOutline: '/teams/rcb.svg',
+      emblemCrop: '/teams/rcb.svg',
+      hero: '/assets/teams/rcb/hero.png',
+    },
+    colors: {
+      primary: '#9E1B28',       // Official RCB Crimson Red
+      secondary: '#D4AF37',     // Official RCB Rampant Lion Gold
+      tertiary: '#1A1A1A',      // Carbon Black
+      accentUi: '#E82E3A',      // Vibrant Play Bold Red for UI badges & accents
+      liftedStrips: {
+        primary: '#C8102E',     // Royal Red for card top strip contrast
+        secondary: '#D4AF37',   // Lion Gold
+        tertiary: '#FF5C67',    // Fiery Ember Red highlight
+      },
+    },
+  },
 };
 
 export const resolveTeamKey = (input) => {
   if (!input) return null;
   const str = String(input).toLowerCase().trim();
   if (teamThemes[str]) return str;
+  if (str.includes('chennai') || str.includes('super kings') || str.includes('_csk') || str.endsWith('csk') || str === 'csk') return 'csk';
+  if (str.includes('gujarat') || str.includes('titans') || str.includes('giants') || str.includes('_gt') || str.endsWith('gt') || str === 'gt') return 'gt';
+  if (str.includes('lucknow') || str.includes('super giants') || str.includes('_lsg') || str.endsWith('lsg') || str === 'lsg') return 'lsg';
+  if (str.includes('mumbai') || str.includes('indians') || str.includes('_mi') || str.endsWith('mi') || str === 'mi') return 'mi';
   if (str.includes('rajasthan') || str.includes('_rr') || str.endsWith('rr') || str === 'rr') return 'rr';
+  if (str.includes('bangalore') || str.includes('bengaluru') || str.includes('challengers') || str.includes('_rcb') || str.endsWith('rcb') || str === 'rcb') return 'rcb';
   if (str.includes('kolkata') || str.includes('knight') || str.includes('_kkr') || str.endsWith('kkr') || str === 'kkr') return 'kkr';
   if (str.includes('punjab') || str.includes('pbks') || str.includes('_pbks') || str.endsWith('pbks')) return 'pbks';
   if (str.includes('hyderabad') || str.includes('sunrisers') || str.includes('_srh') || str.endsWith('srh') || str === 'srh') return 'srh';
@@ -162,7 +302,7 @@ export const getTeamTheme = (teamKeyOrObject) => {
   return teamThemes[key] || null;
 };
 
-export const THEMED_FRANCHISE_KEYS = ['dc', 'kkr', 'pbks', 'rr', 'srh'];
+export const THEMED_FRANCHISE_KEYS = ['csk', 'dc', 'gt', 'kkr', 'lsg', 'mi', 'pbks', 'rcb', 'rr', 'srh'];
 
 export const isCustomThemedTeam = (teamKeyOrObject) => {
   const key = resolveTeamKey(

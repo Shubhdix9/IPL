@@ -46,6 +46,21 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 25px color-mix(in srgb, var(--team-primary) 25%, transparent);
 }
 
+/* Custom full-width hero banner image (e.g. CSK official franchise banner) */
+.pbHeroCustomBanner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  z-index: 2;
+  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pbHeroBanner:hover .pbHeroCustomBanner {
+  transform: scale(1.008);
+}
+
 /* Diagonal background pattern stripes */
 .pbHeroStripes {
   position: absolute;
