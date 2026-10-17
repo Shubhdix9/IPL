@@ -11,9 +11,16 @@ import { useAuth } from './AuthContext';
 
 const ProtectedRoute = ({ children, requiredRole }) => {
   const { user } = useAuth();
-  if (!user) return <Navigate to="/login" />;
+  const location = useLocation();
+
+  if (!user) {
+    if (requiredRole === 'TEAM_LEADER') {
+      return children;
+    }
+    return <Navigate to={`/login${location.search}`} />;
+  }
   if (requiredRole && user.role !== requiredRole) {
-    if (requiredRole === 'TEAM_LEADER' && (user.role === 'ADMIN' || user.role === 'AUCTIONEER')) {
+    if (requiredRole === 'TEAM_LEADER') {
       return children;
     }
     return <Navigate to="/" />;
