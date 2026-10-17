@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import socket from '../socket';
 import { useAuth } from '../AuthContext';
 import { teamThemes, getTeamTheme, resolveTeamKey, THEMED_FRANCHISE_KEYS } from '../config/teamThemes';
@@ -23,6 +23,8 @@ const CrownGlyph = () => (
 
 export default function TeamLeaderDashboard({ forcedTeamId }) {
   const { teamId: routeTeamId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const teamParam = searchParams.get('team');
   const navigate = useNavigate();
   const { user } = useAuth();
 
@@ -44,10 +46,11 @@ export default function TeamLeaderDashboard({ forcedTeamId }) {
   const [auctionStartingCountdown, setAuctionStartingCountdown] = useState(null);
 
   // Check if current user / franchise belongs to the 5 custom-themed franchises (DC, KKR, PBKS, RR, SRH)
-  const themedKey = resolveTeamKey(user?.teamId) || 
+  const themedKey = resolveTeamKey(teamParam) ||
+                    resolveTeamKey(routeTeamId || forcedTeamId) ||
+                    resolveTeamKey(user?.teamId) || 
                     resolveTeamKey(user?.username) || 
-                    (teamData && (resolveTeamKey(teamData.shortName) || resolveTeamKey(teamData.name) || resolveTeamKey(teamData.id))) ||
-                    resolveTeamKey(routeTeamId || forcedTeamId);
+                    (teamData && (resolveTeamKey(teamData.shortName) || resolveTeamKey(teamData.name) || resolveTeamKey(teamData.id)));
 
   const isThemedTeam = Boolean(themedKey && THEMED_FRANCHISE_KEYS.includes(themedKey));
   const theme = isThemedTeam ? getTeamTheme(themedKey) : null;
@@ -96,12 +99,23 @@ export default function TeamLeaderDashboard({ forcedTeamId }) {
         setTeams(data);
         let myTeam = null;
 
-        // 1. Match by user.teamId
-        if (user?.teamId) {
+        // 1. Check query parameter (e.g. ?team=csk) or route parameter (/team/:teamId)
+        const teamQuery = (teamParam || routeTeamId || forcedTeamId || '').toLowerCase().trim();
+        if (teamQuery) {
+          myTeam = data.find(t => {
+            const short = (t.shortName || t.franchiseCode || '').toLowerCase();
+            const name = (t.name || '').toLowerCase();
+            const id = (t.id || '').toLowerCase();
+            return short === teamQuery || name.includes(teamQuery) || id.includes(teamQuery);
+          });
+        }
+
+        // 2. Match by user.teamId
+        if (!myTeam && user?.teamId) {
           myTeam = data.find(t => String(t.id) === String(user.teamId));
         }
 
-        // 2. Match by user.username (supports csk, owner_csk, mi, owner_mi, rr, owner_rr, etc.)
+        // 3. Match by user.username (supports csk, owner_csk, mi, owner_mi, rr, owner_rr, etc.)
         if (!myTeam && user?.username) {
           const raw = user.username.toLowerCase();
           const clean = raw.replace(/^owner_/, '');
@@ -110,17 +124,6 @@ export default function TeamLeaderDashboard({ forcedTeamId }) {
             const name = (t.name || '').toLowerCase();
             const id = (t.id || '').toLowerCase();
             return short === clean || name.includes(clean) || id.includes(clean) || id.includes(raw);
-          });
-        }
-
-        // 3. Fallback to route or forced parameter (for preview routes like /team/:teamId)
-        if (!myTeam && (routeTeamId || forcedTeamId)) {
-          const param = (routeTeamId || forcedTeamId).toLowerCase();
-          myTeam = data.find(t => {
-            const short = (t.shortName || t.franchiseCode || '').toLowerCase();
-            const name = (t.name || '').toLowerCase();
-            const id = (t.id || '').toLowerCase();
-            return short === param || name.includes(param) || id.includes(param);
           });
         }
 
@@ -136,7 +139,7 @@ export default function TeamLeaderDashboard({ forcedTeamId }) {
       .catch((err) => {
         console.warn('API /teams note:', err.message);
       });
-  }, [user, routeTeamId, forcedTeamId]);
+  }, [user, teamParam, routeTeamId, forcedTeamId]);
 
   // Real-time socket events and location subscription
   useEffect(() => {
@@ -301,8 +304,38 @@ export default function TeamLeaderDashboard({ forcedTeamId }) {
 
   if (!teamData) {
     return (
-      <div style={{ padding: '4rem', textAlign: 'center', color: '#FAAE1A', fontFamily: 'JetBrains Mono, monospace' }}>
-        INITIALIZING FRANCHISE WAR ROOM TELEMETRY...
+      <div style={{ 
+        minHeight: '80vh', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        gap: '1.5rem',
+        padding: '3rem',
+        textAlign: 'center', 
+        fontFamily: "'JetBrains Mono', monospace" 
+      }}>
+        <div style={{ color: '#FAAE1A', fontSize: '1.1rem', letterSpacing: '0.12em' }}>
+          INITIALIZING FRANCHISE WAR ROOM TELEMETRY...
+        </div>
+        <button 
+          onClick={() => navigate('/')}
+          className="btn btn-secondary"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.65rem 1.4rem',
+            fontSize: '0.85rem',
+            color: '#F5F7FA',
+            background: 'rgba(255, 255, 255, 0.08)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '6px',
+            cursor: 'pointer'
+          }}
+        >
+          &larr; Return to Home / Overview
+        </button>
       </div>
     );
   }
@@ -416,6 +449,53 @@ export default function TeamLeaderDashboard({ forcedTeamId }) {
         </div>
       )}
 
+      {/* Top action navigation bar: Back to Home & Franchise quick switch */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '0.75rem',
+        padding: '0.75rem 1.25rem',
+        margin: '0.5rem 0 1rem 0',
+        background: 'linear-gradient(135deg, rgba(13, 20, 31, 0.95), rgba(8, 12, 18, 0.95))',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        borderRadius: '8px',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)'
+      }}>
+        <button
+          onClick={() => navigate('/')}
+          className="btn btn-secondary"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.5rem 1.1rem',
+            fontSize: '0.82rem',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontWeight: '700',
+            color: '#F5F7FA',
+            background: 'rgba(255, 255, 255, 0.08)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 201, 40, 0.15)';
+            e.currentTarget.style.borderColor = '#FAAE1A';
+            e.currentTarget.style.color = '#FAAE1A';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            e.currentTarget.style.color = '#F5F7FA';
+          }}
+        >
+          &larr; Return to Home / Overview
+        </button>
+      </div>
+
       {/* =========================================================================
           BRANCH A: THEMED FRANCHISE DASHBOARD (For DC, KKR, PBKS, RR, SRH)
           ========================================================================= */}
@@ -424,42 +504,52 @@ export default function TeamLeaderDashboard({ forcedTeamId }) {
 
           {/* 1. HERO BANNER (~150px tall, multi-layer matching reference) */}
           <section className={styles.pbHeroBanner}>
-            <div className={styles.pbHeroStripes} />
-
-            <div className={styles.pbHeroPhotoWrap}>
+            {theme.customBanner ? (
               <img 
-                className={styles.pbHeroPhotoImg}
-                src={theme.assets.hero}
-                style={{ objectPosition: theme.heroFocus }}
-                alt={`${theme.name} Squad`}
+                src={theme.customBanner} 
+                alt={`${theme.name} Official Banner`}
+                className={styles.pbHeroCustomBanner}
               />
-            </div>
+            ) : (
+              <>
+                <div className={styles.pbHeroStripes} />
 
-            <div className={styles.pbHeroTint} />
-            <div className={styles.pbHeroDarken} />
+                <div className={styles.pbHeroPhotoWrap}>
+                  <img 
+                    className={styles.pbHeroPhotoImg}
+                    src={theme.assets.hero}
+                    style={{ objectPosition: theme.heroFocus }}
+                    alt={`${theme.name} Squad`}
+                  />
+                </div>
 
-            <div className={styles.pbHeroContent}>
-              <div className={styles.pbHeroLogoWrap}>
-                <img 
-                  className={styles.pbHeroLogo}
-                  src={theme.assets.logoFull} 
-                  alt={`${theme.name} Official Crest`}
-                />
-              </div>
+                <div className={styles.pbHeroTint} />
+                <div className={styles.pbHeroDarken} />
 
-              <div className={styles.pbHeroTitles}>
-                <span className={styles.pbFranchiseLabel}>FRANCHISE</span>
-                <h1 className={styles.pbTeamName}>{theme.name}</h1>
-                <span className={styles.pbSloganSub}>{theme.slogan}</span>
-              </div>
+                <div className={styles.pbHeroContent}>
+                  <div className={styles.pbHeroLogoWrap}>
+                    <img 
+                      className={styles.pbHeroLogo}
+                      src={theme.assets.logoFull} 
+                      alt={`${theme.name} Official Crest`}
+                    />
+                  </div>
 
-              <div className={styles.pbHeroSloganGraphic}>
-                <CrownGlyph />
-                {theme.sloganGraphic.map((line, idx) => (
-                  <div key={idx} className={styles.pbSloganLine}>{line}</div>
-                ))}
-              </div>
-            </div>
+                  <div className={styles.pbHeroTitles}>
+                    <span className={styles.pbFranchiseLabel}>FRANCHISE</span>
+                    <h1 className={styles.pbTeamName}>{theme.name}</h1>
+                    <span className={styles.pbSloganSub}>{theme.slogan}</span>
+                  </div>
+
+                  <div className={styles.pbHeroSloganGraphic}>
+                    <CrownGlyph />
+                    {theme.sloganGraphic.map((line, idx) => (
+                      <div key={idx} className={styles.pbSloganLine}>{line}</div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
           </section>
 
           {/* 2. DASHBOARD BODY GRID (Full Screen Width) */}

@@ -340,6 +340,32 @@ app.get('/api/locations/:locationId/players', async (req, res) => {
   }
 });
 
+app.get('/api/players', async (req, res) => {
+  try {
+    const locationId = req.query.locationId || 'main_arena';
+    const [playersSnap, teamsSnap] = await Promise.all([
+      db.collection('players').where('locationId', '==', locationId).get(),
+      db.collection('teams').where('locationId', '==', locationId).get(),
+    ]);
+
+    const teamsMap = new Map();
+    teamsSnap.forEach((t) => teamsMap.set(t.id, { id: t.id, ...t.data() }));
+
+    const players = playersSnap.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        team: data.teamId ? teamsMap.get(String(data.teamId)) || null : null,
+      };
+    });
+
+    res.json(players);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 // -----------------------------------------------------------------------------
 // 4. Players
 // -----------------------------------------------------------------------------
