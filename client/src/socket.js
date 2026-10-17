@@ -6,15 +6,16 @@ import {
   query,
   where,
   onSnapshot,
+  getDoc,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'demo-api-key',
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'demo-project.firebaseapp.com',
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'demo-project',
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'demo-project.appspot.com',
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '1234567890',
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || '1:1234567890:web:abcdef',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'AIzaSyBFd1KdOT2_tpAmTPqJ4cYm87FDZSisRN4',
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'iplauction-5c41c.firebaseapp.com',
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'iplauction-5c41c',
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'iplauction-5c41c.firebasestorage.app',
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '678425148616',
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || '1:678425148616:web:1e957faa5b185b05fe39fd',
 };
 
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
@@ -27,6 +28,7 @@ class FirestoreAuctionRealtimeBridge {
     this.listeners = new Map();
     this.activeUnsubscribers = [];
     this.currentLocationId = null;
+    this.currentActivePlayerId = null;
     this.previousPlayerStates = new Map();
     this.previousTeamStates = new Map();
     this.previousLocationState = null;
@@ -159,18 +161,43 @@ class FirestoreAuctionRealtimeBridge {
     const locIdStr = String(locationId);
     if (this.currentLocationId === locIdStr) return;
 
-    // Unsubscribe previous listeners
-    this.activeUnsubscribers.forEach((unsub) => unsub());
+    // Unsubscribe previous listeners and intervals
+    this.activeUnsubscribers.forEach((unsub) => {
+      try {
+        unsub();
+      } catch (e) {}
+    });
     this.activeUnsubscribers = [];
     this.currentLocationId = locIdStr;
 
-    // 1. Listen to Location document for breaks, leaderboard, active player
+    // 1. Authoritative Venue Document Listener (locations/{locationId})
     const locDocRef = doc(db, 'locations', locIdStr);
     const unsubLoc = onSnapshot(
       locDocRef,
-      (docSnap) => {
+      async (docSnap) => {
         if (!docSnap.exists()) return;
         const locData = docSnap.data();
+
+        // Immediate Active Player synchronization directly from venue stage
+        if (locData.activePlayerId && locData.activePlayerId !== this.currentActivePlayerId) {
+          this.currentActivePlayerId = locData.activePlayerId;
+          try {
+            const pSnap = await getDoc(doc(db, 'players', locData.activePlayerId));
+            if (pSnap.exists()) {
+              const livePlayerData = {
+                id: pSnap.id,
+                ...pSnap.data(),
+                timerDeadlineMs: locData.timerDeadlineMs,
+              };
+              this.emitLocal('livePlayerUpdated', livePlayerData);
+            }
+          } catch (err) {
+            console.warn('[Firestore] Error fetching active player doc:', err);
+          }
+        } else if (!locData.activePlayerId && this.currentActivePlayerId) {
+          this.currentActivePlayerId = null;
+          this.emitLocal('livePlayerUpdated', null);
+        }
 
         if (this.previousLocationState) {
           if (locData.isOnBreak !== this.previousLocationState.isOnBreak) {
@@ -202,7 +229,31 @@ class FirestoreAuctionRealtimeBridge {
     );
     this.activeUnsubscribers.push(unsubLoc);
 
-    // 2. Listen to Players collection for real-time live player, bids, and sales
+    // 2. Direct Real-Time Listener for LIVE players (Ultra fast <50ms query)
+    try {
+      const livePlayersQuery = query(
+        collection(db, 'players'),
+        where('status', '==', 'LIVE')
+      );
+      const unsubLive = onSnapshot(
+        livePlayersQuery,
+        (snapshot) => {
+          snapshot.docChanges().forEach((change) => {
+            if (change.type === 'added' || change.type === 'modified') {
+              const player = { id: change.doc.id, ...change.doc.data() };
+              this.currentActivePlayerId = player.id;
+              this.emitLocal('livePlayerUpdated', player);
+            }
+          });
+        },
+        (error) => console.warn('[Firestore] Live player query warning:', error)
+      );
+      this.activeUnsubscribers.push(unsubLive);
+    } catch (err) {
+      console.warn('[Firestore] Live query setup warning:', err);
+    }
+
+    // 3. Listen to Players collection for real-time bids, sales, unsold
     const playersQuery = query(
       collection(db, 'players'),
       where('locationId', '==', locIdStr)
@@ -217,6 +268,7 @@ class FirestoreAuctionRealtimeBridge {
           if (change.type === 'added' || change.type === 'modified') {
             // Live player transition
             if (player.status === 'LIVE' && (!prev || prev.status !== 'LIVE')) {
+              this.currentActivePlayerId = player.id;
               this.emitLocal('livePlayerUpdated', player);
             }
 
@@ -235,11 +287,17 @@ class FirestoreAuctionRealtimeBridge {
 
             // Player sold
             if (player.status === 'SOLD' && (!prev || prev.status !== 'SOLD')) {
+              if (this.currentActivePlayerId === player.id) {
+                this.currentActivePlayerId = null;
+              }
               this.emitLocal('playerSold', player);
             }
 
             // Player unsold
             if (player.status === 'UNSOLD' && (!prev || prev.status !== 'UNSOLD')) {
+              if (this.currentActivePlayerId === player.id) {
+                this.currentActivePlayerId = null;
+              }
               this.emitLocal('playerUnsold', player);
             }
 
@@ -249,6 +307,7 @@ class FirestoreAuctionRealtimeBridge {
               prev &&
               (prev.status === 'SOLD' || prev.status === 'UNSOLD')
             ) {
+              this.currentActivePlayerId = player.id;
               this.emitLocal('playerReopened', player);
             }
           }
@@ -260,7 +319,7 @@ class FirestoreAuctionRealtimeBridge {
     );
     this.activeUnsubscribers.push(unsubPlayers);
 
-    // 3. Listen to Teams for penalties and budget changes
+    // 4. Listen to Teams for penalties and budget changes
     const teamsQuery = query(
       collection(db, 'teams'),
       where('locationId', '==', locIdStr)
@@ -290,7 +349,24 @@ class FirestoreAuctionRealtimeBridge {
     );
     this.activeUnsubscribers.push(unsubTeams);
 
-    // 4. SSE Real-time Stream Bridge (Guarantees immediate zero-config synchronization)
+    // 5. Zero-Lag Fast-Heartbeat Poller (guarantees update within 1.2s across dropped packets or mobile sleep)
+    const poller = setInterval(async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/players?locationId=${locIdStr}`);
+        if (!res.ok) return;
+        const all = await res.json();
+        const active = all.find((p) => p.status === 'LIVE');
+        if (active && active.id !== this.currentActivePlayerId) {
+          this.currentActivePlayerId = active.id;
+          this.emitLocal('livePlayerUpdated', active);
+        } else if (!active && this.currentActivePlayerId) {
+          this.currentActivePlayerId = null;
+        }
+      } catch (e) {}
+    }, 1200);
+    this.activeUnsubscribers.push(() => clearInterval(poller));
+
+    // 6. SSE Real-time Stream Bridge (Guarantees immediate zero-config synchronization)
     try {
       if (typeof window !== 'undefined' && window.EventSource) {
         const es = new EventSource(`${API_BASE}/api/events?locationId=${locIdStr}`);

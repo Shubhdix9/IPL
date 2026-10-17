@@ -610,100 +610,46 @@ export default function TeamLeaderDashboard() {
                 </div>
               </div>
 
-              {/* Interactive Bidding Panel */}
-              {livePlayer.status === 'LIVE' && !teamData.isDisqualified && (
-                <div style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'rgba(16, 21, 29, 0.85)', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                  
-                  {/* Status Banner */}
+              {/* Live Auction Bid Status Banner */}
+              {livePlayer.status === 'LIVE' && livePlayer.currentBidTeamId && (
+                <div style={{ marginTop: '1.25rem' }}>
                   {String(livePlayer.currentBidTeamId) === String(teamData.id) ? (
-                    <div style={{ background: 'var(--emerald-surface)', border: '1px solid var(--emerald-border)', color: 'var(--emerald-live)', padding: '0.65rem 1rem', borderRadius: '4px', fontWeight: '700', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.05em' }}>
-                      [WINNING] YOUR FRANCHISE CURRENTLY HOLDS THE HIGHEST BID
-                    </div>
-                  ) : livePlayer.currentBidTeamId ? (
-                    <div style={{ background: 'var(--amber-surface)', border: '1px solid var(--amber-border)', color: 'var(--amber-warning)', padding: '0.65rem 1rem', borderRadius: '4px', fontWeight: '700', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.05em' }}>
-                      [OUTBID] ANOTHER FRANCHISE HOLDS THE LEADING BID
+                    <div style={{ 
+                      background: 'var(--emerald-surface)', 
+                      border: '1px solid var(--emerald-border)', 
+                      color: 'var(--emerald-live)', 
+                      padding: '0.85rem 1.25rem', 
+                      borderRadius: '6px', 
+                      fontWeight: '700', 
+                      fontSize: '0.85rem', 
+                      fontFamily: 'JetBrains Mono, monospace', 
+                      letterSpacing: '0.05em',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}>
+                      <span>[WINNING] YOUR FRANCHISE CURRENTLY HOLDS THE HIGHEST BID</span>
+                      <span style={{ fontWeight: '900' }}>₹{((livePlayer.currentBid || livePlayer.basePrice) / 10000000).toFixed(2)} Cr</span>
                     </div>
                   ) : (
-                    <div style={{ color: 'var(--text-dim)', marginBottom: '1rem', fontSize: '0.82rem', fontFamily: 'JetBrains Mono, monospace' }}>
-                      READY FOR OPENING OFFER AT BASE PRICE OR HIGHER
+                    <div style={{ 
+                      background: 'var(--amber-surface)', 
+                      border: '1px solid var(--amber-border)', 
+                      color: 'var(--amber-warning)', 
+                      padding: '0.85rem 1.25rem', 
+                      borderRadius: '6px', 
+                      fontWeight: '700', 
+                      fontSize: '0.85rem', 
+                      fontFamily: 'JetBrains Mono, monospace', 
+                      letterSpacing: '0.05em',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}>
+                      <span>[OUTBID] LEADING BID: {teams.find(t => String(t.id) === String(livePlayer.currentBidTeamId))?.name || 'ANOTHER FRANCHISE'}</span>
+                      <span style={{ fontWeight: '900' }}>₹{((livePlayer.currentBid || livePlayer.basePrice) / 10000000).toFixed(2)} Cr</span>
                     </div>
                   )}
-
-                  {/* Primary Paddle Button */}
-                  {(() => {
-                    const currentVal = Number(livePlayer.currentBid || livePlayer.basePrice || 0);
-                    const nextInc = currentVal < 5000000 ? 500000 : (currentVal < 10000000 ? 1000000 : (currentVal < 50000000 ? 5000000 : (currentVal < 100000000 ? 10000000 : 20000000)));
-                    const nextAutoBid = currentVal + nextInc;
-                    const isLeading = String(livePlayer.currentBidTeamId) === String(teamData.id);
-                    const canAfford = teamData.budget >= nextAutoBid;
-
-                    return (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                        <button
-                          className="btn"
-                          disabled={isLeading || !canAfford || isBreakMode}
-                          onClick={() => {
-                            socket.emit('placeBid', {
-                              locationId: teamData.locationId,
-                              playerId: livePlayer.id,
-                              teamId: teamData.id,
-                              amount: nextAutoBid
-                            });
-                          }}
-                          style={{
-                            width: '100%',
-                            padding: '1rem',
-                            fontSize: '1.05rem',
-                            fontWeight: '800',
-                            letterSpacing: '0.08em',
-                            borderRadius: '6px',
-                            background: isLeading 
-                              ? 'var(--emerald-surface)'
-                              : (!canAfford ? 'rgba(255,255,255,0.05)' : 'linear-gradient(135deg, var(--gold-bright), var(--gold-primary))'),
-                            color: isLeading ? 'var(--emerald-live)' : (!canAfford ? 'var(--text-dim)' : '#000000'),
-                            border: isLeading ? '1px solid var(--emerald-border)' : 'none',
-                            cursor: isLeading || !canAfford || isBreakMode ? 'not-allowed' : 'pointer'
-                          }}
-                        >
-                          {isLeading 
-                            ? 'HOLDING HIGHEST BID' 
-                            : (!canAfford ? 'INSUFFICIENT REMAINING PURSE' : `RAISE PADDLE TO ₹${(nextAutoBid / 10000000).toFixed(2)} CR`)}
-                        </button>
-
-                        {/* Quick Multi-Cr Increments */}
-                        {!isLeading && canAfford && (
-                          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                            {[5000000, 10000000, 20000000].map(inc => {
-                              const jumpBid = currentVal + inc;
-                              if (jumpBid > teamData.budget) return null;
-                              return (
-                                <button
-                                  key={inc}
-                                  className="btn btn-secondary"
-                                  onClick={() => {
-                                    socket.emit('placeBid', {
-                                      locationId: teamData.locationId,
-                                      playerId: livePlayer.id,
-                                      teamId: teamData.id,
-                                      amount: jumpBid
-                                    });
-                                  }}
-                                  style={{
-                                    flex: 1,
-                                    padding: '0.5rem',
-                                    fontSize: '0.78rem',
-                                    fontFamily: 'JetBrains Mono, monospace'
-                                  }}
-                                >
-                                  + ₹{(inc / 10000000).toFixed(2)} Cr (₹{(jumpBid / 10000000).toFixed(2)} Cr)
-                                </button>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })()}
                 </div>
               )}
             </div>

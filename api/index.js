@@ -575,28 +575,42 @@ app.post('/api/auction/set-live', async (req, res) => {
     const locationRef = db.collection('locations').doc(locationId);
     const now = admin.firestore.FieldValue.serverTimestamp();
 
-    await db.runTransaction(async (t) => {
-      const pDoc = await t.get(playerRef);
-      if (!pDoc.exists) throw new Error('Player not found');
+    // Demote any previously LIVE player
+    const existingLiveSnap = await db
+      .collection('players')
+      .where('locationId', '==', locationId)
+      .where('status', '==', 'LIVE')
+      .get();
 
-      t.update(playerRef, {
-        status: 'LIVE',
-        currentBid: null,
-        currentBidTeamId: null,
-        currentBidId: null,
-        updatedAt: now,
-      });
-
-      t.update(locationRef, {
-        activePlayerId: targetPlayerId,
-        auctionStatus: 'LIVE',
-        timerDeadlineMs: deadlineMs,
-        timerDurationSeconds: duration,
-        timerPaused: false,
-        timerRemainingMs: duration * 1000,
-        updatedAt: now,
-      });
+    const batch = db.batch();
+    existingLiveSnap.docs.forEach((d) => {
+      if (d.id !== targetPlayerId) {
+        batch.update(d.ref, {
+          status: 'UNSOLD',
+          updatedAt: now,
+        });
+      }
     });
+
+    batch.update(playerRef, {
+      status: 'LIVE',
+      currentBid: null,
+      currentBidTeamId: null,
+      currentBidId: null,
+      updatedAt: now,
+    });
+
+    batch.update(locationRef, {
+      activePlayerId: targetPlayerId,
+      auctionStatus: 'LIVE',
+      timerDeadlineMs: deadlineMs,
+      timerDurationSeconds: duration,
+      timerPaused: false,
+      timerRemainingMs: duration * 1000,
+      updatedAt: now,
+    });
+
+    await batch.commit();
 
     const updated = await playerRef.get();
     const livePlayerData = { 
