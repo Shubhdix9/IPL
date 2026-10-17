@@ -22,15 +22,12 @@ export default function Login({ portalName }) {
   // If already logged in, automatically redirect them to their dashboard
   useEffect(() => {
     if (user) {
-      if (teamParam && user.username?.toLowerCase() !== teamParam.toLowerCase()) {
-        return;
-      }
       if (user.role === 'ADMIN') navigate('/manager');
       else if (user.role === 'AUCTIONEER') navigate('/auctioneer');
-      else if (user.role === 'TEAM_LEADER') navigate(`/team-leader?team=${user.username || ''}`);
+      else if (user.role === 'TEAM_LEADER') navigate('/team-leader');
       else navigate('/');
     }
-  }, [user, teamParam, navigate]);
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,10 +35,10 @@ export default function Login({ portalName }) {
     setLoading(true);
     
     try {
-      const loggedUser = await login(username, password);
-      if (loggedUser.role === 'ADMIN') navigate('/manager');
-      else if (loggedUser.role === 'AUCTIONEER') navigate('/auctioneer');
-      else if (loggedUser.role === 'TEAM_LEADER') navigate(`/team-leader?team=${loggedUser.username || ''}`);
+      const user = await login(username, password);
+      if (user.role === 'ADMIN') navigate('/manager');
+      else if (user.role === 'AUCTIONEER') navigate('/auctioneer');
+      else if (user.role === 'TEAM_LEADER') navigate('/team-leader');
       else navigate('/');
     } catch (err) {
       setError(err.message || 'Authentication failed. Check credentials.');
