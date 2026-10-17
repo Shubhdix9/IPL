@@ -15,8 +15,7 @@
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "concurrently": "^9.2.5",
-    "puppeteer-core": "^25.14.0",
+    "concurrently": "^9.1.2",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
