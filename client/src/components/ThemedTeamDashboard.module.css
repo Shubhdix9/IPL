@@ -1,0 +1,1136 @@
+/* ==============================================================================
+   PANEL B: THEMED TEAM DASHBOARD (SCOPED STYLES)
+   Visually aligned with the official IPL Auction Team Room reference.
+   All CSS variables and styles are strictly scoped to .pbDashboardWrapper.
+   ============================================================================== */
+
+.pbDashboardWrapper {
+  min-height: calc(100vh - 110px);
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0 2.5rem 0;
+  background-color: transparent;
+  color: #F5F7FA;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
+
+/* -----------------------------------------------------------------------------
+   1. HERO BANNER (~150px tall, multi-layer composition)
+   ----------------------------------------------------------------------------- */
+.pbHeroBanner {
+  width: 100%;
+  min-height: 150px;
+  height: 150px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--team-primary) 35%, #050B16) 0%,
+    color-mix(in srgb, var(--team-secondary) 15%, #03070E) 60%,
+    #050B16 100%
+  );
+  transition: border-color 250ms ease, box-shadow 250ms ease;
+}
+
+.pbHeroBanner:hover {
+  border-color: color-mix(in srgb, var(--accent-ui) 45%, transparent);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 25px color-mix(in srgb, var(--team-primary) 25%, transparent);
+}
+
+/* Diagonal background pattern stripes */
+.pbHeroStripes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--team-primary) 8%, transparent) 0px,
+    color-mix(in srgb, var(--team-primary) 8%, transparent) 14px,
+    transparent 14px,
+    transparent 28px
+  );
+  z-index: 1;
+}
+
+/* Middle-right team photo with dual edge-fade */
+.pbHeroPhotoWrap {
+  position: absolute;
+  right: 14%;
+  width: 44%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 25%, #000 75%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 25%, #000 75%, transparent);
+  overflow: hidden;
+}
+
+.pbHeroPhotoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pbHeroBanner:hover .pbHeroPhotoImg {
+  transform: translateX(5px) scale(1.02);
+}
+
+/* Team color multiply tint overlay */
+.pbHeroTint {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.32;
+  background-color: var(--team-primary);
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.pbHeroBanner:hover .pbHeroTint {
+  opacity: 0.24;
+}
+
+/* Bottom darkening gradient */
+.pbHeroDarken {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 35%, rgba(5, 11, 22, 0.9) 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Hero Content Layer */
+.pbHeroContent {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 1.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pbHeroLogoWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pbHeroLogo {
+  height: 100px;
+  max-width: 145px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 12px color-mix(in srgb, var(--accent-ui) 30%, transparent));
+  transition: transform 250ms ease, filter 250ms ease;
+}
+
+.pbHeroBanner:hover .pbHeroLogo {
+  transform: scale(1.04);
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 18px color-mix(in srgb, var(--accent-ui) 45%, transparent));
+}
+
+.pbHeroTitles {
+  display: flex;
+  flex-direction: column;
+}
+
+.pbFranchiseLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #91A6BE;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.pbTeamName {
+  font-size: 1.85rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.pbSloganSub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--accent-ui);
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+  transition: letter-spacing 250ms ease;
+}
+
+.pbHeroBanner:hover .pbSloganSub {
+  letter-spacing: 0.25em;
+}
+
+/* Far-right stylized slogan mark */
+.pbHeroSloganGraphic {
+  margin-left: auto;
+  text-align: right;
+  transform: rotate(-10deg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: var(--accent-ui);
+  user-select: none;
+  padding-right: 1.25rem;
+  text-shadow: 0 0 18px color-mix(in srgb, var(--accent-ui) 45%, transparent);
+}
+
+.pbCrownIcon {
+  display: block;
+  margin-bottom: 0.2rem;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent-ui) 60%, transparent));
+}
+
+.pbSloganLine {
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.25rem;
+  line-height: 1.05;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Team Switcher bar inside banner for easy review */
+.pbTeamSwitcher {
+  position: absolute;
+  top: 0.75rem;
+  right: 1.5rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(3, 8, 16, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pbTeamBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #91A6BE;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.pbTeamBtn:hover {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.pbTeamBtnActive {
+  background: color-mix(in srgb, var(--accent-ui) 25%, transparent);
+  border-color: var(--accent-ui);
+  color: var(--accent-ui);
+}
+
+/* -----------------------------------------------------------------------------
+   2. DASHBOARD BODY GRID (Left Sidebar ~260px + Right Action Column)
+   ----------------------------------------------------------------------------- */
+.pbDashboardGrid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  width: 100%;
+}
+
+/* -----------------------------------------------------------------------------
+   3. LEFT SIDEBAR: TEAM PANEL
+   ----------------------------------------------------------------------------- */
+.pbSidebarCard {
+  background: #090E17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.pbSidebarCard:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent-ui) 45%, transparent);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px color-mix(in srgb, var(--team-primary) 20%, transparent);
+}
+
+/* 3-segment color top strip */
+.pbCardTopStrip {
+  height: 4px;
+  width: 100%;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.pbStripSeg1 { flex: 4; background-color: var(--lifted-primary); }
+.pbStripSeg2 { flex: 3; background-color: var(--lifted-secondary); }
+.pbStripSeg3 { flex: 2; background-color: var(--team-tertiary); }
+
+/* Accent Header Strip: "<TEAM> TEAM PANEL" */
+.pbPanelHeaderStrip {
+  background-color: var(--accent-ui);
+  color: #050B16;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.pbHeaderIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.pbSidebarBody {
+  padding: 1.25rem 1.25rem 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.pbFranchiseDeskWrap {
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.85rem;
+}
+
+.pbDeskSub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: #91A6BE;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pbDeskTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0.15rem 0 0 0;
+}
+
+/* Infractions telemetry bar */
+.pbInfractionsRow {
+  background: rgba(16, 21, 29, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.65rem 0.9rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  position: relative;
+  overflow: hidden;
+  transition: all 180ms ease;
+}
+
+.pbInfractionsRow:hover {
+  background: color-mix(in srgb, var(--team-primary) 15%, rgba(16, 21, 29, 0.9));
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.pbInfractionsLabel {
+  font-size: 0.72rem;
+  color: #91A6BE;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pbInfractionsVal {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #F5F7FA;
+}
+
+.pbInfractionsValWarning {
+  color: #FFA502;
+}
+
+.pbInfractionsValDanger {
+  color: #FF4757;
+}
+
+/* Mandatory Quota Tracker Card */
+.pbQuotaCard {
+  background: rgba(16, 21, 29, 0.8);
+  border-radius: 6px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.pbQuotaTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-ui);
+  margin-bottom: 0.7rem;
+}
+
+.pbQuotaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem 0.8rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+}
+
+.pbQuotaItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #91A6BE;
+  padding: 0.15rem 0;
+  position: relative;
+}
+
+.pbQuotaItem:hover span:last-child {
+  color: var(--accent-ui);
+}
+
+.pbQuotaComplete {
+  color: #2ED573;
+}
+
+.pbQuotaOverseas {
+  grid-column: span 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+/* Roster Occupancy */
+.pbRosterRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.pbRosterLabel {
+  font-size: 0.72rem;
+  color: #91A6BE;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pbRosterVal {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.pbRosterMax {
+  color: #6C7A89;
+  font-size: 0.75rem;
+}
+
+/* Full Width Accent Button */
+.pbCtaButton {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  background-color: var(--accent-ui);
+  color: #050B16;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--accent-ui) 35%, transparent);
+}
+
+.pbCtaButton:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--accent-ui) 55%, transparent);
+}
+
+.pbCtaButton:active {
+  transform: scale(0.98);
+}
+
+/* Diagonal shine sweep on button */
+.pbCtaButton::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: none;
+}
+
+.pbCtaButton:hover::after {
+  left: 120%;
+  transition: left 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Bottom cropped watermark in sidebar */
+.pbSidebarWatermark {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 170px;
+  height: 170px;
+  pointer-events: none;
+  opacity: 0.10;
+  color: var(--accent-ui);
+  transition: opacity 300ms ease, transform 300ms ease;
+  z-index: 1;
+}
+
+.pbSidebarCard:hover .pbSidebarWatermark {
+  opacity: 0.18;
+  transform: scale(1.05);
+}
+
+/* -----------------------------------------------------------------------------
+   4. RIGHT COLUMN: MAIN ACTION CENTER
+   ----------------------------------------------------------------------------- */
+.pbMainColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Stats Card (Available Purse & Squad Points split) */
+.pbStatsCard {
+  background: #090E17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.pbStatsCard:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent-ui) 45%, transparent);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px color-mix(in srgb, var(--team-primary) 20%, transparent);
+}
+
+/* Right-edge diagonal accent sweep */
+.pbStatsSweep {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 35%;
+  background: linear-gradient(
+    135deg,
+    transparent 45%,
+    color-mix(in srgb, var(--team-primary) 12%, transparent) 75%,
+    color-mix(in srgb, var(--accent-ui) 22%, transparent) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pbStatsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  z-index: 2;
+}
+
+.pbStatCol {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.pbStatDivider {
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pbStatLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent-ui);
+  text-transform: uppercase;
+}
+
+.pbStatNumMonospace {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin: 0.25rem 0 0.15rem 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.pbStatPointsColor {
+  color: var(--accent-ui);
+}
+
+.pbStatSubtext {
+  font-size: 0.75rem;
+  color: #91A6BE;
+}
+
+/* Arena Activity Stream Card */
+.pbActivityCard {
+  background: #090E17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.pbActivityCard:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent-ui) 45%, transparent);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px color-mix(in srgb, var(--team-primary) 20%, transparent);
+}
+
+/* Diagonal repeating background stripes in empty activity stream */
+.pbActivityStripes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--team-primary) 5%, transparent) 0px,
+    color-mix(in srgb, var(--team-primary) 5%, transparent) 14px,
+    color-mix(in srgb, var(--team-secondary) 5%, transparent) 14px,
+    color-mix(in srgb, var(--team-secondary) 5%, transparent) 28px
+  );
+  z-index: 1;
+}
+
+/* Soft corner radial glow */
+.pbActivityGlow {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--team-primary) 18%, transparent) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pbActivityHeader {
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  position: relative;
+  z-index: 2;
+}
+
+/* Pulsing broadcast icon */
+.pbBroadcastDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #2ED573;
+  display: inline-block;
+  box-shadow: 0 0 10px #2ED573;
+  animation: pbPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes pbPulse {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.pbActivityContent {
+  flex: 1;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.pbEmptyState {
+  color: #91A6BE;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Large outline-logo watermark in bottom-right corner */
+.pbActivityWatermark {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 260px;
+  height: 260px;
+  pointer-events: none;
+  opacity: 0.10;
+  color: var(--accent-ui);
+  transition: opacity 300ms ease, transform 300ms ease;
+  z-index: 1;
+}
+
+.pbActivityCard:hover .pbActivityWatermark {
+  opacity: 0.16;
+  transform: scale(1.04);
+}
+
+/* Watermark SVG styling */
+.pbWatermarkSvg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Approved Fallback mask-image watermark */
+.pbWatermarkFallback {
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-ui);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent-ui) 40%, transparent));
+}
+
+/* Full Squad Roster Modal */
+.pbSquadModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 8, 16, 0.88);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.pbSquadModalBox {
+  background: #090E17;
+  border: 1px solid var(--accent-ui);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8), 0 0 30px color-mix(in srgb, var(--accent-ui) 35%, transparent);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pbSquadModalHeader {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: color-mix(in srgb, var(--team-primary) 20%, #090E17);
+}
+
+.pbSquadModalTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pbSquadModalBody {
+  padding: 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pbPlayerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0.85rem;
+  background: rgba(16, 21, 29, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+/* -----------------------------------------------------------------------------
+   5. ACTIVE LOT / GAVEL STAGE CARD (THEMED)
+   ----------------------------------------------------------------------------- */
+.pbLiveLotCard {
+  background: linear-gradient(145deg, rgba(16, 23, 34, 0.96), rgba(8, 12, 18, 0.98));
+  border: 1px solid color-mix(in srgb, var(--accent-ui) 40%, rgba(255, 255, 255, 0.1));
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px color-mix(in srgb, var(--team-primary) 15%, transparent);
+  transition: border-color 250ms ease, box-shadow 250ms ease;
+}
+
+.pbLiveLotCard:hover {
+  border-color: color-mix(in srgb, var(--accent-ui) 60%, transparent);
+}
+
+.pbLiveLotBody {
+  padding: 1.5rem 1.75rem;
+}
+
+.pbLiveLotHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pbLiveLotTag {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-ui);
+  text-transform: uppercase;
+}
+
+.pbLiveLotPulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-ui);
+  box-shadow: 0 0 10px var(--accent-ui);
+  animation: pbPulse 1.8s infinite;
+}
+
+.pbTimerBadge {
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--accent-ui);
+}
+
+.pbTimerWarning {
+  background: rgba(235, 87, 87, 0.15) !important;
+  border-color: rgba(235, 87, 87, 0.4) !important;
+  color: #EB5757 !important;
+  animation: pbTimerBlink 1s infinite alternate;
+}
+
+@keyframes pbTimerBlink {
+  from { opacity: 1; }
+  to { opacity: 0.6; }
+}
+
+.pbTimerPaused {
+  background: rgba(244, 199, 56, 0.15) !important;
+  border-color: rgba(244, 199, 56, 0.4) !important;
+  color: #F4C738 !important;
+}
+
+.pbPlayerDetailGrid {
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pbPlayerAvatarWrap {
+  width: 105px;
+  height: 105px;
+  background: rgba(20, 27, 37, 0.9);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent-ui) 45%, rgba(255, 255, 255, 0.1));
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.pbPlayerAvatarImg {
+  height: 92%;
+  object-fit: contain;
+}
+
+.pbPlayerInfoCol {
+  flex: 1;
+  min-width: 250px;
+}
+
+.pbPlayerName {
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.pbPlayerPills {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem 0;
+  flex-wrap: wrap;
+}
+
+.pbPlayerPill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.07);
+  color: #91A6BE;
+  text-transform: uppercase;
+}
+
+.pbPlayerPillAccent {
+  background: color-mix(in srgb, var(--accent-ui) 15%, transparent);
+  color: var(--accent-ui);
+  border: 1px solid color-mix(in srgb, var(--accent-ui) 35%, transparent);
+}
+
+.pbPlayerBidsRow {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.pbBidCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.pbBidLabel {
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: #91A6BE;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.15rem;
+}
+
+.pbBidValBase {
+  font-size: 1.35rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: #91A6BE;
+}
+
+.pbBidValHigh {
+  font-size: 1.6rem;
+  font-weight: 900;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-ui);
+}
+
+.pbWinningBanner {
+  margin-top: 1.25rem;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #10B981;
+  padding: 0.85rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+}
+
+.pbOutbidBanner {
+  margin-top: 1.25rem;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #F59E0B;
+  padding: 0.85rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pbRecessBanner {
+  background: rgba(244, 199, 56, 0.12);
+  border-bottom: 1px solid rgba(244, 199, 56, 0.35);
+  color: #F4C738;
+  text-align: center;
+  padding: 0.65rem 1rem;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  position: sticky;
+  top: 4.5rem;
+  z-index: 90;
+  backdrop-filter: blur(8px);
+}
+
+/* -----------------------------------------------------------------------------
+   6. RESPONSIVE BREAKPOINTS
+   ----------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .pbDashboardGrid {
+    grid-template-columns: 1fr;
+  }
+  .pbSidebarCard {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .pbDashboardWrapper {
+    padding: 0.75rem 0.75rem 2rem 0.75rem;
+  }
+  .pbHeroBanner {
+    height: auto;
+    min-height: 140px;
+    padding: 1rem 0;
+  }
+  .pbHeroContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0 1rem;
+  }
+  .pbHeroLogo {
+    height: 60px;
+    max-width: 90px;
+  }
+  .pbTeamName {
+    font-size: 1.35rem;
+  }
+  .pbHeroPhotoWrap {
+    right: 0;
+    width: 65%;
+    opacity: 0.35;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 65%);
+    mask-image: linear-gradient(to right, transparent, #000 65%);
+  }
+  .pbHeroSloganGraphic {
+    display: none;
+  }
+  .pbStatsGrid {
+    grid-template-columns: 1fr;
+  }
+  .pbStatDivider {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .pbHeroBanner:hover .pbHeroPhotoImg {
+    transform: none !important;
+  }
+  .pbCtaButton:hover::after {
+    display: none !important;
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "dc": {
+    "name": "Delhi Capitals",
+    "slogan": "Roar Macha",
+    "heroFocus": "50% 25%",
+    "starting": {
+      "primary": "#17479E",
+      "secondary": "#EF1B23",
+      "tertiary": "#F7B500",
+      "accentUi": "#4A8DF0",
+      "heroFocus": "50% 25%"
+    },
+    "sampled": {
+      "primary": "#3254B1",
+      "secondary": "#D71921",
+      "tertiary": "#FAAE1A",
+      "accentUi": "#4A8DF0",
+      "liftedStrips": {
+        "primary": "#3C5EBB",
+        "secondary": "#D71921",
+        "tertiary": "#FAAE1A"
+      }
+    },
+    "contrast": {
+      "accentUi_vs_page": 5.97,
+      "primary_vs_card": 2.65,
+      "secondary_vs_card": 3.53,
+      "tertiary_vs_card": 9.71,
+      "liftedPrimary_vs_card": 3.06,
+      "liftedSecondary_vs_card": 3.53
+    }
+  },
+  "kkr": {
+    "name": "Kolkata Knight Riders",
+    "slogan": "Korbo Lorbo Jeetbo Re",
+    "heroFocus": "50% 28%",
+    "starting": {
+      "primary": "#3A225D",
+      "secondary": "#E5B93C",
+      "tertiary": "#7B4FC9",
+      "accentUi": "#E3BD3F",
+      "heroFocus": "50% 28%"
+    },
+    "sampled": {
+      "primary": "#4A3E4B",
+      "secondary": "#F4C738",
+      "tertiary": "#7B4FC9",
+      "accentUi": "#E5B93C",
+      "liftedStrips": {
+        "primary": "#6D616E",
+        "secondary": "#F4C738",
+        "tertiary": "#7B4FC9"
+      }
+    },
+    "contrast": {
+      "accentUi_vs_page": 10.64,
+      "primary_vs_card": 1.81,
+      "secondary_vs_card": 11.4,
+      "tertiary_vs_card": 3.32,
+      "liftedPrimary_vs_card": 3.13,
+      "liftedSecondary_vs_card": 11.4
+    }
+  },
+  "pbks": {
+    "name": "Punjab Kings",
+    "slogan": "Sadda Punjab",
+    "heroFocus": "50% 28%",
+    "starting": {
+      "primary": "#D81F2A",
+      "secondary": "#C9A36B",
+      "tertiary": "#3F5BA9",
+      "accentUi": "#F0343B",
+      "heroFocus": "50% 28%"
+    },
+    "sampled": {
+      "primary": "#CE3128",
+      "secondary": "#C59373",
+      "tertiary": "#3F5BA9",
+      "accentUi": "#F53B47",
+      "liftedStrips": {
+        "primary": "#CE3128",
+        "secondary": "#C59373",
+        "tertiary": "#4460AE"
+      }
+    },
+    "contrast": {
+      "accentUi_vs_page": 5.25,
+      "primary_vs_card": 3.57,
+      "secondary_vs_card": 6.8,
+      "tertiary_vs_card": 2.86,
+      "liftedPrimary_vs_card": 3.57,
+      "liftedSecondary_vs_card": 6.8
+    }
+  },
+  "rr": {
+    "name": "Rajasthan Royals",
+    "slogan": "Halla Bol",
+    "heroFocus": "50% 22%",
+    "starting": {
+      "primary": "#EA1A85",
+      "secondary": "#1E2B68",
+      "tertiary": "#F5B7D6",
+      "accentUi": "#FF4DA6",
+      "heroFocus": "50% 22%"
+    },
+    "sampled": {
+      "primary": "#EA1A85",
+      "secondary": "#3C487C",
+      "tertiary": "#F5B7D6",
+      "accentUi": "#FF4DA6",
+      "liftedStrips": {
+        "primary": "#EA1A85",
+        "secondary": "#556195",
+        "tertiary": "#F5B7D6"
+      }
+    },
+    "contrast": {
+      "accentUi_vs_page": 6.44,
+      "primary_vs_card": 4.35,
+      "secondary_vs_card": 2.1,
+      "tertiary_vs_card": 11.01,
+      "liftedPrimary_vs_card": 4.35,
+      "liftedSecondary_vs_card": 3.08
+    }
+  },
+  "srh": {
+    "name": "Sunrisers Hyderabad",
+    "slogan": "Orange Army",
+    "heroFocus": "50% 30%",
+    "starting": {
+      "primary": "#F26522",
+      "secondary": "#C8202B",
+      "tertiary": "#FDB913",
+      "accentUi": "#FF8A3D",
+      "heroFocus": "50% 30%"
+    },
+    "sampled": {
+      "primary": "#AF513C",
+      "secondary": "#B22026",
+      "tertiary": "#F8A822",
+      "accentUi": "#FF8A3D",
+      "liftedStrips": {
+        "primary": "#AF513C",
+        "secondary": "#BC2A30",
+        "tertiary": "#F8A822"
+      }
+    },
+    "contrast": {
+      "accentUi_vs_page": 8.4,
+      "primary_vs_card": 3.54,
+      "secondary_vs_card": 2.73,
+      "tertiary_vs_card": 9.25,
+      "liftedPrimary_vs_card": 3.54,
+      "liftedSecondary_vs_card": 3.06
+    }
+  }
+}

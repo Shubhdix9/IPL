@@ -1,0 +1,6 @@
+{
+  "python.defaultInterpreterPath": "C:\\Python315\\python.exe",
+  "python.analysis.extraPaths": [
+    "C:\\Users\\SAgar\\AppData\\Roaming\\Python\\Python315\\site-packages"
+  ]
+}

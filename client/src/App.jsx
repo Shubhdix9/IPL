@@ -6,6 +6,7 @@ import AuctioneerDashboard from './components/AuctioneerDashboard';
 import ViewerDashboard from './components/ViewerDashboard';
 import Login from './components/Login';
 import LandingPage from './components/LandingPage';
+import ThemedTeamDashboard from './components/ThemedTeamDashboard';
 import { useAuth } from './AuthContext';
 
 const ProtectedRoute = ({ children, requiredRole }) => {
@@ -90,6 +91,8 @@ function App() {
             <Route path="/team-leader" element={
               <ProtectedRoute requiredRole="TEAM_LEADER"><TeamLeaderDashboard /></ProtectedRoute>
             } />
+            <Route path="/team" element={<ThemedTeamDashboard forcedTeamId="dc" />} />
+            <Route path="/team/:teamId" element={<ThemedTeamDashboard />} />
             <Route path="/viewer" element={<ViewerDashboard />} />
           </Routes>
         </main>
