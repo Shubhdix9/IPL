@@ -39,7 +39,7 @@ const NavigationBar = () => {
 
   const getRoleBadge = (role) => {
     switch (role) {
-      case 'ADMIN': return 'SYSTEM DIRECTOR';
+      case 'ADMIN': return 'ADMIN';
       case 'AUCTIONEER': return 'GAVEL MASTER';
       case 'TEAM_LEADER': return 'FRANCHISE DESK';
       default: return 'OPERATOR';
@@ -50,8 +50,8 @@ const NavigationBar = () => {
     <header className="navbar">
       <Link to="/" className="nav-brand-wrap" title="Back to Home">
         <span className="nav-status-pill"></span>
-        <span className="nav-brand">IPL AUCTION PRO</span>
-        <span className="nav-subtext">OFFICIAL OPS</span>
+        <span className="nav-brand">IPL AUCTION ARENA</span>
+        <span className="nav-subtext">ADMIN PANEL</span>
       </Link>
 
       <div className="nav-links">
@@ -61,7 +61,7 @@ const NavigationBar = () => {
         {user && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <span className="badge badge-gold">
-              {getRoleBadge(user.role)}: {user.username}
+              {user.role === 'ADMIN' ? 'ADMIN' : `${getRoleBadge(user.role)}: ${user.username}`}
             </span>
             <button 
               onClick={logout} 

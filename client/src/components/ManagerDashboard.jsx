@@ -617,7 +617,7 @@ export default function ManagerDashboard() {
             padding: '0.75rem 1rem'
           }}
         >
-          ROSTER POOL & CONFIG
+          PLAYERS AND SETTINGS
         </button>
         <div style={{ flex: 1 }}></div>
         <button 

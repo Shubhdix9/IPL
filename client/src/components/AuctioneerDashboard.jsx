@@ -618,7 +618,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
             className="btn btn-amber"
             style={{ padding: '0.4rem 1.1rem', fontSize: '0.78rem', fontWeight: '800' }}
           >
-            ▶ RESUME SESSION
+            RESUME SESSION
           </button>
         </div>
       )}
@@ -635,10 +635,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
         flexWrap: 'wrap', 
         gap: '1rem' 
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: 'var(--gold-primary)', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: '700' }}>
-            AUTHORITATIVE ARENA:
-          </span>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <span className="badge badge-gold" style={{ fontSize: '0.8rem', padding: '0.35rem 0.85rem' }}>
             IPL MEGA AUCTION ARENA 2026
           </span>
@@ -727,7 +724,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
             }}
             title="When active: automatically resolves sold/unsold when timer hits 0 and advances to next player in slot"
           >
-            {autoPilotEnabled ? '⚡ AUTO-PILOT: ON' : '⏸️ AUTO-PILOT: OFF'}
+            {autoPilotEnabled ? 'AUTO-PILOT: ON' : 'AUTO-PILOT: OFF'}
           </button>
 
           <button
@@ -765,7 +762,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
             }}
             title="Broadcast 5-second countdown to team leaders and franchise war rooms, then start the auction"
           >
-            {auctionStartingCountdown !== null ? `⏳ STARTING (${auctionStartingCountdown}s)` : '🚀 START AUCTION'}
+            {auctionStartingCountdown !== null ? `STARTING (${auctionStartingCountdown}s)` : 'START AUCTION'}
           </button>
 
           <button
@@ -787,7 +784,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
               boxShadow: isBreakMode ? '0 0 15px rgba(245, 158, 11, 0.4)' : 'none'
             }}
           >
-            {isBreakMode ? '▶ RESUME SESSION' : '⏸ OFFICIAL RECESS'}
+            {isBreakMode ? 'RESUME SESSION' : 'OFFICIAL RECESS'}
           </button>
           
           <button 
@@ -883,9 +880,9 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
             <div>
-              <h3 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#ffffff' }}>ROSTER QUEUE</h3>
+              <h3 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#ffffff' }}>PLAYER QUEUE</h3>
               <span style={{ fontSize: '0.7rem', color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace' }}>
-                {players.length} PENDING LOTS
+                {players.length} PLAYERS REMAINING
               </span>
             </div>
           </div>
@@ -897,7 +894,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
               className="form-input"
               style={{ padding: '0.45rem', fontSize: '0.8rem', marginBottom: '0.75rem' }}
             >
-              <option value="ALL">ALL LOT CATEGORIES</option>
+              <option value="ALL">ALL PLAYER CATEGORIES</option>
               {[...new Set(players.filter(p => p.pool).map(p => p.pool))]
                 .sort((a, b) => {
                   const getPoolNumber = (poolStr) => {
@@ -970,16 +967,13 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
           height: 'calc(100vh - 170px)',
           overflowY: 'auto'
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-            <span style={{ fontSize: '0.75rem', color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.15em' }}>
-              OFFICIAL GAVEL DECK
-            </span>
-            {livePlayer && (
+          {livePlayer && (
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '1rem' }}>
               <span className={`badge ${livePlayer.status === 'LIVE' ? 'badge-live' : livePlayer.status === 'SOLD' ? 'badge-sold' : 'badge-unsold'}`}>
                 {livePlayer.status}
               </span>
-            )}
-          </div>
+            </div>
+          )}
 
           {livePlayer ? (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
@@ -1236,23 +1230,6 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                 </div>
               ) : (
                 <>
-                  <div style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.4rem 1.2rem',
-                    background: 'rgba(212, 175, 55, 0.1)',
-                    border: '1px solid var(--gold-border)',
-                    borderRadius: '50px',
-                    color: 'var(--gold-bright)',
-                    fontSize: '0.8rem',
-                    fontFamily: 'JetBrains Mono, monospace',
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase'
-                  }}>
-                    ⚡ ARENA STATUS: READY TO COMMENCE
-                  </div>
-
                   <h2 style={{ fontSize: '1.6rem', fontWeight: '800', color: '#ffffff', margin: 0 }}>
                     Gavel Stage Awaiting Session Start
                   </h2>
@@ -1281,7 +1258,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
                         gap: '0.5rem'
                       }}
                     >
-                      {auctionStartingCountdown !== null ? `⏳ STARTING IN ${auctionStartingCountdown}s...` : '🚀 START THE AUCTION (5s COUNTDOWN)'}
+                      {auctionStartingCountdown !== null ? `STARTING IN ${auctionStartingCountdown}s...` : 'START THE AUCTION (5s COUNTDOWN)'}
                     </button>
 
                     <button 
@@ -1326,7 +1303,7 @@ export default function AuctioneerDashboard({ locationIdOverride }) {
           <div style={{ marginBottom: '1rem' }}>
             <h3 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#ffffff' }}>FRANCHISE STATUS</h3>
             <span style={{ fontSize: '0.7rem', color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace' }}>
-              PURSES & PENALTY COUNTERS
+              TEAM BUDGET AND PENALTIES
             </span>
           </div>
 

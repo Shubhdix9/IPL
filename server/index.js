@@ -1355,7 +1355,7 @@ if (onRequest) {
 }
 
 // Run local server when called directly
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`[IPL Auction Backend] Firebase Express server running on port ${PORT}`);
