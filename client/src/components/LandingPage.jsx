@@ -1326,7 +1326,7 @@ export default function LandingPage({ initialSection }) {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              
+
               {/* Rule 1 */}
               <div style={{
                 padding: '1.25rem',
@@ -1335,10 +1335,10 @@ export default function LandingPage({ initialSection }) {
                 borderRadius: '0 6px 6px 0'
               }}>
                 <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.05rem', fontWeight: '800', color: '#FFC928', margin: '0 0 0.4rem 0' }}>
-                  1. Franchise Budget & Purse (₹90 Crore)
+                  1. Franchise Budget &amp; Purse (₹90 Crore)
                 </h4>
                 <p style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: 0 }}>
-                  Each team leader is endowed with an authoritative purse of ₹90 Crore (₹900,000,000). The auction engine enforces real-time atomic balance checks to prevent overspending. Any bid exceeding available purse is automatically blocked by the server.
+                  Each team leader is endowed with an authoritative purse of ₹90 Crore (₹900,000,000). The auction engine enforces real-time atomic balance checks to prevent overspending. Any bid exceeding available purse is automatically blocked by the server. Your purse can change during the auction through the Budget Boost Power (see Section 7).
                 </p>
               </div>
 
@@ -1350,11 +1350,17 @@ export default function LandingPage({ initialSection }) {
                 borderRadius: '0 6px 6px 0'
               }}>
                 <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.05rem', fontWeight: '800', color: '#00A8FF', margin: '0 0 0.4rem 0' }}>
-                  2. Squad Quotas & Foreign Player Caps
+                  2. Squad Quotas &amp; Foreign Player Caps
                 </h4>
                 <p style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: 0 }}>
-                  Franchises must assemble a squad of minimum 18 players and maximum 25 players. A strict limit of at most 8 overseas (international) players is enforced. Teams must ensure sufficient remaining funds to fill all unfilled required slots.
+                  Franchises must assemble a squad of minimum 18 players and maximum 25 players. A strict limit of at most 8 overseas (international) players is enforced. Teams must ensure sufficient remaining funds to fill all unfilled required slots. Every squad must also meet these minimum composition requirements:
                 </p>
+                <ul style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: '0.5rem 0 0 0', paddingLeft: '1.25rem' }}>
+                  <li>Batsmen: minimum 4</li>
+                  <li>Bowlers: minimum 4</li>
+                  <li>Wicketkeeper: minimum 1</li>
+                  <li>All-rounders: minimum 3</li>
+                </ul>
               </div>
 
               {/* Rule 3 */}
@@ -1365,7 +1371,7 @@ export default function LandingPage({ initialSection }) {
                 borderRadius: '0 6px 6px 0'
               }}>
                 <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.05rem', fontWeight: '800', color: '#00E6A0', margin: '0 0 0.4rem 0' }}>
-                  3. Synchronized Server Timer & Gavel Countdown
+                  3. Synchronized Server Timer &amp; Gavel Countdown
                 </h4>
                 <p style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: 0 }}>
                   Every lot has an authoritative 30-second server countdown clock. Whenever a valid bid is recorded, the timer resets, giving opposing franchises an opportunity to counter-bid. If the timer expires with no new bids, the auctioneer hits the gavel and awards the player.
@@ -1380,11 +1386,106 @@ export default function LandingPage({ initialSection }) {
                 borderRadius: '0 6px 6px 0'
               }}>
                 <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.05rem', fontWeight: '800', color: '#FF3B30', margin: '0 0 0.4rem 0' }}>
-                  4. Penalties & Disqualification Safeguards
+                  4. Penalties &amp; Disqualification Safeguards
                 </h4>
                 <p style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: 0 }}>
-                  Operators retain emergency controls to pause the timer, retract erroneous bids, or penalize unruly franchise desks. Repeated infractions incur automatic bidding lockouts to guarantee fair competition.
+                  Operators retain emergency controls to pause the timer, retract erroneous bids, or penalize unruly franchise desks. Repeated infractions incur automatic bidding lockouts to guarantee fair competition. Any form of misconduct, unfair practice, or disruption may result in penalties or disqualification. The decisions of the organizers and the auction committee are final and binding in all matters related to the event.
                 </p>
+              </div>
+
+              {/* Rule 5 */}
+              <div style={{
+                padding: '1.25rem',
+                backgroundColor: 'rgba(3, 16, 31, 0.7)',
+                borderLeft: '4px solid #FFC928',
+                borderRadius: '0 6px 6px 0'
+              }}>
+                <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.05rem', fontWeight: '800', color: '#FFC928', margin: '0 0 0.4rem 0' }}>
+                  5. Team Ratings &amp; Rankings
+                </h4>
+                <ul style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: 0, paddingLeft: '1.25rem' }}>
+                  <li>Teams are evaluated based on their overall team rating.</li>
+                  <li>If two or more teams have identical ratings, this tie-breaker applies: the team with the higher remaining budget after team selection is ranked above the other.</li>
+                  <li>If a tie still persists, the decision of the organizing committee is final and binding.</li>
+                </ul>
+              </div>
+
+
+              {/* Rule 6 */}
+              <div style={{
+                padding: '1.25rem',
+                backgroundColor: 'rgba(3, 16, 31, 0.7)',
+                borderLeft: '4px solid #00E6A0',
+                borderRadius: '0 6px 6px 0'
+              }}>
+                <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.05rem', fontWeight: '800', color: '#00E6A0', margin: '0 0 0.4rem 0' }}>
+                  6. Special Power: Jump Bidding
+                </h4>
+                <p style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: '0 0 0.5rem 0' }}>
+                  To make the auction more strategic and exciting, each team has access to two special powers. Each can be used only once.
+                </p>
+                <ul style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: '0 0 0.5rem 0', paddingLeft: '1.25rem' }}>
+                  <li>Each team may use the Jump Bidding Power only once during the entire auction.</li>
+                  <li>This power allows a team to bypass the standard bidding increments and directly place any higher bid above the current amount.</li>
+                </ul>
+                <p style={{ color: '#00E6A0', fontSize: '0.86rem', fontWeight: '700', margin: '0.75rem 0 0.35rem 0' }}>Important Conditions</p>
+                <ul style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: 0, paddingLeft: '1.25rem' }}>
+                  <li>A team may directly quote any amount higher than the current bid.</li>
+                  <li>If no other team places a bid after the jump bid, the initiating team is compulsorily required to purchase the player at the quoted amount.</li>
+                  <li>The Jump Bidding Power may only be used once by each team.</li>
+                  <li>Once used, it cannot be revoked, transferred, or reused.</li>
+                </ul>
+              </div>
+
+              {/* Rule 7 */}
+              <div style={{
+                padding: '1.25rem',
+                backgroundColor: 'rgba(3, 16, 31, 0.7)',
+                borderLeft: '4px solid #FF3B30',
+                borderRadius: '0 6px 6px 0'
+              }}>
+                <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.05rem', fontWeight: '800', color: '#FF3B30', margin: '0 0 0.4rem 0' }}>
+                  7. Special Power: Budget Boost
+                </h4>
+                <p style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: '0 0 0.5rem 0' }}>
+                  A high-risk, high-reward power that each team may activate only once during the entire auction.
+                </p>
+                <ul style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: '0 0 0.5rem 0', paddingLeft: '1.25rem' }}>
+                  <li>A 5-minute break is provided after every round, during which teams may choose to activate this power.</li>
+                </ul>
+                <p style={{ color: '#FF3B30', fontSize: '0.86rem', fontWeight: '700', margin: '0.75rem 0 0.35rem 0' }}>How It Works</p>
+                <ul style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: '0 0 0.5rem 0', paddingLeft: '1.25rem' }}>
+                  <li>The team is asked one bonus question related to Cricket or General Knowledge.</li>
+                  <li>If the answer is correct, the team receives a ₹2 Crore increase in its remaining budget.</li>
+                  <li>If the answer is incorrect, ₹3 Crore is deducted from its remaining budget.</li>
+                </ul>
+                <p style={{ color: '#FF3B30', fontSize: '0.86rem', fontWeight: '700', margin: '0.75rem 0 0.35rem 0' }}>Important Conditions</p>
+                <ul style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: 0, paddingLeft: '1.25rem' }}>
+                  <li>Teams are advised to use it strategically and only when confident.</li>
+                  <li>Once a team uses the Budget Boost Power, it cannot be used again under any circumstance.</li>
+                </ul>
+              </div>
+
+              {/* Rule 8 */}
+              <div style={{
+                padding: '1.25rem',
+                backgroundColor: 'rgba(3, 16, 31, 0.7)',
+                borderLeft: '4px solid #FFC928',
+                borderRadius: '0 6px 6px 0'
+              }}>
+                <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.05rem', fontWeight: '800', color: '#FFC928', margin: '0 0 0.4rem 0' }}>
+                  8. General Guidelines
+                </h4>
+                <ol style={{ color: '#F5F7FA', fontSize: '0.86rem', lineHeight: 1.5, margin: 0, paddingLeft: '1.25rem' }}>
+                  <li>All participating teams must report to the venue at least half an hour before the scheduled start of the event.</li>
+                  <li>Registration is compulsory for all participants.</li>
+                  <li>Only registered participants are allowed to enter the auction and quiz areas.</li>
+                  <li>Teams must maintain discipline and sportsmanship throughout the event.</li>
+                  <li>Any form of misconduct, unfair practice, or disruption may result in penalties or disqualification.</li>
+                  <li>The decisions of the organizers and auction committee are final and binding in all matters related to the event.</li>
+                  <li>Teams are responsible for managing their budgets and player selections throughout the auction.</li>
+                  <li>Any rule not explicitly covered in this document is interpreted and decided by the organizing committee.</li>
+                </ol>
               </div>
 
             </div>
@@ -1458,14 +1559,20 @@ export default function LandingPage({ initialSection }) {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <img 
-              src="/aarambh_logo.png" 
-              alt="Aarambh'26"
+              src="/sabrang_logo.png" 
+              alt="Sabrang"
+              title="Sabrang"
               style={{
-                height: '38px',
+                height: '42px',
+                width: 'auto',
+                maxWidth: '160px',
                 objectFit: 'contain',
-                opacity: 0.8
+                opacity: 0.95,
+                transition: 'opacity 0.2s ease, transform 0.2s ease'
               }}
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              onError={(e) => { 
+                e.currentTarget.src = '/aarambh_logo.png';
+              }}
             />
           </div>
         </div>
